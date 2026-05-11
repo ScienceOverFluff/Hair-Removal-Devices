@@ -1073,21 +1073,31 @@ el.innerHTML = `
 
 // ── GOOGLE SHEETS ─────────────────────────────────────────────────
 async function submitToSheets(result) {
-  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbwyrgLiA0CkHxp7LxAPVX_UV3jl0VU5bMae4zRVJT_hm6XvBazXgaldtsITAe_lIhxY/exec') return;
+
+  const resultUrl = `https://compare.scienceoverfluff.com/light-based-hair-removal-devices/quiz`
+    + `?result=${encodeURIComponent(result)}`
+    + `&skin=${encodeURIComponent(answers.skin)}`
+    + `&hair=${encodeURIComponent(answers.hair)}`
+    + `&area=${encodeURIComponent(answers.area)}`
+    + `&density=${encodeURIComponent(answers.density.join(','))}`
+    + `&priority=${encodeURIComponent(answers.priority)}`;
+
   try {
     await fetch(APPS_SCRIPT_URL, {
       method: 'POST', mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        timestamp: new Date().toISOString(),
-        skin_tone: answers.skin,
-        hair_color: answers.hair,
+        timestamp:      new Date().toISOString(),
+        skin_tone:      answers.skin,
+        hair_color:     answers.hair,
         treatment_area: answers.area,
-        hair_density: answers.density.join(', '),
-        priority: answers.priority,
+        hair_density:   answers.density.join(', '),
+        priority:       answers.priority,
         result,
-        email: answers.email,
-        newsletter: answers.newsletter
+        email:          answers.email,
+        newsletter:     answers.newsletter,
+        result_url:     resultUrl,
       })
     });
   } catch(e) { console.warn('Sheet submission failed silently:', e); }
@@ -1113,6 +1123,17 @@ function restartQuiz() {
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+  // ── RESTORE FROM URL ──────────────────────────────────────────────
+(function() {
+  const p = new URLSearchParams(window.location.search);
+  if (!p.get('result')) return;
+  answers.skin     = p.get('skin');
+  answers.hair     = p.get('hair');
+  answers.area     = p.get('area');
+  answers.density  = (p.get('density') || '').split(',').filter(Boolean);
+  answers.priority = p.get('priority');
+  renderResult(p.get('result'));
+})();
 </script>
 </body>
 </html>
