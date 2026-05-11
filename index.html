@@ -1073,7 +1073,7 @@ el.innerHTML = `
 
 // ── GOOGLE SHEETS ─────────────────────────────────────────────────
 async function submitToSheets(result) {
-  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbwyrgLiA0CkHxp7LxAPVX_UV3jl0VU5bMae4zRVJT_hm6XvBazXgaldtsITAe_lIhxY/exec') return;
+  if (!APPS_SCRIPT_URL) return;
 
   const resultUrl = `https://compare.scienceoverfluff.com/light-based-hair-removal-devices/quiz`
     + `?result=${encodeURIComponent(result)}`
