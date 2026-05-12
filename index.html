@@ -626,7 +626,7 @@ function buildTable() {
     return '<th><div class="dev-hdr">'
       +'<a href="'+d.links.buy+'" target="_blank" rel="noopener sponsored" class="dev-name-link"><span class="dev-name">'+d.name+'</span></a>'
       +(d.bestFor ? '<span class="best-for-badge">'+d.bestFor+'</span>' : '')
-      +(hasSaving ? '<div class="coupon-pill"><span>'+d.discountCode+'</span><span class="coupon-saving">— Save '+d.discountSaving+'</span></div>' : '')
+      +(hasSaving ? '<div class="coupon-pill"><span>'+d.discountCode+'</span><span class="coupon-saving">— '+d.discountSaving+'</span></div>' : '')
       +links
       +'</div></th>';
   }).join("");
