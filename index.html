@@ -1051,14 +1051,14 @@ if (device==='peachfuzz') {
               ctaUrl:LINKS.EpiPro.primary,
               ctaLabel:'→ Get the ViQure EpiPro',
               ctaAlt:null,
-              sectionLabel:'Have questions about this device?<br><br><span style="color:var(--gold);">Read more:</span>' },
+              sectionLabel:'Have questions about this device?<br><br><span style="color:var(--gold);"><em>Read more:</em></span>' },
     SLD:    { headline:'The ViQure S-LD',
               productImageUrl: 'https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/ViQure-S-LD.png',
               discountImageUrl: 'https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/ViQure-S-LD-Discount-Code.png',
               ctaUrl:LINKS.SLD.primary,
               ctaLabel:'→ Get the ViQure S-LD',
               ctaAlt:null,
-              sectionLabel:'I used the S-LD for my own hair removal journey.<br><br><span style="color:var(--gold);">Read more:</span>' },
+              sectionLabel:'I used the S-LD for my own hair removal journey.<br><br><span style="color:var(--gold);"><em>Read more:</em></span>' },
     Air10:  { headline:'The Ulike Air 10',
               productImageUrl: 'https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Ulike-Air-10.png',
               discountImageUrl: 'https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Ulike-Air-10-Discount-Code.png',
@@ -1066,7 +1066,7 @@ if (device==='peachfuzz') {
               ctaLabel:'→ Get it on Amazon',
               ctaAlt:{url:LINKS.Air10.secondary,
               label:'→ Get it on Ulike.com'},
-              sectionLabel:'<span style="color:var(--gold);">Read more:</span>' },
+              sectionLabel:'<span style="color:var(--gold);"><em>Read more:</em></span>' },
     Air4:   { headline:'The Ulike Air 4',
               productImageUrl: 'https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Ulike-Air-4.png',
               discountImageUrl: 'https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Ulike-Air-4-Discount-Code.png',
@@ -1106,7 +1106,7 @@ el.innerHTML = `
         ${cfg.discountImageUrl ? `
           <a href="${LINKS[device].primary}" target="_blank" rel="noopener" style="display:block;"><img src="${cfg.discountImageUrl}" alt="Science Over Fluff exclusive discount code" style="width:100%;border-radius:4px;display:block;margin-bottom:20px;cursor:pointer;"></a>` : ''}
         <p style="font-size:.72rem;color:#aaa;line-height:1.5;margin-bottom:16px;">If you find the recommendation tool to be helpful, you can support future tools, articles, and other Science Over Fluff content by using the links and discount codes found here when making your purchase. Science Over Fluff may earn a commission at no extra cost to you.</p>
-    <div class="section-label" style="color:var(--navy);">${cfg.sectionLabel}</div>
+    <div class="section-label" style="color:#434343;">${cfg.sectionLabel}</div>
     ${article}
       </div>
     </div>
