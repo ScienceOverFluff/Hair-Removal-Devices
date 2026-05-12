@@ -972,20 +972,30 @@ function getArticleForDevice(device) {
 const article = articles[device];
   if (!article) return '';
 
-const thumbnail = `<img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Science-Over-Fluff_Logo.png" alt="Science Over Fluff" style="width:125px;height:125px;object-fit:contain;flex-shrink:0;border-radius:6px;background: #fff;padding:2px;">`;
-
   return `
     <a href="${article.url}" target="_blank" rel="noopener" style="text-decoration:none;display:block;">
-      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:16px;transition:box-shadow .2s,transform .2s;cursor:pointer;"
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;transition:box-shadow .2s,transform .2s;"
            onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.1)';this.style.transform='translateY(-2px)'"
            onmouseout="this.style.boxShadow='';this.style.transform=''">
-        ${thumbnail}
-        <div style="min-width:0;">
-          <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:5px;">Science Over Fluff</div>
-          <div style="font-family:'DM Serif Display',serif;font-size:1rem;color:var(--navy);line-height:1.35;margin-bottom:5px;">${article.title}</div>
-          <div style="font-size:.8rem;color:var(--mid);line-height:1.5;margin-bottom:8px;">${article.sub}</div>
-          <span style="font-size:.8rem;font-weight:600;color:var(--gold);">Read on Science Over Fluff →</span>
+
+        <!-- strip -->
+        <div style="display:flex;align-items:center;gap:12px;background:#f7f8ff;border-bottom:1.5px solid var(--border);padding:10px 16px;">
+          <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Science-Over-Fluff_Logo.png"
+               alt="Science Over Fluff"
+               style="width:28px;height:28px;object-fit:contain;background:#fff;border-radius:4px;padding:2px;flex-shrink:0;">
+          <span style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);flex:1;">Science Over Fluff</span>
+          <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);">📄 Article</span>
         </div>
+
+        <!-- body -->
+        <div style="display:flex;align-items:center;gap:16px;padding:16px;">
+          <div style="min-width:0;flex:1;">
+            <div style="font-family:'DM Serif Display',serif;font-size:1rem;color:var(--navy);line-height:1.35;margin-bottom:6px;">${article.title}</div>
+            <div style="font-size:.8rem;color:var(--mid);line-height:1.5;">${article.sub}</div>
+          </div>
+          <span style="font-size:1.2rem;color:var(--gold);flex-shrink:0;">→</span>
+        </div>
+
       </div>
     </a>`;
 }
