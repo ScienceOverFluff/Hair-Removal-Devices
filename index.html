@@ -383,21 +383,6 @@ var sortDir      = { fluence: -1, price: 1 };
 var selected     = new Set();
 var activeRec    = null;
 
-var SKIN_META = [
-  { color:"#f5d5b0", label:"Fitzpatrick I",   roman:"I"   },
-  { color:"#e0a878", label:"Fitzpatrick II",  roman:"II"  },
-  { color:"#c07840", label:"Fitzpatrick III", roman:"III" },
-  { color:"#8c5030", label:"Fitzpatrick IV",  roman:"IV"  },
-  { color:"#5a2e18", label:"Fitzpatrick V",   roman:"V"   },
-  { color:"#2e1208", label:"Fitzpatrick VI",  roman:"VI"  }
-];
-var HAIR_META = [
-  { color:"#1a1008", label:"Black"                },
-  { color:"#3d1f0d", label:"Dark brown"           },
-  { color:"#7a4520", label:"Medium brown"         },
-  { color:"#c9843a", label:"Light / blonde / red" }
-];
-
 function getVisible() {
   var devs = DEVICES.slice();
   if (activeFilter !== "all") devs = devs.filter(function(d){ return d.type === activeFilter; });
