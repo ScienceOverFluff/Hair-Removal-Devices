@@ -188,6 +188,10 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
   border-bottom-color:#ddd;
   text-align:left;
 }
+.cmp tbody tr.group-row td.spec-col{
+  background:#434343 !important;
+  color:#ffffff !important;
+}
 
 /* price */
 .price-signs{font-weight:700;color:var(--navy);}
@@ -199,8 +203,10 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
 .st-dot.caution{box-shadow:0 0 0 2px var(--warn);}
 .st-dot.caution::after{
   content:'';
-  position:absolute;inset:0;
-  background:url("https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Caution.png") center/65% no-repeat;
+  position:absolute;
+  inset:0;
+  display:block;
+  background:url("https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Caution.png") center/65% no-repeat;
 }
 
 /* hair — images only, shown when compatible */
