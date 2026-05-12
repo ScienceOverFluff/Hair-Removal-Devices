@@ -263,7 +263,7 @@ const DEVICES = [
       "Poor battery life",
       "Very low lifetime flash count"
     ],
-    userReports: null,
+    userReports: "While users do report success with this device, many complain about the usability.",
     discountCode: null,
     discountSaving: null,
     links: {
