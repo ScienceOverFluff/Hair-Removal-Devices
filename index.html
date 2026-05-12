@@ -41,14 +41,15 @@
   --fs-sm:   12px;
   --fs-xs:   11px;
   --lh:      1.55;
+  --quiz-h:  64px; /* height of sticky quiz bar */
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;font-size:var(--fs);line-height:var(--lh);color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;}
+body{font-family:'DM Sans',sans-serif;font-size:var(--fs);line-height:var(--lh);color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;padding-bottom:var(--quiz-h);}
 a{color:inherit;text-decoration:none;}
 button{font-family:inherit;cursor:pointer;}
 
-/* STICKY HEADER */
+/* ── STICKY TOP HEADER ── */
 .site-header{position:sticky;top:0;z-index:100;background:var(--navy);box-shadow:0 2px 12px rgba(12,0,109,.3);}
 .site-header-inner{max-width:1300px;margin:0 auto;padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
 .header-brand{display:flex;align-items:center;gap:12px;}
@@ -57,12 +58,40 @@ button{font-family:inherit;cursor:pointer;}
 .logo-text{font-family:'DM Serif Display',serif;font-size:15px;color:var(--navy);font-weight:700;}
 .hdr-titles h1{font-family:'DM Serif Display',serif;font-size:17px;color:var(--white);line-height:1.2;}
 .hdr-titles p{font-size:var(--fs-xs);color:rgba(255,255,255,.5);margin-top:1px;}
-.quiz-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;background:var(--gold);color:var(--navy);font-size:var(--fs-sm);font-weight:600;border-radius:var(--radius-pill);border:none;transition:background .15s,transform .1s;white-space:nowrap;text-decoration:none;}
-.quiz-btn:hover{background:var(--gold-dk);transform:translateY(-1px);}
-.quiz-btn svg{width:14px;height:14px;flex-shrink:0;}
 
-/* PAGE */
-.page{max-width:1300px;margin:0 auto;padding:1.5rem 1.25rem 3rem;}
+/* ── STICKY BOTTOM QUIZ BAR ── */
+.quiz-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:var(--navy);
+  border-top:2px solid var(--gold);
+  box-shadow:0 -4px 20px rgba(12,0,109,.25);
+  height:var(--quiz-h);
+  display:flex;align-items:center;justify-content:center;
+  padding:0 1.5rem;
+  gap:1.25rem;
+}
+.quiz-bar-text{
+  color:rgba(255,255,255,.85);
+  font-size:var(--fs-sm);
+  line-height:1.35;
+  flex:1;
+  max-width:580px;
+}
+.quiz-bar-text strong{color:var(--white);}
+.quiz-bar-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 22px;
+  background:var(--gold);color:var(--navy);
+  font-size:var(--fs-sm);font-weight:700;
+  border-radius:var(--radius-pill);border:none;
+  white-space:nowrap;text-decoration:none;flex-shrink:0;
+  transition:background .15s,transform .1s;
+}
+.quiz-bar-btn:hover{background:var(--gold-dk);transform:translateY(-1px);}
+.quiz-bar-btn svg{width:14px;height:14px;flex-shrink:0;}
+
+/* ── PAGE ── */
+.page{max-width:1300px;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
 
 /* SEO INTRO */
 .seo-intro{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.75rem;margin-bottom:1.25rem;}
@@ -92,11 +121,9 @@ button{font-family:inherit;cursor:pointer;}
 .ctl-btn:hover{border-color:var(--navy);color:var(--navy);}
 .ctl-btn.active{background:var(--navy);color:var(--white);border-color:var(--navy);}
 
-/* clear all button */
 .clear-btn{font-family:'DM Sans',sans-serif;font-size:var(--fs-xs);font-weight:600;padding:4px 11px;border-radius:var(--radius-pill);border:1px solid var(--border);background:var(--white);color:var(--text-lt);transition:all .12s;white-space:nowrap;}
 .clear-btn:hover{border-color:var(--red);color:var(--red);}
 
-/* skin tone filter buttons */
 .st-ctl-btn{display:inline-flex;flex-direction:column;align-items:center;gap:3px;padding:5px 7px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--white);font-size:10px;color:var(--text-lt);transition:all .12s;line-height:1;}
 .st-ctl-btn:hover{border-color:var(--navy);}
 .st-ctl-btn.active{border-color:var(--navy);background:var(--navy-10);color:var(--navy);font-weight:600;}
@@ -121,8 +148,6 @@ button{font-family:inherit;cursor:pointer;}
 .table-empty-icon{font-size:32px;margin-bottom:10px;}
 .table-empty h3{font-family:'DM Serif Display',serif;font-size:16px;color:var(--navy);margin-bottom:5px;}
 .table-empty p{font-size:var(--fs-sm);max-width:320px;margin:0 auto;}
-
-/* No fixed height — scroll horizontally only */
 .table-scroll{overflow-x:auto;}
 
 table.cmp{width:100%;border-collapse:collapse;font-size:var(--fs);table-layout:fixed;}
@@ -134,7 +159,6 @@ table.cmp td.spec-col{width:110px;min-width:110px;}
 
 .dev-hdr{display:flex;flex-direction:column;align-items:center;gap:5px;}
 .dev-name{font-size:var(--fs);font-weight:600;line-height:1.25;}
-.dev-best{font-size:var(--fs-xs);font-weight:700;background:var(--gold);color:var(--navy);padding:2px 8px;border-radius:var(--radius-pill);}
 .dev-links{display:flex;flex-direction:column;gap:4px;width:100%;margin-top:4px;}
 .hdr-buy{display:inline-flex;align-items:center;justify-content:center;gap:4px;padding:6px 10px;border-radius:var(--radius-pill);font-size:var(--fs-xs);font-weight:700;border:none;text-decoration:none;line-height:1;transition:opacity .12s;width:100%;}
 .hdr-buy:hover{opacity:.82;}
@@ -182,21 +206,28 @@ table.cmp td.spec-col{width:110px;min-width:110px;}
 .vb.win{color:var(--green);}
 .vb.con{color:var(--red);}
 
+/* user reports cell */
+.user-reports-text{font-size:var(--fs-sm);color:var(--text-mid);text-align:left;line-height:1.5;font-style:italic;}
+.user-reports-none{font-size:var(--fs-xs);color:var(--text-lt);}
+
 .affiliate-note{text-align:center;font-size:var(--fs-xs);color:var(--text-lt);margin-top:1.25rem;}
 .affiliate-note a{color:var(--text-mid);border-bottom:1px solid currentColor;}
 .seo-content{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
 
-@media(max-width:600px){
+/* MOBILE: max 3 devices */
+@media(max-width:700px){
   .site-header-inner{padding:.7rem 1rem;}
   .hdr-titles h1{font-size:14px;}
-  .quiz-btn span{display:none;}
   .page{padding:1rem .75rem 2rem;}
   table.cmp th.spec-col,table.cmp td.spec-col{width:82px;min-width:78px;}
+  .quiz-bar-text{font-size:var(--fs-xs);}
+  .quiz-bar{gap:.75rem;padding:0 1rem;}
 }
 </style>
 </head>
 <body>
 
+<!-- STICKY TOP HEADER -->
 <header class="site-header" role="banner">
   <div class="site-header-inner">
     <div class="header-brand">
@@ -209,10 +240,6 @@ table.cmp td.spec-col{width:110px;min-width:110px;}
         <p>Science Over Fluff — Data-driven reviews</p>
       </div>
     </div>
-    <a href="./Quiz/" class="quiz-btn" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Not sure which device? Take the quiz →</span>
-    </a>
   </div>
 </header>
 
@@ -221,7 +248,7 @@ table.cmp td.spec-col{width:110px;min-width:110px;}
   <section class="seo-intro" aria-label="About this comparison">
     <h2>Which at-home hair removal device should you buy?</h2>
     <p>This tool compares every major at-home IPL and laser hair removal device on the specs that actually matter: fluence (energy per pulse), wavelength, skin tone compatibility, treatment frequency, and lifetime flash count. All data is sourced from manufacturer specifications and hands-on testing at Science Over Fluff.</p>
-    <p><strong>IPL vs. laser:</strong> IPL devices are affordable and widely available but are limited to Fitzpatrick I–III and dark hair. Diode laser and LED devices deliver significantly higher fluence and are the only safe option for Fitzpatrick IV–VI skin. If you're unsure, use the quiz in the header.</p>
+    <p><strong>IPL vs. laser:</strong> IPL devices are affordable and widely available but are limited to Fitzpatrick I–III and dark hair. Diode laser and LED devices deliver significantly higher fluence and are the only safe option for Fitzpatrick IV–VI skin. If you're unsure, use the quiz at the bottom of the page.</p>
     <nav class="price-key" aria-label="Price range key">
       <span><strong>$</strong> — up to $300</span>
       <span><strong>$$</strong> — $300–$400</span>
@@ -258,42 +285,30 @@ table.cmp td.spec-col{width:110px;min-width:110px;}
 
   <!-- CONTROLS PANEL -->
   <div class="controls-panel">
-
-    <!-- Row 1: type + sort + skin tone + region -->
     <div class="controls-row">
       <span class="controls-label">Type</span>
-      <button class="ctl-btn active" onclick="setFilter('type','all',this)">All</button>
-      <button class="ctl-btn" onclick="setFilter('type','laser',this)">Laser / LED</button>
-      <button class="ctl-btn" onclick="setFilter('type','ipl',this)">IPL</button>
-
+      <button class="ctl-btn active" onclick="setTypeFilter('all',this)">All</button>
+      <button class="ctl-btn" onclick="setTypeFilter('laser',this)">Laser / LED</button>
+      <button class="ctl-btn" onclick="setTypeFilter('ipl',this)">IPL</button>
       <div class="controls-divider"></div>
       <span class="controls-label">Sort</span>
       <button class="ctl-btn active" onclick="setSort('alpha',this)">A–Z</button>
       <button class="ctl-btn" onclick="setSort('fluence',this)">Fluence <span id="arr-fluence">↓</span></button>
       <button class="ctl-btn" onclick="setSort('price',this)">Price <span id="arr-price">↑</span></button>
-
-      <div class="controls-divider"></div>
-      <span class="controls-label">Area</span>
-      <button class="ctl-btn active" onclick="setFilter('area','all',this)">All areas</button>
-      <button class="ctl-btn" onclick="setFilter('area','bikini',this)">Bikini / sensitive</button>
-
       <div class="controls-divider"></div>
       <span class="controls-label">Skin tone</span>
       <div id="skinToneFilter" style="display:flex;gap:5px;flex-wrap:wrap;"></div>
     </div>
-
-    <!-- Row 2: device chips + clear all -->
     <div>
       <div class="chips-header">
         <div class="controls-label" style="margin-bottom:0;">
           Select devices to compare
-          <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:var(--fs-xs);">(up to 5)</span>
+          <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:var(--fs-xs);" id="maxHint">(up to 5)</span>
         </div>
         <button class="clear-btn" onclick="clearAll()">Clear all</button>
       </div>
       <div class="device-chips-wrap" id="deviceList"></div>
     </div>
-
   </div>
 
   <!-- TABLE -->
@@ -312,60 +327,56 @@ table.cmp td.spec-col{width:110px;min-width:110px;}
 
 </main>
 
+<!-- STICKY BOTTOM QUIZ BAR -->
+<div class="quiz-bar" role="complementary" aria-label="Device recommendation quiz">
+  <p class="quiz-bar-text">
+    <strong>Not sure which device to go with?</strong> Take the quiz to get a personalized recommendation →
+  </p>
+  <a href="./Quiz/" class="quiz-bar-btn" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    Take the quiz
+  </a>
+</div>
+
 <script src="devices.js"></script>
 <script>
-/*
-  DEFAULT_SELECTED controls which devices are pre-selected on load,
-  AND the order the columns appear in the table.
-  The first id = leftmost column.
-*/
+/* ── Config ── */
 var DEFAULT_SELECTED = ["ulike_air10", "viqure_sld", "philips_lumea"];
+var MAX_DESKTOP = 5;
+var MAX_MOBILE  = 3;
 
-/*
-  BIKINI_IDS: devices shown when "Bikini / sensitive" area filter is active.
-  These are laser devices with higher fluence — safe and effective for sensitive areas.
-  Edit this list as you add new devices.
-*/
-var BIKINI_IDS = ["viqure_epipro", "viqure_sld", "tria_4x", "dermrays_v8s", "dermrays_v6s"];
+function getMax() {
+  return window.innerWidth <= 700 ? MAX_MOBILE : MAX_DESKTOP;
+}
 
-var activeType  = "all";
-var activeArea  = "all";
-var activeSkin  = null;
-var activeSort  = "alpha";
-var sortDir     = { fluence: -1, price: 1 };
-
-/* selectedOrder tracks selection order so columns match */
+/* ── State ── */
+var activeType = "all";
+var activeSkin = null;
+var activeSort = "alpha";
+var sortDir    = { fluence: -1, price: 1 };
 var selectedOrder = DEFAULT_SELECTED.slice();
 
+/* ── Helpers ── */
 function getVisible() {
   var devs = DEVICES.slice();
-
-  /* type filter */
   if (activeType !== "all") devs = devs.filter(function(d){ return d.type === activeType; });
-
-  /* area filter: bikini routes to high-fluence laser devices only */
-  if (activeArea === "bikini") devs = devs.filter(function(d){ return BIKINI_IDS.indexOf(d.id) !== -1; });
-
-  /* skin tone filter */
-  if (activeSkin !== null) devs = devs.filter(function(d){ return d.skinTones[activeSkin] !== "x"; });
-
-  /* sort */
+  if (activeSkin !== null)  devs = devs.filter(function(d){ return d.skinTones[activeSkin] !== "x"; });
   if (activeSort === "alpha")   devs.sort(function(a,b){ return a.name.localeCompare(b.name); });
   if (activeSort === "fluence") devs.sort(function(a,b){ return sortDir.fluence * (b.fluenceNum - a.fluenceNum); });
   if (activeSort === "price")   devs.sort(function(a,b){ return sortDir.price * (b.price - a.price); });
-
   return devs;
 }
 
-/* Auto-select first N visible devices, preserving selection order array */
 function autoSelect() {
   var visible = getVisible();
+  var max = getMax();
   selectedOrder = [];
-  for (var i = 0; i < visible.length && selectedOrder.length < 5; i++) {
+  for (var i = 0; i < visible.length && selectedOrder.length < max; i++) {
     selectedOrder.push(visible[i].id);
   }
 }
 
+/* ── Skin tone filter ── */
 function buildSkinFilter() {
   var el = document.getElementById("skinToneFilter");
   el.innerHTML = "";
@@ -374,8 +385,7 @@ function buildSkinFilter() {
   ab.style.cssText = "font-size:11px;padding:4px 10px;";
   ab.textContent = "All";
   ab.addEventListener("click", function(){
-    activeSkin = null;
-    buildSkinFilter(); autoSelect(); renderChips(); buildTable();
+    activeSkin = null; buildSkinFilter(); autoSelect(); renderChips(); buildTable();
   });
   el.appendChild(ab);
   SKIN_META.forEach(function(s, i){
@@ -391,24 +401,32 @@ function buildSkinFilter() {
   });
 }
 
+/* ── Device chips ── */
 function renderChips() {
   var list = document.getElementById("deviceList");
   list.innerHTML = "";
-  var selectedSet = {};
-  selectedOrder.forEach(function(id){ selectedSet[id] = true; });
+  var max = getMax();
+  var selSet = {};
+  selectedOrder.forEach(function(id){ selSet[id] = true; });
+  /* update hint */
+  document.getElementById("maxHint").textContent = "(up to " + max + ")";
 
   getVisible().forEach(function(d){
-    var isSel = !!selectedSet[d.id];
+    var isSel = !!selSet[d.id];
+    var atMax = !isSel && selectedOrder.length >= max;
     var chip = document.createElement("div");
-    chip.className = "device-chip" + (isSel ? " selected" : "");
+    chip.className = "device-chip" + (isSel ? " selected" : "") + (atMax ? " disabled" : "");
+    if (atMax) chip.style.opacity = "0.45";
     chip.setAttribute("role","checkbox");
     chip.setAttribute("aria-checked", isSel ? "true" : "false");
     chip.setAttribute("tabindex","0");
     chip.innerHTML = '<div class="chip-box"><span class="chip-tick">✓</span></div>'
       +'<span class="chip-label">'+d.name+'</span>'
       +'<span class="chip-sub">'+d.fluence+' · '+d.priceLabel+'</span>';
-    chip.addEventListener("click", function(){ toggleDevice(d.id); });
-    chip.addEventListener("keydown", function(e){ if(e.key===" "||e.key==="Enter"){e.preventDefault();toggleDevice(d.id);} });
+    if (!atMax) {
+      chip.addEventListener("click", function(){ toggleDevice(d.id); });
+      chip.addEventListener("keydown", function(e){ if(e.key===" "||e.key==="Enter"){e.preventDefault();toggleDevice(d.id);} });
+    }
     list.appendChild(chip);
   });
 }
@@ -416,30 +434,21 @@ function renderChips() {
 function toggleDevice(id) {
   var idx = selectedOrder.indexOf(id);
   if (idx !== -1) {
-    /* deselect: remove from order array */
     selectedOrder.splice(idx, 1);
-  } else if (selectedOrder.length < 5) {
-    /* select: append to end so column appears rightmost */
+  } else if (selectedOrder.length < getMax()) {
     selectedOrder.push(id);
   }
-  renderChips();
-  buildTable();
+  renderChips(); buildTable();
 }
 
 function clearAll() {
-  selectedOrder = [];
-  renderChips();
-  buildTable();
+  selectedOrder = []; renderChips(); buildTable();
 }
 
-function setFilter(type, val, btn) {
-  if (type === "type") {
-    activeType = val;
-    btn.closest('.controls-row').querySelectorAll('.ctl-btn[onclick*="type"]').forEach(function(b){ b.classList.remove("active"); });
-  } else if (type === "area") {
-    activeArea = val;
-    btn.closest('.controls-row').querySelectorAll('.ctl-btn[onclick*="area"]').forEach(function(b){ b.classList.remove("active"); });
-  }
+/* ── Filters & sort ── */
+function setTypeFilter(val, btn) {
+  activeType = val;
+  btn.closest('.controls-row').querySelectorAll('.ctl-btn[onclick*="setTypeFilter"]').forEach(function(b){ b.classList.remove("active"); });
   btn.classList.add("active");
   autoSelect(); renderChips(); buildTable();
 }
@@ -451,12 +460,11 @@ function setSort(s, btn) {
   btn.classList.add("active");
   if (s==="fluence") document.getElementById("arr-fluence").textContent = sortDir.fluence===-1?"↓":"↑";
   if (s==="price")   document.getElementById("arr-price").textContent   = sortDir.price===-1?"↓":"↑";
-  /* sort doesn't auto-reselect — user keeps their picks, just reorders chips */
   renderChips(); buildTable();
 }
 
+/* ── Table builder ── */
 function buildTable() {
-  /* build device list in selection order */
   var devs = [];
   selectedOrder.forEach(function(id){
     var d = DEVICES.find(function(x){ return x.id === id; });
@@ -466,8 +474,7 @@ function buildTable() {
   var empty  = document.getElementById("tableEmpty");
   var scroll = document.getElementById("tableScroll");
   if (devs.length < 1) { empty.style.display=""; scroll.style.display="none"; return; }
-  empty.style.display  = "none";
-  scroll.style.display = "";
+  empty.style.display = "none"; scroll.style.display = "";
 
   var maxFluence = Math.max.apply(null, devs.map(function(d){ return d.fluenceNum; }));
 
@@ -486,7 +493,6 @@ function buildTable() {
   var headers = devs.map(function(d){
     var hasSaving = d.discountCode && d.discountSaving;
     return '<th><div class="dev-hdr">'
-      +(d.bestFor?'<span class="dev-best">'+d.bestFor+'</span>':"")
       +'<span class="dev-name">'+d.name+'</span>'
       +(hasSaving?'<span class="discount-pill">'+d.discountCode+' · Save '+d.discountSaving+'</span>':"")
       +'<div class="dev-links">'
@@ -520,6 +526,13 @@ function buildTable() {
     var cons = d.cons.map(function(c){ return '<li><span class="vb con">✗</span><span>'+c+'</span></li>'; }).join("");
     return '<ul class="verdict-list">'+wins+cons+'</ul>';
   }
+  function userReportsCell(d){
+    if (!d.userReports) return '<span class="user-reports-none">No data yet</span>';
+    return '<p class="user-reports-text">'+d.userReports+'</p>';
+  }
+
+  /* only show user reports row if at least one device has data */
+  var hasAnyReports = devs.some(function(d){ return !!d.userReports; });
 
   scroll.innerHTML =
     '<table class="cmp" role="table" aria-label="Device comparison">'
@@ -531,6 +544,7 @@ function buildTable() {
     +grp("Performance")+row("Max fluence",fluenceCell)+row("Wavelength",function(d){return d.wavelength;})+row("Treatment frequency",function(d){return d.frequency;})
     +grp("Device specs")+row("Treatment window",function(d){return d.window;})+row("Skin cooling",function(d){return chk(d.cooling);})+row("Scanning / gliding",function(d){return chk(d.scanning);})+row("Skin tone sensor",function(d){return chk(d.skinSensor);})+row("Lifetime flashes",function(d){return d.lifespan;})
     +grp("SOF Verdict")+row("Wins &amp; cons",verdictCell)
+    +(hasAnyReports ? grp("What people say")+row("User reports",userReportsCell) : "")
     +'</tbody></table>';
 }
 
@@ -539,14 +553,22 @@ function buildSeoContent(){
   el.innerHTML = DEVICES.map(function(d){
     return '<article><h3>'+d.name+'</h3>'
       +'<p>Type: '+(d.type==="laser"?"Laser/LED":"IPL")+'. Max fluence: '+d.fluence+'. Wavelength: '+d.wavelength+'. Price: '+d.priceLabel+' ('+d.priceRange+'). Treatment frequency: '+d.frequency+'. Skin cooling: '+(d.cooling?"Yes":"No")+'. Lifetime flashes: '+d.lifespan+'.</p>'
-      +'<p>Strengths: '+d.wins.join("; ")+'.</p><p>Drawbacks: '+d.cons.join("; ")+'.</p></article>';
+      +'<p>Strengths: '+d.wins.join("; ")+'.</p><p>Drawbacks: '+d.cons.join("; ")+'.</p>'
+      +(d.userReports?'<p>User reports: '+d.userReports+'</p>':"")
+      +'</article>';
   }).join("");
 }
 
+/* ── Init ── */
 buildSkinFilter();
 renderChips();
 buildTable();
 buildSeoContent();
+
+/* re-check max on resize in case crossing mobile/desktop breakpoint */
+window.addEventListener("resize", function(){
+  renderChips(); buildTable();
+});
 </script>
 </body>
 </html>
