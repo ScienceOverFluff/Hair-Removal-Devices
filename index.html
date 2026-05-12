@@ -897,18 +897,18 @@ function getPersonalizedBullets(device) {
   const { skin, area, priority } = answers;
   const allBullets = {
     EpiPro: [
-      { key:'general1', show: true,                                  text: '30 J/cm² — most powerful device on the market' },
       { key:'vi',       show: skin==='VI',                           text: 'Safe and effective on all skin tones, including Fitzpatrick VI' },
-      { key:'bikini',   show: ['bikini','beard'].includes(area),     text: 'Especially effective on stubborn areas like the bikini region and beard that respond poorly to standard IPL devices' },
       { key:'medium',   show: answers.hair==='medium',               text: 'Wide effective hair color range including dark blonde, light brown, and dark auburn' },
+      { key:'general1', show: true,                                  text: '30 J/cm² — most powerful device on the market' },
+      { key:'bikini',   show: ['bikini','beard'].includes(area),     text: 'Especially effective on stubborn areas like the bikini region and beard that respond poorly to standard IPL devices' },
       { key:'hyper',    show: area=='beard',                         text: '<span>High fluence reduces <a href="https://www.scienceoverfluff.com/p/paradoxical-hypertrichosis-with-at-home-devices" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline;">paradoxical hypertrichosis</a> risk — especially relevant when treating the face, neck, back, or chest</span>' },
       { key:'general2', show: true,                                  text: 'Large treatment head for faster sessions' },
       { key:'general3', show: true,                                  text: 'Built-in skin cooling makes sessions more comfortable' },
     ],
     SLD: [
+      { key:'brown',    show: ['IV','V'].includes(skin),             text: `Fitzpatrick ${skin} compatible — LED architecture bypasses the limitations that make IPL unreliable on medium to dark skin` },
       { key:'general1', show: true,                                  text: '25 J/cm² — one of the most powerful devices on the market' },
       { key:'budget',   show: priority==='budget',                   text: 'Best fluence-per-dollar of any hair removal device in its price range' },
-      { key:'brown',    show: ['IV','V'].includes(skin),             text: `Fitzpatrick ${skin} compatible — LED architecture bypasses the limitations that make IPL unreliable on medium to dark skin` },
       { key:'bikini',   show: ['bikini','beard'].includes(area),     text: 'Especially effective on stubborn areas like the bikini region and beard that respond poorly to standard IPL devices' },
       { key:'hyper',    show: area=='beard',                         text: '<span>High fluence reduces <a href="https://www.scienceoverfluff.com/p/paradoxical-hypertrichosis-with-at-home-devices" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline;">paradoxical hypertrichosis</a> risk — especially relevant when treating the face, neck, back, or chest</span>' },
       { key:'general2', show: true,                                  text: 'Narrow treatment head makes the device highly maneuverable — useful for narrow and curved body contours' },
