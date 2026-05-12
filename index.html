@@ -10,19 +10,15 @@
 <meta property="og:title" content="Which IPL or Laser Device Should You Buy? — Science Over Fluff">
 <meta property="og:description" content="Side-by-side comparison of every major at-home hair removal device. Fluence, skin tone compatibility, price, and SOF's verdict.">
 <meta property="og:type" content="website">
-
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which IPL device should I buy?","acceptedAnswer":{"@type":"Answer","text":"For most people with fair to medium skin (Fitzpatrick I–III) and dark hair, the Ulike Air 10 offers the best balance of price, comfort (active cooling), and efficacy among IPL devices. For darker skin tones (Fitzpatrick IV–V), a diode laser such as the ViQure S-LD is strongly preferred over any IPL."}},{"@type":"Question","name":"What is the best at-home laser hair removal device?","acceptedAnswer":{"@type":"Answer","text":"The ViQure S-LD delivers the best fluence-to-price ratio of any at-home LED/laser device tested, at 25 J/cm² with a 780–850 nm wavelength. The ViQure EpiPro reaches 30 J/cm² and is the highest-fluence consumer device available."}},{"@type":"Question","name":"Is IPL safe for dark skin?","acceptedAnswer":{"@type":"Answer","text":"Standard broadband IPL is not recommended for Fitzpatrick IV skin and above. Diode laser devices operating at 808–850 nm or 1064 nm are the appropriate category for darker skin tones."}},{"@type":"Question","name":"What is fluence and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"Fluence is the energy delivered per unit area (J/cm²). Higher fluence means more energy reaches the hair follicle per pulse, which generally translates to faster and more permanent results."}}]}
 </script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
 :root {
   --navy:    #0c006d;
-  --navy-80: rgba(12,0,109,0.85);
   --navy-10: rgba(12,0,109,0.07);
   --navy-05: rgba(12,0,109,0.04);
   --gold:    #eb9718;
@@ -30,12 +26,10 @@
   --gold-lt: #fef5e4;
   --cream:   #ededed;
   --white:   #ffffff;
-  --mid:     #999999;
   --border:  #cccccc;
   --radius:  10px;
   --radius-sm: 6px;
   --radius-pill: 100px;
-  --shadow:  0 2px 16px rgba(12,0,109,.08);
   --green:   #1a7a4a;
   --red:     #c0392b;
   --warn:    #c47e10;
@@ -43,7 +37,7 @@
   --text:    #1a1040;
   --text-mid:#555270;
   --text-lt: #888899;
-  --fs:      13px;
+  --fs:      13px;  /* single source of truth for all table text */
   --fs-sm:   12px;
   --fs-xs:   11px;
   --lh:      1.55;
@@ -88,86 +82,70 @@ button{font-family:inherit;cursor:pointer;}
 .legend-warn{background:var(--warn-bg);border:1px solid rgba(196,126,16,.25);border-radius:var(--radius-sm);padding:7px 10px;font-size:var(--fs-xs);color:var(--warn);max-width:310px;line-height:1.4;}
 .legend-warn strong{color:var(--navy);}
 
-/* LAYOUT */
-.layout{display:grid;grid-template-columns:252px 1fr;gap:1.25rem;align-items:start;}
-@media(max-width:860px){.layout{grid-template-columns:1fr;}}
+/* CONTROLS PANEL — above table, horizontal */
+.controls-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1.25rem;display:flex;flex-direction:column;gap:.85rem;}
+.controls-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;}
+.controls-label{font-size:var(--fs-xs);font-weight:600;color:var(--text-lt);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;margin-right:2px;}
 
-/* LEFT PANEL */
-.left-panel{display:flex;flex-direction:column;gap:1rem;}
-.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem;}
-.card-title{font-family:'DM Serif Display',serif;font-size:15px;color:var(--navy);margin-bottom:.8rem;}
+/* shared pill style for filters + sort */
+.ctl-btn{font-family:'DM Sans',sans-serif;font-size:var(--fs-sm);font-weight:500;padding:5px 13px;border-radius:var(--radius-pill);border:1px solid var(--border);background:var(--white);color:var(--text-mid);transition:all .12s;white-space:nowrap;}
+.ctl-btn:hover{border-color:var(--navy);color:var(--navy);}
+.ctl-btn.active{background:var(--navy);color:var(--white);border-color:var(--navy);}
 
-/* FILTER PILLS */
-.pill-row{display:flex;flex-direction:column;gap:5px;}
-.filter-pill{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--white);font-size:var(--fs-sm);font-weight:500;color:var(--text-mid);transition:all .12s;text-align:left;width:100%;}
-.filter-pill:hover{border-color:var(--navy);color:var(--navy);}
-.filter-pill.active{background:var(--navy);color:var(--white);border-color:var(--navy);}
-.pill-dot{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.5;flex-shrink:0;}
-.filter-pill.active .pill-dot{opacity:1;}
+/* skin tone buttons in controls row */
+.st-ctl-btn{display:inline-flex;flex-direction:column;align-items:center;gap:3px;padding:5px 8px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--white);font-size:10px;color:var(--text-lt);transition:all .12s;line-height:1;}
+.st-ctl-btn:hover{border-color:var(--navy);}
+.st-ctl-btn.active{border-color:var(--navy);background:var(--navy-10);color:var(--navy);font-weight:600;}
+.st-ctl-circle{width:20px;height:20px;border-radius:50%;border:2px solid var(--white);box-shadow:0 0 0 1.5px var(--border);}
 
-/* SKIN TONE FILTER */
-.st-filter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
-.st-all-btn{grid-column:1/-1;padding:6px 8px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--white);font-size:var(--fs-xs);font-weight:500;color:var(--text-mid);transition:all .12s;}
-.st-all-btn:hover,.st-all-btn.active{border-color:var(--navy);background:var(--navy);color:var(--white);}
-.st-filter-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 4px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--white);font-size:10px;color:var(--text-lt);line-height:1;transition:all .12s;}
-.st-filter-btn:hover{border-color:var(--navy);}
-.st-filter-btn.active{border-color:var(--navy);background:var(--navy-10);}
-.st-circle-btn{width:26px;height:26px;border-radius:50%;border:2px solid var(--white);box-shadow:0 0 0 1.5px var(--border);}
+/* divider between control rows */
+.controls-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
 
-/* SORT */
-.sort-group{display:flex;flex-direction:column;gap:5px;}
-.sort-btn{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--white);font-size:var(--fs-sm);font-weight:500;color:var(--text-mid);transition:all .12s;}
-.sort-btn:hover{border-color:var(--navy);color:var(--navy);}
-.sort-btn.active{background:var(--navy);color:var(--white);border-color:var(--navy);}
-.sort-arrow{font-size:11px;opacity:.6;}
-
-/* DEVICE CHIPS */
-.device-list{display:flex;flex-direction:column;gap:5px;}
-.device-chip{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--white);transition:all .12s;user-select:none;}
+/* DEVICE CHIPS ROW */
+.device-chips-wrap{display:flex;flex-wrap:wrap;gap:6px;}
+.device-chip{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:var(--radius-pill);border:1.5px solid var(--border);background:var(--white);transition:all .12s;user-select:none;cursor:pointer;}
 .device-chip:hover{border-color:var(--navy);}
 .device-chip.selected{border-color:var(--navy);background:var(--navy-05);}
-.chip-box{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .1s;}
+.chip-box{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .1s;}
 .device-chip.selected .chip-box{background:var(--navy);border-color:var(--navy);}
-.chip-tick{display:none;color:var(--white);font-size:11px;line-height:1;}
+.chip-tick{display:none;color:var(--white);font-size:10px;line-height:1;}
 .device-chip.selected .chip-tick{display:block;}
-.chip-label{font-size:var(--fs-sm);font-weight:500;color:var(--text);line-height:1.3;}
+.chip-label{font-size:var(--fs-sm);font-weight:500;color:var(--text);}
 .chip-sub{font-size:10px;color:var(--text-lt);}
 
 /* RECOMMENDATIONS */
-.rec-list{display:flex;flex-direction:column;gap:5px;}
-.rec-btn{display:block;width:100%;text-align:left;padding:8px 10px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--white);font-size:var(--fs-sm);color:var(--text-mid);font-weight:500;transition:all .12s;line-height:1.35;}
-.rec-btn:hover{border-color:var(--navy);color:var(--navy);background:var(--navy-05);}
+.rec-row{display:flex;flex-wrap:wrap;gap:5px;}
+.rec-btn{font-family:'DM Sans',sans-serif;font-size:var(--fs-xs);font-weight:500;padding:5px 11px;border-radius:var(--radius-pill);border:1px solid var(--border);background:var(--white);color:var(--text-mid);transition:all .12s;white-space:nowrap;}
+.rec-btn:hover{border-color:var(--navy);color:var(--navy);}
 .rec-btn.active{border-color:var(--gold);background:var(--gold-lt);color:var(--navy);}
-.rec-detail{background:var(--gold-lt);border:1px solid rgba(235,151,24,.35);border-radius:var(--radius);padding:1rem 1.1rem;display:none;margin-top:.5rem;}
-.rec-detail.open{display:block;}
-.rec-detail-title{font-family:'DM Serif Display',serif;font-size:14px;color:var(--navy);margin-bottom:4px;}
-.rec-detail-desc{font-size:var(--fs-xs);color:var(--text-mid);margin-bottom:10px;}
-.rec-device-cards{display:flex;flex-direction:column;gap:5px;}
-.rec-device-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 10px;cursor:pointer;transition:border-color .12s;}
-.rec-device-card:hover{border-color:var(--navy);}
-.rdc-name{font-size:var(--fs-sm);font-weight:600;color:var(--navy);margin-bottom:2px;}
-.rdc-specs{font-size:10px;color:var(--text-lt);line-height:1.4;}
-.rec-hint{font-size:10px;color:var(--text-lt);margin-top:6px;font-style:italic;}
 
-/* RIGHT PANEL */
+.rec-detail{background:var(--gold-lt);border:1px solid rgba(235,151,24,.35);border-radius:var(--radius);padding:.85rem 1.1rem;display:none;margin-top:.25rem;}
+.rec-detail.open{display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start;}
+.rec-detail-text{}
+.rec-detail-title{font-family:'DM Serif Display',serif;font-size:14px;color:var(--navy);margin-bottom:3px;}
+.rec-detail-desc{font-size:var(--fs-xs);color:var(--text-mid);max-width:380px;}
+.rec-device-cards{display:flex;flex-wrap:wrap;gap:6px;}
+.rec-device-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:7px 10px;cursor:pointer;transition:border-color .12s;}
+.rec-device-card:hover{border-color:var(--navy);}
+.rdc-name{font-size:var(--fs-sm);font-weight:600;color:var(--navy);margin-bottom:1px;}
+.rdc-specs{font-size:10px;color:var(--text-lt);line-height:1.4;}
+.rec-hint{font-size:10px;color:var(--text-lt);margin-top:5px;font-style:italic;}
+
+/* TABLE */
 .table-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
 .table-empty{padding:3rem 2rem;text-align:center;color:var(--text-mid);}
 .table-empty-icon{font-size:32px;margin-bottom:10px;}
 .table-empty h3{font-family:'DM Serif Display',serif;font-size:16px;color:var(--navy);margin-bottom:5px;}
 .table-empty p{font-size:var(--fs-sm);max-width:320px;margin:0 auto;}
-
-/* TABLE SCROLL */
 .table-scroll{overflow-x:auto;max-height:80vh;overflow-y:auto;}
 
-/* TABLE */
+/* All table text inherits --fs (13px). No overrides anywhere. */
 table.cmp{width:100%;border-collapse:collapse;font-size:var(--fs);}
 table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width:115px;}
 
-/* STICKY THEAD */
-.cmp thead tr.names-row th{background:var(--navy);color:var(--white);padding:14px 12px 12px;text-align:center;border-right:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:4;vertical-align:top;min-width:155px;}
+.cmp thead tr.names-row th{background:var(--navy);color:var(--white);padding:14px 12px 12px;text-align:center;border-right:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:4;vertical-align:top;min-width:155px;font-size:var(--fs);}
 .cmp thead tr.names-row th.spec-col{text-align:left;position:sticky;left:0;z-index:5;min-width:96px;}
 
-/* DEVICE HEADER */
 .dev-hdr{display:flex;flex-direction:column;align-items:center;gap:5px;}
 .dev-name{font-size:var(--fs);font-weight:600;line-height:1.25;}
 .dev-best{font-size:var(--fs-xs);font-weight:700;background:var(--gold);color:var(--navy);padding:2px 8px;border-radius:var(--radius-pill);}
@@ -179,11 +157,10 @@ table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width
 .hdr-buy-secondary:hover{color:var(--white);border-color:rgba(255,255,255,.6);}
 .discount-pill{font-size:10px;font-weight:700;background:rgba(235,151,24,.15);color:var(--gold);border:1px solid rgba(235,151,24,.3);padding:2px 7px;border-radius:var(--radius-pill);letter-spacing:.04em;}
 
-/* BODY CELLS */
+/* All body cells: same font-size, no exceptions */
 .cmp tbody td{padding:9px 12px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center;vertical-align:middle;font-size:var(--fs);color:var(--text);}
-.cmp tbody td.spec-col{text-align:left;font-size:var(--fs-xs);font-weight:600;color:var(--text-mid);background:#f7f7fb;position:sticky;left:0;z-index:2;border-right:2px solid var(--border);line-height:1.35;}
+.cmp tbody td.spec-col{text-align:left;font-weight:600;color:var(--text-mid);background:#f7f7fb;position:sticky;left:0;z-index:2;border-right:2px solid var(--border);line-height:1.35;}
 
-/* ALTERNATING ROWS — odd=white, even=cream so they differ */
 .cmp tbody tr:nth-child(odd) td{background:var(--white);}
 .cmp tbody tr:nth-child(odd) td.spec-col{background:#f7f7fb;}
 .cmp tbody tr:nth-child(even) td{background:var(--cream);}
@@ -191,47 +168,37 @@ table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width
 .cmp tbody tr:hover td{background:var(--navy-05);}
 .cmp tbody tr:hover td.spec-col{background:#eceef8;}
 
-/* GROUP ROWS */
 .cmp tbody tr.group-row td{background:var(--navy)!important;color:rgba(255,255,255,.45)!important;font-size:var(--fs-xs);font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:6px 12px;border-right-color:rgba(255,255,255,.06);border-bottom-color:transparent;text-align:left;}
 
-/* PRICE */
-.price-signs{font-size:var(--fs);font-weight:700;color:var(--navy);}
-.price-range-sub{font-size:10px;color:var(--text-lt);margin-top:2px;}
+.price-signs{font-weight:700;color:var(--navy);}
+.price-range-sub{font-size:var(--fs-xs);color:var(--text-lt);margin-top:2px;}
 
-/* SKIN TONES 2x3 */
 .skin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;justify-items:center;max-width:88px;margin:0 auto;}
 .st-dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--white);box-shadow:0 0 0 1.5px var(--border);position:relative;flex-shrink:0;}
 .st-dot.excluded::after{content:'';position:absolute;inset:-3px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cline x1='3' y1='3' x2='17' y2='17' stroke='%23c0392b' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;}
 .st-dot.caution::after{content:'⚠';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;line-height:1;color:var(--warn);}
 
-/* HAIR */
 .hair-row{display:flex;gap:3px;justify-content:center;}
 .hc-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--white);box-shadow:0 0 0 1.5px var(--border);position:relative;flex-shrink:0;}
 .hc-dot.excluded::after{content:'';position:absolute;inset:-3px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cline x1='3' y1='3' x2='17' y2='17' stroke='%23c0392b' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;}
 .hc-dot.caution::after{content:'⚠';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;line-height:1;color:var(--warn);}
 
-/* CHECK X */
-.ck{color:var(--green);font-size:16px;font-weight:700;}
-.cx{color:var(--red);font-size:16px;font-weight:700;}
-.cna{color:var(--text-lt);font-size:var(--fs-xs);}
+.ck{color:var(--green);font-weight:700;}
+.cx{color:var(--red);font-weight:700;}
+.cna{color:var(--text-lt);}
 
-/* FLUENCE */
 .fluence-val{font-weight:700;color:var(--navy);}
 .fluence-best{color:var(--green);}
-.fluence-tag{font-size:10px;color:var(--green);font-weight:600;margin-top:2px;}
+.fluence-tag{font-size:var(--fs-xs);color:var(--green);font-weight:600;margin-top:2px;}
 
-/* VERDICT */
 .verdict-list{list-style:none;padding:0;text-align:left;}
-.verdict-list li{font-size:var(--fs-sm);line-height:1.45;margin-bottom:4px;display:flex;gap:5px;}
+.verdict-list li{line-height:1.45;margin-bottom:4px;display:flex;gap:5px;}
 .vb{flex-shrink:0;margin-top:1px;font-weight:700;}
 .vb.win{color:var(--green);}
 .vb.con{color:var(--red);}
 
-/* AFFILIATE NOTE */
 .affiliate-note{text-align:center;font-size:var(--fs-xs);color:var(--text-lt);margin-top:1.25rem;}
 .affiliate-note a{color:var(--text-mid);border-bottom:1px solid currentColor;}
-
-/* SEO hidden content */
 .seo-content{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
 
 @media(max-width:600px){
@@ -249,7 +216,7 @@ table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width
   <div class="site-header-inner">
     <div class="header-brand">
       <div class="logo-wrap">
-        <!-- Replace with: <img src="YOUR_LOGO_URL" alt="Science Over Fluff"> -->
+        <!-- Replace with: <img src="Images/logo.png" alt="Science Over Fluff"> -->
         <span class="logo-text">sof</span>
       </div>
       <div class="hdr-titles">
@@ -257,7 +224,7 @@ table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width
         <p>Science Over Fluff — Data-driven reviews</p>
       </div>
     </div>
-    <a href="https://scienceoverfluff.github.io/Hair-Removal-Device-Quiz/" class="quiz-btn" target="_blank" rel="noopener">
+    <a href="./Quiz/" class="quiz-btn" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       <span>Not sure which device? Take the quiz →</span>
     </a>
@@ -266,7 +233,6 @@ table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width
 
 <main class="page" role="main">
 
-  <!-- SEO INTRO — pre-rendered, crawlable -->
   <section class="seo-intro" aria-label="About this comparison">
     <h2>Which at-home hair removal device should you buy?</h2>
     <p>This tool compares every major at-home IPL and laser hair removal device on the specs that actually matter: fluence (energy per pulse), wavelength, skin tone compatibility, treatment frequency, and lifetime flash count. All data is sourced from manufacturer specifications and hands-on testing at Science Over Fluff.</p>
@@ -280,7 +246,6 @@ table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width
     </nav>
   </section>
 
-  <!-- LEGEND -->
   <div class="legend-bar" role="note">
     <div class="legend-group">
       <div class="legend-label">Compatibility key</div>
@@ -306,69 +271,61 @@ table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width
     </div>
   </div>
 
-  <div class="layout">
+  <!-- CONTROLS PANEL -->
+  <div class="controls-panel">
 
-    <!-- LEFT PANEL -->
-    <aside class="left-panel">
+    <!-- Row 1: type filter + sort + skin tone -->
+    <div class="controls-row">
+      <span class="controls-label">Type</span>
+      <button class="ctl-btn active" onclick="setFilter('all',this)">All</button>
+      <button class="ctl-btn" onclick="setFilter('laser',this)">Laser / LED</button>
+      <button class="ctl-btn" onclick="setFilter('ipl',this)">IPL</button>
+      <div class="controls-divider"></div>
+      <span class="controls-label">Sort</span>
+      <button class="ctl-btn active" onclick="setSort('alpha',this)">A–Z</button>
+      <button class="ctl-btn" onclick="setSort('fluence',this)">Fluence <span id="arr-fluence">↓</span></button>
+      <button class="ctl-btn" onclick="setSort('price',this)">Price <span id="arr-price">↑</span></button>
+      <div class="controls-divider"></div>
+      <span class="controls-label">Skin tone</span>
+      <div id="skinToneFilter" style="display:flex;gap:5px;flex-wrap:wrap;"></div>
+    </div>
 
-      <div class="card">
-        <div class="card-title">Device type</div>
-        <div class="pill-row">
-          <button class="filter-pill active" data-filter="all" onclick="setFilter('all',this)"><span class="pill-dot"></span>All devices</button>
-          <button class="filter-pill" data-filter="laser" onclick="setFilter('laser',this)"><span class="pill-dot"></span>Laser / LED only</button>
-          <button class="filter-pill" data-filter="ipl" onclick="setFilter('ipl',this)"><span class="pill-dot"></span>IPL only</button>
-        </div>
-      </div>
+    <!-- Row 2: device chips -->
+    <div>
+      <div class="controls-label" style="margin-bottom:6px;">Select devices to compare <span style="font-weight:400;text-transform:none;letter-spacing:0;">(up to 5)</span></div>
+      <div class="device-chips-wrap" id="deviceList"></div>
+    </div>
 
-      <div class="card">
-        <div class="card-title">Filter by skin tone</div>
-        <div class="st-filter-grid" id="skinToneFilter"></div>
-      </div>
+    <!-- Row 3: recommendations -->
+    <div>
+      <div class="controls-label" style="margin-bottom:6px;">Best device for…</div>
+      <div class="rec-row" id="recList"></div>
+    </div>
 
-      <div class="card">
-        <div class="card-title">Sort by</div>
-        <div class="sort-group">
-          <button class="sort-btn active" data-sort="alpha" onclick="setSort('alpha',this)">A – Z <span class="sort-arrow">↕</span></button>
-          <button class="sort-btn" data-sort="fluence" onclick="setSort('fluence',this)">Fluence <span class="sort-arrow" id="arr-fluence">↓</span></button>
-          <button class="sort-btn" data-sort="price" onclick="setSort('price',this)">Price <span class="sort-arrow" id="arr-price">↑</span></button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Select devices <span style="font-size:10px;color:var(--text-lt);font-family:'DM Sans',sans-serif;font-weight:400;">(up to 5)</span></div>
-        <div class="device-list" id="deviceList"></div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Best device for…</div>
-        <div class="rec-list" id="recList"></div>
-      </div>
-
-      <div class="rec-detail" id="recDetail">
+    <div class="rec-detail" id="recDetail">
+      <div class="rec-detail-text">
         <div class="rec-detail-title" id="recDetailTitle"></div>
         <div class="rec-detail-desc" id="recDetailDesc"></div>
+      </div>
+      <div>
         <div class="rec-device-cards" id="recDeviceCards"></div>
         <p class="rec-hint">Click a device to add it to your comparison.</p>
       </div>
-
-    </aside>
-
-    <!-- RIGHT PANEL -->
-    <section>
-      <div class="table-card" id="tableCard">
-        <div class="table-empty" id="tableEmpty">
-          <div class="table-empty-icon">📊</div>
-          <h3>Select devices to compare</h3>
-          <p>Pick at least 2 devices from the list on the left to see a full side-by-side breakdown.</p>
-        </div>
-        <div class="table-scroll" id="tableScroll" style="display:none;"></div>
-      </div>
-
-      <!-- SEO content: pre-rendered device specs, hidden visually but crawlable -->
-      <div class="seo-content" aria-hidden="true" id="seoContent"></div>
-    </section>
+    </div>
 
   </div>
+
+  <!-- TABLE -->
+  <div class="table-card" id="tableCard">
+    <div class="table-empty" id="tableEmpty">
+      <div class="table-empty-icon">📊</div>
+      <h3>Select devices to compare</h3>
+      <p>Pick at least 2 devices above to see a full side-by-side breakdown.</p>
+    </div>
+    <div class="table-scroll" id="tableScroll" style="display:none;"></div>
+  </div>
+
+  <div class="seo-content" aria-hidden="true" id="seoContent"></div>
 
   <p class="affiliate-note">Science Over Fluff earns a commission at no extra cost to you when you use links on this page. <a href="https://scienceoverfluff.com/about" target="_blank" rel="noopener">Learn more</a></p>
 
@@ -389,7 +346,7 @@ function getVisible() {
   if (activeSkin !== null)    devs = devs.filter(function(d){ return d.skinTones[activeSkin] !== "x"; });
   if (activeSort === "alpha")   devs.sort(function(a,b){ return a.name.localeCompare(b.name); });
   if (activeSort === "fluence") devs.sort(function(a,b){ return sortDir.fluence * (b.fluenceNum - a.fluenceNum); });
-  if (activeSort === "price")   devs.sort(function(a,b){ return sortDir.price   * (b.price    - a.price);    });
+  if (activeSort === "price")   devs.sort(function(a,b){ return sortDir.price * (b.price - a.price); });
   return devs;
 }
 
@@ -397,15 +354,16 @@ function buildSkinFilter() {
   var el = document.getElementById("skinToneFilter");
   el.innerHTML = "";
   var ab = document.createElement("button");
-  ab.className = "st-all-btn" + (activeSkin === null ? " active" : "");
-  ab.textContent = "Show all";
+  ab.className = "ctl-btn" + (activeSkin === null ? " active" : "");
+  ab.style.cssText = "font-size:11px;padding:4px 10px;";
+  ab.textContent = "All";
   ab.addEventListener("click", function(){ activeSkin = null; buildSkinFilter(); renderChips(); buildTable(); });
   el.appendChild(ab);
   SKIN_META.forEach(function(s, i){
     var b = document.createElement("button");
-    b.className = "st-filter-btn" + (activeSkin === i ? " active" : "");
+    b.className = "st-ctl-btn" + (activeSkin === i ? " active" : "");
     b.title = s.label;
-    b.innerHTML = '<div class="st-circle-btn" style="background:'+s.color+';"></div><span>'+s.roman+'</span>';
+    b.innerHTML = '<div class="st-ctl-circle" style="background:'+s.color+';"></div><span>'+s.roman+'</span>';
     b.addEventListener("click", function(){
       activeSkin = (activeSkin === i) ? null : i;
       buildSkinFilter(); renderChips(); buildTable();
@@ -424,8 +382,8 @@ function renderChips() {
     chip.setAttribute("aria-checked", selected.has(d.id) ? "true" : "false");
     chip.setAttribute("tabindex","0");
     chip.innerHTML = '<div class="chip-box"><span class="chip-tick">✓</span></div>'
-      +'<div><div class="chip-label">'+d.name+'</div>'
-      +'<div class="chip-sub">'+d.fluence+' · '+d.priceLabel+'</div></div>';
+      +'<span class="chip-label">'+d.name+'</span>'
+      +'<span class="chip-sub">'+d.fluence+' · '+d.priceLabel+'</span>';
     chip.addEventListener("click", function(){ toggleDevice(d.id); });
     chip.addEventListener("keydown", function(e){ if(e.key===" "||e.key==="Enter"){e.preventDefault();toggleDevice(d.id);} });
     list.appendChild(chip);
@@ -440,7 +398,7 @@ function toggleDevice(id) {
 
 function setFilter(f, btn) {
   activeFilter = f;
-  document.querySelectorAll(".filter-pill").forEach(function(b){ b.classList.remove("active"); });
+  btn.closest('.controls-row').querySelectorAll('.ctl-btn[onclick*="setFilter"]').forEach(function(b){ b.classList.remove("active"); });
   btn.classList.add("active");
   renderChips(); buildTable();
 }
@@ -448,10 +406,10 @@ function setFilter(f, btn) {
 function setSort(s, btn) {
   if (activeSort === s && s !== "alpha") sortDir[s] *= -1;
   activeSort = s;
-  document.querySelectorAll(".sort-btn").forEach(function(b){ b.classList.remove("active"); });
+  btn.closest('.controls-row').querySelectorAll('.ctl-btn[onclick*="setSort"]').forEach(function(b){ b.classList.remove("active"); });
   btn.classList.add("active");
   if (s==="fluence") document.getElementById("arr-fluence").textContent = sortDir.fluence===-1?"↓":"↑";
-  if (s==="price")   document.getElementById("arr-price").textContent   = sortDir.price   ===-1?"↓":"↑";
+  if (s==="price")   document.getElementById("arr-price").textContent   = sortDir.price===-1?"↓":"↑";
   renderChips(); buildTable();
 }
 
@@ -494,7 +452,6 @@ function openRec(i, btn) {
     cards.appendChild(card);
   });
   document.getElementById("recDetail").classList.add("open");
-  document.getElementById("recDetail").scrollIntoView({ behavior:"smooth", block:"nearest" });
 }
 
 function buildTable() {
@@ -507,58 +464,47 @@ function buildTable() {
 
   var maxFluence = Math.max.apply(null, devs.map(function(d){ return d.fluenceNum; }));
 
-  function sc(label) { return '<td class="spec-col">'+label+'</td>'; }
-  function row(label, fn) {
-    return '<tr>'+sc(label)+devs.map(function(d){ return '<td>'+fn(d)+'</td>'; }).join("")+'</tr>';
-  }
-  function grp(label) {
-    return '<tr class="group-row">'+sc(label)+devs.map(function(){ return '<td></td>'; }).join("")+'</tr>';
-  }
-  function chk(val) {
+  function sc(label){ return '<td class="spec-col">'+label+'</td>'; }
+  function row(label, fn){ return '<tr>'+sc(label)+devs.map(function(d){ return '<td>'+fn(d)+'</td>'; }).join("")+'</tr>'; }
+  function grp(label){ return '<tr class="group-row">'+sc(label)+devs.map(function(){ return '<td></td>'; }).join("")+'</tr>'; }
+  function chk(val){
     if (val===null) return '<span class="cna">—</span>';
-    return val ? '<span class="ck" aria-label="Yes">✓</span>' : '<span class="cx" aria-label="No">✗</span>';
+    return val ? '<span class="ck">✓</span>' : '<span class="cx">✗</span>';
   }
 
   var headers = devs.map(function(d){
     var hasSaving = d.discountCode && d.discountSaving;
-    return '<th>'
-      +'<div class="dev-hdr">'
-      +(d.bestFor ? '<span class="dev-best">'+d.bestFor+'</span>' : '')
+    return '<th><div class="dev-hdr">'
+      +(d.bestFor?'<span class="dev-best">'+d.bestFor+'</span>':"")
       +'<span class="dev-name">'+d.name+'</span>'
-      +(hasSaving ? '<span class="discount-pill">'+d.discountCode+' · Save '+d.discountSaving+'</span>' : '')
+      +(hasSaving?'<span class="discount-pill">'+d.discountCode+' · Save '+d.discountSaving+'</span>':"")
       +'<div class="dev-links">'
       +'<a href="'+d.links.buy+'" target="_blank" rel="noopener sponsored" class="hdr-buy hdr-buy-primary">'+d.links.buyLabel+' ↗</a>'
-      +(d.links.review  ? '<a href="'+d.links.review+'"  target="_blank" rel="noopener" class="hdr-buy hdr-buy-secondary">SOF Review ↗</a>' : '')
-      +(d.links.compare ? '<a href="'+d.links.compare+'" target="_blank" rel="noopener" class="hdr-buy hdr-buy-secondary">Comparisons ↗</a>' : '')
+      +(d.links.review?'<a href="'+d.links.review+'" target="_blank" rel="noopener" class="hdr-buy hdr-buy-secondary">SOF Review ↗</a>':"")
+      +(d.links.compare?'<a href="'+d.links.compare+'" target="_blank" rel="noopener" class="hdr-buy hdr-buy-secondary">Comparisons ↗</a>':"")
       +'</div></div></th>';
   }).join("");
 
-  function skinGrid(d) {
+  function skinGrid(d){
     return '<div class="skin-grid">'+d.skinTones.map(function(s,i){
       var cls="st-dot"+(s==="x"?" excluded":s==="caution"?" caution":"");
       return '<div class="'+cls+'" style="background:'+SKIN_META[i].color+';" title="'+SKIN_META[i].label+': '+s+'"></div>';
     }).join("")+'</div>';
   }
-
-  function hairRow(d) {
+  function hairRow(d){
     return '<div class="hair-row">'+d.hairColors.map(function(s,i){
       var cls="hc-dot"+(s==="x"?" excluded":s==="caution"?" caution":"");
       return '<div class="'+cls+'" style="background:'+HAIR_META[i].color+';" title="'+HAIR_META[i].label+': '+s+'"></div>';
     }).join("")+'</div>';
   }
-
-  function fluenceCell(d) {
+  function fluenceCell(d){
     var best = d.fluenceNum === maxFluence;
-    return '<div class="fluence-val'+(best?" fluence-best":"")+'">'+d.fluence+'</div>'
-      +(best?'<div class="fluence-tag">Highest</div>':"");
+    return '<div class="fluence-val'+(best?" fluence-best":"")+'">'+d.fluence+'</div>'+(best?'<div class="fluence-tag">Highest</div>':"");
   }
-
-  function priceCell(d) {
-    return '<div class="price-signs">'+d.priceLabel+'</div>'
-      +'<div class="price-range-sub">'+d.priceRange+'</div>';
+  function priceCell(d){
+    return '<div class="price-signs">'+d.priceLabel+'</div><div class="price-range-sub">'+d.priceRange+'</div>';
   }
-
-  function verdictCell(d) {
+  function verdictCell(d){
     var wins = d.wins.map(function(w){ return '<li><span class="vb win">✓</span><span>'+w+'</span></li>'; }).join("");
     var cons = d.cons.map(function(c){ return '<li><span class="vb con">✗</span><span>'+c+'</span></li>'; }).join("");
     return '<ul class="verdict-list">'+wins+cons+'</ul>';
@@ -566,42 +512,22 @@ function buildTable() {
 
   scroll.innerHTML =
     '<table class="cmp" role="table" aria-label="Device comparison">'
-    +'<thead><tr class="names-row">'
-    +'<th class="spec-col" scope="col">Spec</th>'
-    +headers
-    +'</tr></thead>'
+    +'<thead><tr class="names-row"><th class="spec-col" scope="col">Spec</th>'+headers+'</tr></thead>'
     +'<tbody>'
-    +grp("Pricing")
-    +row("Price range", priceCell)
-    +grp("Compatibility")
-    +row("Skin tones",  skinGrid)
-    +row("Hair colors", hairRow)
-    +grp("Performance")
-    +row("Max fluence",          fluenceCell)
-    +row("Wavelength",           function(d){ return d.wavelength; })
-    +row("Treatment frequency",  function(d){ return d.frequency; })
-    +grp("Device specs")
-    +row("Treatment window",     function(d){ return d.window; })
-    +row("Skin cooling",         function(d){ return chk(d.cooling); })
-    +row("Scanning / gliding",   function(d){ return chk(d.scanning); })
-    +row("Skin tone sensor",     function(d){ return chk(d.skinSensor); })
-    +row("Lifetime flashes",     function(d){ return d.lifespan; })
-    +grp("SOF Verdict")
-    +row("Wins &amp; cons",      verdictCell)
+    +grp("Pricing")+row("Price range",priceCell)
+    +grp("Compatibility")+row("Skin tones",skinGrid)+row("Hair colors",hairRow)
+    +grp("Performance")+row("Max fluence",fluenceCell)+row("Wavelength",function(d){return d.wavelength;})+row("Treatment frequency",function(d){return d.frequency;})
+    +grp("Device specs")+row("Treatment window",function(d){return d.window;})+row("Skin cooling",function(d){return chk(d.cooling);})+row("Scanning / gliding",function(d){return chk(d.scanning);})+row("Skin tone sensor",function(d){return chk(d.skinSensor);})+row("Lifetime flashes",function(d){return d.lifespan;})
+    +grp("SOF Verdict")+row("Wins &amp; cons",verdictCell)
     +'</tbody></table>';
 }
 
-function buildSeoContent() {
+function buildSeoContent(){
   var el = document.getElementById("seoContent");
   el.innerHTML = DEVICES.map(function(d){
     return '<article><h3>'+d.name+'</h3>'
-      +'<p>Type: '+(d.type==="laser"?"Laser/LED":"IPL")+'. Max fluence: '+d.fluence
-      +'. Wavelength: '+d.wavelength+'. Price: '+d.priceLabel+' ('+d.priceRange
-      +'). Treatment frequency: '+d.frequency
-      +'. Skin cooling: '+(d.cooling?"Yes":"No")
-      +'. Lifetime flashes: '+d.lifespan+'.</p>'
-      +'<p>Strengths: '+d.wins.join("; ")+'.</p>'
-      +'<p>Drawbacks: '+d.cons.join("; ")+'.</p></article>';
+      +'<p>Type: '+(d.type==="laser"?"Laser/LED":"IPL")+'. Max fluence: '+d.fluence+'. Wavelength: '+d.wavelength+'. Price: '+d.priceLabel+' ('+d.priceRange+'). Treatment frequency: '+d.frequency+'. Skin cooling: '+(d.cooling?"Yes":"No")+'. Lifetime flashes: '+d.lifespan+'.</p>'
+      +'<p>Strengths: '+d.wins.join("; ")+'.</p><p>Drawbacks: '+d.cons.join("; ")+'.</p></article>';
   }).join("");
 }
 
