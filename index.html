@@ -37,7 +37,7 @@
   --text:    #1a1040;
   --text-mid:#555270;
   --text-lt: #888899;
-  --fs:      13px;  /* single source of truth for all table text */
+  --fs:      13px;
   --fs-sm:   12px;
   --fs-xs:   11px;
   --lh:      1.55;
@@ -73,35 +73,31 @@ button{font-family:inherit;cursor:pointer;}
 .price-key strong{color:var(--navy);font-weight:600;}
 
 /* LEGEND */
-.legend-bar{display:flex;align-items:flex-start;gap:1.25rem;flex-wrap:wrap;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:.85rem 1.1rem;margin-bottom:1.25rem;font-size:var(--fs-xs);}
+.legend-bar{display:flex;align-items:flex-start;gap:1.25rem;flex-wrap:wrap;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:.85rem 1.1rem;margin-bottom:1.25rem;}
 .legend-group{display:flex;flex-direction:column;gap:5px;}
 .legend-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-lt);}
 .legend-items{display:flex;flex-wrap:wrap;gap:8px;}
-.legend-item{display:flex;align-items:center;gap:5px;color:var(--text-mid);}
+.legend-item{display:flex;align-items:center;gap:5px;color:var(--text-mid);font-size:var(--fs-xs);}
 .legend-swatch{width:14px;height:14px;border-radius:50%;border:2px solid var(--white);box-shadow:0 0 0 1px var(--border);flex-shrink:0;}
 .legend-warn{background:var(--warn-bg);border:1px solid rgba(196,126,16,.25);border-radius:var(--radius-sm);padding:7px 10px;font-size:var(--fs-xs);color:var(--warn);max-width:310px;line-height:1.4;}
 .legend-warn strong{color:var(--navy);}
 
-/* CONTROLS PANEL — above table, horizontal */
+/* CONTROLS PANEL */
 .controls-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1.25rem;display:flex;flex-direction:column;gap:.85rem;}
-.controls-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;}
-.controls-label{font-size:var(--fs-xs);font-weight:600;color:var(--text-lt);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;margin-right:2px;}
+.controls-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;}
+.controls-label{font-size:10px;font-weight:700;color:var(--text-lt);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;margin-right:2px;}
+.controls-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;margin:0 4px;}
 
-/* shared pill style for filters + sort */
 .ctl-btn{font-family:'DM Sans',sans-serif;font-size:var(--fs-sm);font-weight:500;padding:5px 13px;border-radius:var(--radius-pill);border:1px solid var(--border);background:var(--white);color:var(--text-mid);transition:all .12s;white-space:nowrap;}
 .ctl-btn:hover{border-color:var(--navy);color:var(--navy);}
 .ctl-btn.active{background:var(--navy);color:var(--white);border-color:var(--navy);}
 
-/* skin tone buttons in controls row */
-.st-ctl-btn{display:inline-flex;flex-direction:column;align-items:center;gap:3px;padding:5px 8px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--white);font-size:10px;color:var(--text-lt);transition:all .12s;line-height:1;}
+.st-ctl-btn{display:inline-flex;flex-direction:column;align-items:center;gap:3px;padding:5px 7px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--white);font-size:10px;color:var(--text-lt);transition:all .12s;line-height:1;}
 .st-ctl-btn:hover{border-color:var(--navy);}
 .st-ctl-btn.active{border-color:var(--navy);background:var(--navy-10);color:var(--navy);font-weight:600;}
 .st-ctl-circle{width:20px;height:20px;border-radius:50%;border:2px solid var(--white);box-shadow:0 0 0 1.5px var(--border);}
 
-/* divider between control rows */
-.controls-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
-
-/* DEVICE CHIPS ROW */
+/* DEVICE CHIPS */
 .device-chips-wrap{display:flex;flex-wrap:wrap;gap:6px;}
 .device-chip{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:var(--radius-pill);border:1.5px solid var(--border);background:var(--white);transition:all .12s;user-select:none;cursor:pointer;}
 .device-chip:hover{border-color:var(--navy);}
@@ -113,24 +109,6 @@ button{font-family:inherit;cursor:pointer;}
 .chip-label{font-size:var(--fs-sm);font-weight:500;color:var(--text);}
 .chip-sub{font-size:10px;color:var(--text-lt);}
 
-/* RECOMMENDATIONS */
-.rec-row{display:flex;flex-wrap:wrap;gap:5px;}
-.rec-btn{font-family:'DM Sans',sans-serif;font-size:var(--fs-xs);font-weight:500;padding:5px 11px;border-radius:var(--radius-pill);border:1px solid var(--border);background:var(--white);color:var(--text-mid);transition:all .12s;white-space:nowrap;}
-.rec-btn:hover{border-color:var(--navy);color:var(--navy);}
-.rec-btn.active{border-color:var(--gold);background:var(--gold-lt);color:var(--navy);}
-
-.rec-detail{background:var(--gold-lt);border:1px solid rgba(235,151,24,.35);border-radius:var(--radius);padding:.85rem 1.1rem;display:none;margin-top:.25rem;}
-.rec-detail.open{display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start;}
-.rec-detail-text{}
-.rec-detail-title{font-family:'DM Serif Display',serif;font-size:14px;color:var(--navy);margin-bottom:3px;}
-.rec-detail-desc{font-size:var(--fs-xs);color:var(--text-mid);max-width:380px;}
-.rec-device-cards{display:flex;flex-wrap:wrap;gap:6px;}
-.rec-device-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:7px 10px;cursor:pointer;transition:border-color .12s;}
-.rec-device-card:hover{border-color:var(--navy);}
-.rdc-name{font-size:var(--fs-sm);font-weight:600;color:var(--navy);margin-bottom:1px;}
-.rdc-specs{font-size:10px;color:var(--text-lt);line-height:1.4;}
-.rec-hint{font-size:10px;color:var(--text-lt);margin-top:5px;font-style:italic;}
-
 /* TABLE */
 .table-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
 .table-empty{padding:3rem 2rem;text-align:center;color:var(--text-mid);}
@@ -139,12 +117,15 @@ button{font-family:inherit;cursor:pointer;}
 .table-empty p{font-size:var(--fs-sm);max-width:320px;margin:0 auto;}
 .table-scroll{overflow-x:auto;max-height:80vh;overflow-y:auto;}
 
-/* All table text inherits --fs (13px). No overrides anywhere. */
-table.cmp{width:100%;border-collapse:collapse;font-size:var(--fs);}
-table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width:115px;}
+table.cmp{width:100%;border-collapse:collapse;font-size:var(--fs);table-layout:fixed;}
 
-.cmp thead tr.names-row th{background:var(--navy);color:var(--white);padding:14px 12px 12px;text-align:center;border-right:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:4;vertical-align:top;min-width:155px;font-size:var(--fs);}
-.cmp thead tr.names-row th.spec-col{text-align:left;position:sticky;left:0;z-index:5;min-width:96px;}
+/* spec col — fixed narrow width */
+table.cmp th.spec-col,
+table.cmp td.spec-col{width:110px;min-width:110px;}
+
+/* device cols — equal width, set via JS colgroup */
+.cmp thead tr.names-row th{background:var(--navy);color:var(--white);padding:14px 12px 12px;text-align:center;border-right:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:4;vertical-align:top;font-size:var(--fs);}
+.cmp thead tr.names-row th.spec-col{text-align:left;position:sticky;left:0;z-index:5;}
 
 .dev-hdr{display:flex;flex-direction:column;align-items:center;gap:5px;}
 .dev-name{font-size:var(--fs);font-weight:600;line-height:1.25;}
@@ -157,7 +138,7 @@ table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width
 .hdr-buy-secondary:hover{color:var(--white);border-color:rgba(255,255,255,.6);}
 .discount-pill{font-size:10px;font-weight:700;background:rgba(235,151,24,.15);color:var(--gold);border:1px solid rgba(235,151,24,.3);padding:2px 7px;border-radius:var(--radius-pill);letter-spacing:.04em;}
 
-/* All body cells: same font-size, no exceptions */
+/* body cells — everything inherits --fs, no overrides */
 .cmp tbody td{padding:9px 12px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center;vertical-align:middle;font-size:var(--fs);color:var(--text);}
 .cmp tbody td.spec-col{text-align:left;font-weight:600;color:var(--text-mid);background:#f7f7fb;position:sticky;left:0;z-index:2;border-right:2px solid var(--border);line-height:1.35;}
 
@@ -192,7 +173,7 @@ table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width
 .fluence-tag{font-size:var(--fs-xs);color:var(--green);font-weight:600;margin-top:2px;}
 
 .verdict-list{list-style:none;padding:0;text-align:left;}
-.verdict-list li{line-height:1.45;margin-bottom:4px;display:flex;gap:5px;}
+.verdict-list li{font-size:var(--fs-sm);line-height:1.45;margin-bottom:4px;display:flex;gap:5px;}
 .vb{flex-shrink:0;margin-top:1px;font-weight:700;}
 .vb.win{color:var(--green);}
 .vb.con{color:var(--red);}
@@ -252,7 +233,7 @@ table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width
       <div class="legend-items">
         <span class="legend-item"><span class="ck">✓</span> Compatible</span>
         <span class="legend-item"><span class="cx">✗</span> Not safe</span>
-        <span class="legend-item"><span style="color:var(--warn);font-size:13px;">⚠</span> Caution</span>
+        <span class="legend-item"><span style="color:var(--warn);">⚠</span> Caution</span>
       </div>
     </div>
     <div class="legend-group">
@@ -274,7 +255,6 @@ table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width
   <!-- CONTROLS PANEL -->
   <div class="controls-panel">
 
-    <!-- Row 1: type filter + sort + skin tone -->
     <div class="controls-row">
       <span class="controls-label">Type</span>
       <button class="ctl-btn active" onclick="setFilter('all',this)">All</button>
@@ -290,33 +270,15 @@ table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width
       <div id="skinToneFilter" style="display:flex;gap:5px;flex-wrap:wrap;"></div>
     </div>
 
-    <!-- Row 2: device chips -->
     <div>
-      <div class="controls-label" style="margin-bottom:6px;">Select devices to compare <span style="font-weight:400;text-transform:none;letter-spacing:0;">(up to 5)</span></div>
+      <div class="controls-label" style="margin-bottom:6px;">Select devices to compare <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:var(--fs-xs);">(up to 5)</span></div>
       <div class="device-chips-wrap" id="deviceList"></div>
-    </div>
-
-    <!-- Row 3: recommendations -->
-    <div>
-      <div class="controls-label" style="margin-bottom:6px;">Best device for…</div>
-      <div class="rec-row" id="recList"></div>
-    </div>
-
-    <div class="rec-detail" id="recDetail">
-      <div class="rec-detail-text">
-        <div class="rec-detail-title" id="recDetailTitle"></div>
-        <div class="rec-detail-desc" id="recDetailDesc"></div>
-      </div>
-      <div>
-        <div class="rec-device-cards" id="recDeviceCards"></div>
-        <p class="rec-hint">Click a device to add it to your comparison.</p>
-      </div>
     </div>
 
   </div>
 
   <!-- TABLE -->
-  <div class="table-card" id="tableCard">
+  <div class="table-card">
     <div class="table-empty" id="tableEmpty">
       <div class="table-empty-icon">📊</div>
       <h3>Select devices to compare</h3>
@@ -333,11 +295,14 @@ table.cmp th.spec-col,table.cmp td.spec-col{width:108px;min-width:96px;max-width
 
 <script src="devices.js"></script>
 <script>
+/* Devices pre-selected on load */
+var DEFAULT_SELECTED = ["viqure_sld", "ulike_air10", "braun_pro5"];
+
 var activeFilter = "all";
 var activeSkin   = null;
 var activeSort   = "alpha";
 var sortDir      = { fluence: -1, price: 1 };
-var selected     = new Set();
+var selected     = new Set(DEFAULT_SELECTED);
 var activeRec    = null;
 
 function getVisible() {
@@ -413,47 +378,6 @@ function setSort(s, btn) {
   renderChips(); buildTable();
 }
 
-function buildRecList() {
-  var el = document.getElementById("recList");
-  RECOMMENDATIONS.forEach(function(r, i){
-    var b = document.createElement("button");
-    b.className = "rec-btn";
-    b.textContent = r.label;
-    b.addEventListener("click", function(){ openRec(i, b); });
-    el.appendChild(b);
-  });
-}
-
-function openRec(i, btn) {
-  var r = RECOMMENDATIONS[i];
-  if (activeRec === i) {
-    activeRec = null;
-    document.getElementById("recDetail").classList.remove("open");
-    document.querySelectorAll(".rec-btn").forEach(function(b){ b.classList.remove("active"); });
-    return;
-  }
-  activeRec = i;
-  document.querySelectorAll(".rec-btn").forEach(function(b){ b.classList.remove("active"); });
-  btn.classList.add("active");
-  document.getElementById("recDetailTitle").textContent = r.label;
-  document.getElementById("recDetailDesc").textContent  = r.description;
-  var cards = document.getElementById("recDeviceCards");
-  cards.innerHTML = "";
-  r.deviceIds.forEach(function(id){
-    var d = DEVICES.find(function(x){ return x.id===id; });
-    if (!d) return;
-    var card = document.createElement("div");
-    card.className = "rec-device-card";
-    card.innerHTML = '<div class="rdc-name">'+d.name+'</div>'
-      +'<div class="rdc-specs">'+d.fluence+' · '+d.priceLabel+' ('+d.priceRange+') · '+d.frequency+'</div>';
-    card.addEventListener("click", function(){
-      if (!selected.has(id) && selected.size < 5) { selected.add(id); renderChips(); buildTable(); }
-    });
-    cards.appendChild(card);
-  });
-  document.getElementById("recDetail").classList.add("open");
-}
-
 function buildTable() {
   var devs = DEVICES.filter(function(d){ return selected.has(d.id); });
   var empty  = document.getElementById("tableEmpty");
@@ -463,6 +387,11 @@ function buildTable() {
   scroll.style.display = "";
 
   var maxFluence = Math.max.apply(null, devs.map(function(d){ return d.fluenceNum; }));
+
+  /* Equal column widths via colgroup */
+  var colgroup = '<colgroup><col style="width:110px;min-width:110px;">';
+  devs.forEach(function(){ colgroup += '<col>'; });
+  colgroup += '</colgroup>';
 
   function sc(label){ return '<td class="spec-col">'+label+'</td>'; }
   function row(label, fn){ return '<tr>'+sc(label)+devs.map(function(d){ return '<td>'+fn(d)+'</td>'; }).join("")+'</tr>'; }
@@ -512,6 +441,7 @@ function buildTable() {
 
   scroll.innerHTML =
     '<table class="cmp" role="table" aria-label="Device comparison">'
+    +colgroup
     +'<thead><tr class="names-row"><th class="spec-col" scope="col">Spec</th>'+headers+'</tr></thead>'
     +'<tbody>'
     +grp("Pricing")+row("Price range",priceCell)
@@ -533,7 +463,7 @@ function buildSeoContent(){
 
 buildSkinFilter();
 renderChips();
-buildRecList();
+buildTable();
 buildSeoContent();
 </script>
 </body>
