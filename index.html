@@ -8,7 +8,7 @@
   "@type": "WebApplication",
   "name": "Light-Based Hair Removal Device Recommendation Quiz",
   "description": "A five-question quiz that recommends the best IPL, laser, or LED hair removal device based on your Fitzpatrick skin type, hair color, treatment area, and goals.",
-  "url": "https://scienceoverfluff.github.io/Hair-Removal-Device-Quiz/",
+  "url": "https://compare.scienceoverfluff.com/light-based-hair-removal-devices/quiz",
   "applicationCategory": "HealthApplication",
   "author": {
     "@type": "Person",
@@ -28,7 +28,7 @@
 <meta property="og:title" content="Which Light-Based Hair Removal Device Is Right for You?">
 <meta property="og:description" content="Personalized IPL, laser, and LED device recommendations based on your skin tone, hair color, and treatment goals.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://scienceoverfluff.github.io/Hair-Removal-Device-Quiz/">
+<meta property="og:url" content="https://compare.scienceoverfluff.com/light-based-hair-removal-devices/quiz">
 <meta property="og:image" content="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Science-Over-Fluff_Logo.png"><title>Laser LED IPL Hair Removal Device Recommendation Tool | Science Over Fluff</title>
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Science-Over-Fluff_Logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -545,7 +545,7 @@
       </svg>
     </button>
     <div class="nav-dropdown">
-      <a href="https://scienceoverfluff.github.io/Hair-Removal-Device-Quiz/" target="_blank">Device Comparison Tool</a>
+      <a href="https://compare.scienceoverfluff.com/light-based-hair-removal-devices" target="_blank">Device Comparison Tool</a>
       <a href="https://www.scienceoverfluff.com/archive" target="_blank">Data Driven Product Reviews</a>
     </div>
   </div>
@@ -1075,7 +1075,7 @@ el.innerHTML = `
 async function submitToSheets(result) {
   if (!APPS_SCRIPT_URL) return;
 
-  const resultUrl = `https://scienceoverfluff.github.io/Hair-Removal-Device-Quiz/`
+  const resultUrl = `https://compare.scienceoverfluff.com/light-based-hair-removal-devices/quiz`
     + `?result=${encodeURIComponent(result)}`
     + `&skin=${encodeURIComponent(answers.skin)}`
     + `&hair=${encodeURIComponent(answers.hair)}`
