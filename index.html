@@ -123,6 +123,11 @@ button{font-family:inherit;cursor:pointer;}
 .st-ctl-btn.active{border-color:var(--navy);background:var(--navy-10);color:var(--navy);font-weight:600;}
 .st-ctl-circle{width:22px;height:22px;border-radius:50%;border:2px solid var(--white);box-shadow:0 0 0 1.5px var(--border);}
 
+/* hair color filter */
+<div class="controls-divider"></div>
+<span class="controls-label">Hair color</span>
+<div id="hairColorFilter" style="display:flex;gap:5px;flex-wrap:wrap;"></div>
+
 /* DEVICE CHIPS */
 .chips-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:6px;}
 .chips-actions{display:flex;gap:5px;}
@@ -401,6 +406,7 @@ function getVisible() {
   var devs = DEVICES.slice();
   if (activeType !== "all") devs = devs.filter(function(d){ return d.type === activeType; });
   if (activeSkin !== null)  devs = devs.filter(function(d){ return d.skinTones[activeSkin] && d.skinTones[activeSkin] !== null; });
+  if (activeHair !== null) devs = devs.filter(function(d){ return d.hairColors[activeHair] === "ok"; });
   if (activeSort === "fluence") devs.sort(function(a,b){ return sortDir.fluence * (b.fluenceNum - a.fluenceNum); });
   if (activeSort === "price")   devs.sort(function(a,b){ return sortDir.price   * (b.price    - a.price); });
   return devs;
@@ -444,6 +450,32 @@ function buildSkinFilter() {
     b.addEventListener("click", function(){
       activeSkin = (activeSkin === i) ? null : i;
       buildSkinFilter(); syncSelectedToVisible(); selectAll(); renderChips(); buildTable();
+    });
+    el.appendChild(b);
+  });
+}
+
+/* ── Hair filter ── */
+var activeHair = null;
+function buildHairFilter() {
+  var el = document.getElementById("hairColorFilter");
+  el.innerHTML = "";
+  var ab = document.createElement("button");
+  ab.className = "ctl-btn" + (activeHair === null ? " active" : "");
+  ab.style.cssText = "font-size:11px;padding:4px 10px;";
+  ab.textContent = "All";
+  ab.addEventListener("click", function(){
+    activeHair = null; buildHairFilter(); syncSelectedToVisible(); selectAll(); renderChips(); buildTable();
+  });
+  el.appendChild(ab);
+  HAIR_META.forEach(function(h, i){
+    var b = document.createElement("button");
+    b.className = "st-ctl-btn" + (activeHair === i ? " active" : "");
+    b.title = h.label;
+    b.innerHTML = '<img src="'+h.img+'" style="width:22px;height:22px;border-radius:50%;border:2px solid var(--white);box-shadow:0 0 0 1.5px var(--border);object-fit:cover;" alt="'+h.label+'">';
+    b.addEventListener("click", function(){
+      activeHair = (activeHair === i) ? null : i;
+      buildHairFilter(); syncSelectedToVisible(); selectAll(); renderChips(); buildTable();
     });
     el.appendChild(b);
   });
@@ -670,6 +702,7 @@ function buildSeoContent(){
 
 /* ── Init ── */
 buildSkinFilter();
+buildHairFilter();
 selectAll();       /* select all devices by default */
 renderChips();
 buildTable();
