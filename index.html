@@ -916,24 +916,24 @@ function getPersonalizedBullets(device) {
       { key:'general3', show: true,                                  text: 'Built-in skin cooling makes sessions more comfortable' },
     ],
     Air10: [
-      { key:'general1', show: true,                                  text: '6.67 J/cm² — higher fluence than many other IPL devices for more effective hair reduction' },
-      { key:'general2', show: true,                                  text: 'Large 3.9 cm² treatment window' },
-      { key:'general3', show: true,                                  text: 'Optimized to be highly effective on pale skin and dark hair' },
-      { key:'general4', show: true,                                  text: 'Skin cooling maximizes comfort at higher intensity settings' },
+      { key:'general1', show: true,                                  text: 'Skin cooling maximizes comfort at higher intensity settings' },
+      { key:'general2', show: true,                                  text: '6.67 J/cm² — higher fluence than many other IPL devices for more effective hair reduction' },
+      { key:'general3', show: true,                                  text: 'Large 3.9 cm² treatment window' },
+      { key:'general4', show: true,                                  text: 'Optimized to be highly effective on pale skin and dark hair' },
     ],
     Air4: [
-      { key:'general1', show: true,                                  text: 'Fluence: 7.27 J/cm² per flash (notably high)' },
+      { key:'general1', show: true,                                  text: 'Fluence: 7.27 J/cm² per flash (notably high among budget devices)' },
       { key:'general2', show: true,                                  text: 'Large 3.3 cm² treatment window + AutoGlide mode allows for quicker sessions' },
       { key:'general3', show: true,                                  text: 'Sapphire Ice Cooling maximizes comfort' },
       { key:'general4', show: true,                                  text: 'Treatment Frequency: 3× per week' },
       { key:'general5', show: true,                                  text: 'Optimized to be highly effective on pale skin and dark hair' },
     ],
     Lumea: [
+      { key:'medium',   show: answers.hair==='medium',               text: 'Wide effective hair color range including dark blonde, light brown, and dark auburn' },
+      { key:'frequency',show: priority==='frequency',                text: 'Session frequency is only once every two weeks — lowest required frequency of any at-home IPL device' },
       { key:'general1', show: true,                                  text: 'Up to 5 J/cm² per flash' },
       { key:'general2', show: true,                                  text: 'Specialized treatment heads available for different treatment areas' },
       { key:'general3', show: true,                                  text: 'High lifespan of up to 450,000 flashes' },
-      { key:'medium',   show: answers.hair==='medium',               text: 'Wide effective hair color range including dark blonde, light brown, and dark auburn' },
-      { key:'frequency',show: priority==='frequency',                text: 'Session frequency is only once every two weeks — lowest required frequency of any at-home IPL device' },
     ],
   };
   return (allBullets[device]||[]).filter(b=>b.show).slice(0,5).map(b=>`<li><span class="bullet-check">✓</span> ${b.text}</li>`).join('');
