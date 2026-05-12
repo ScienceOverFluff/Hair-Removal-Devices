@@ -608,7 +608,7 @@ function buildTable() {
     d.skinTones.forEach(function(s, i){
       if (!s || s === null) return; /* skip incompatible */
       var cls = "st-dot" + (s === "caution" ? " caution" : "");
-      dots += '<div class="'+cls+'" style="background:'+SKIN_META[i].color+';border:1.5px solid rgba(0,0,0,.08);" title="'+SKIN_META[i].label+(s==="caution"?" — use with caution":"")+'"></div>';
+      dots += '<div class="'+cls+'" style="background:'+SKIN_META[i].color+';" title="'+SKIN_META[i].label+(s==="caution"?" — use with caution":"")+'"></div>';
     });
     return '<div class="skin-row">'+dots+'</div>';
   }
