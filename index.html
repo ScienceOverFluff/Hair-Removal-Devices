@@ -206,7 +206,7 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
   position:absolute;
   inset:0;
   display:block;
-  background:url("https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Caution.png") center/65% no-repeat;
+  background:url("https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Caution.png") center/95% no-repeat;
 }
 
 /* hair — images only, shown when compatible */
@@ -608,7 +608,7 @@ function buildTable() {
     d.skinTones.forEach(function(s, i){
       if (!s || s === null) return; /* skip incompatible */
       var cls = "st-dot" + (s === "caution" ? " caution" : "");
-      dots += '<div class="'+cls+'" style="background:'+SKIN_META[i].color+';" title="'+SKIN_META[i].label+(s==="caution"?" — use with caution":"")+'"></div>';
+      dots += '<div class="'+cls+'" style="background:'+';" title="'+SKIN_META[i].label+(s==="caution"?" — use with caution":"")+'"></div>';
     });
     return '<div class="skin-row">'+dots+'</div>';
   }
