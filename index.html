@@ -201,6 +201,13 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
 .st-dot{width:26px;height:26px;border-radius:50%;border:2px solid var(--white);box-shadow:0 0 0 1.5px var(--border);position:relative;flex-shrink:0;}
 /* caution: yellow border + larger ⚠ */
 .st-dot.caution{box-shadow:0 0 0 2px var(--warn);}
+.st-dot.caution::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  display:block;
+  background:url("https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Caution.png") center/65% no-repeat;
+}
 
 /* hair — images only, shown when compatible */
 .hair-row{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;}
@@ -595,24 +602,16 @@ function buildTable() {
       +'</div></th>';
   }).join("");
 
-  /* skin tones: only show compatible dots, omit null/undefined */
+    /* skin tones: only show compatible dots, omit null/undefined */
   function skinCell(d){
-  var dots = "";
-  d.skinTones.forEach(function(s, i){
-    if (s === null || s === undefined || s === "x") return;
-    if (s === "caution") {
-      dots += '<div style="position:relative;display:inline-block;flex-shrink:0;">'
-        +'<div class="st-dot" style="background:'+SKIN_META[i].color+';border:1.5px solid rgba(0,0,0,.08);" title="'+SKIN_META[i].label+' — use with caution"></div>'
-        +'<img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Caution.png" '
-        +'style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:3px;" '
-        +'alt="Caution">'
-        +'</div>';
-    } else {
-      dots += '<div class="st-dot" style="background:'+SKIN_META[i].color+';border:1.5px solid rgba(0,0,0,.08);" title="'+SKIN_META[i].label+'"></div>';
-    }
-  });
-  return '<div class="skin-row">'+dots+'</div>';
-}
+    var dots = "";
+    d.skinTones.forEach(function(s, i){
+      if (!s || s === null) return; /* skip incompatible */
+      var cls = "st-dot" + (s === "caution" ? " caution" : "");
+      dots += '<div class="'+cls+'" style="background:'+SKIN_META[i].color+';border:1.5px solid rgba(0,0,0,.08);" title="'+SKIN_META[i].label+(s==="caution"?" — use with caution":"")+'"></div>';
+    });
+    return '<div class="skin-row">'+dots+'</div>';
+  }
 
   /* hair: only show images for compatible colors */
   function hairCell(d){
