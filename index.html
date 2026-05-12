@@ -570,10 +570,10 @@
       <p class="q-sub">Light-based hair removal devices work based on the contrast between your hair and skin. Your <a href="https://en.wikipedia.org/wiki/Fitzpatrick_scale" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline;">Fitzpatrick skin type</a> plays a role in determining which devices will be the safest and most effective for you.<br><br><em>Answer based on your skin tone in the area that you're planning to treat.</em></p>
       <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Fitzpatrick-Skin-Types.png" alt="Fitzpatrick skin type scale showing Types I through VI from pale to deeply dark skin tones" style="width:100%;max-width:600px;display:block;margin:0 auto 20px;">
       <div class="options">
-        <button class="option" onclick="selectSingle(this,'skin','I-III')"><span class="opt-letter">A</span> <strong>Fitzpatrick I–III</strong> (pale to olive skin tone, sunburns easily, sometimes tans)</button>
-        <button class="option" onclick="selectSingle(this,'skin','IV')"><span class="opt-letter">B</span> <strong>Fitzpatrick IV</strong> (medium brown, tans easily)</button>
-        <button class="option" onclick="selectSingle(this,'skin','V')"><span class="opt-letter">C</span> <strong>Fitzpatrick V</strong> (dark brown, tans very easily)</button>
-        <button class="option" onclick="selectSingle(this,'skin','VI')"><span class="opt-letter">D</span> <strong>Fitzpatrick VI</strong> (deeply dark brown, tans very easily)</button>
+        <button class="option" onclick="selectSingle(this,'skin','I-III')"><span class="opt-letter">A</span> <span><strong>Fitzpatrick I–III</strong><br><span style="font-size:.85rem;color:#666;">Pale to olive skin tone, sunburns easily, sometimes tans</span></span></button>
+        <button class="option" onclick="selectSingle(this,'skin','IV')"><span class="opt-letter">B</span> <span><strong>Fitzpatrick IV</strong><br><span style="font-size:.85rem;color:#666;">Medium brown, tans easily</span></span></button>
+        <button class="option" onclick="selectSingle(this,'skin','V')"><span class="opt-letter">C</span> <span><strong>Fitzpatrick V</strong><br><span style="font-size:.85rem;color:#666;">Dark brown, tans very easily</span></span></button>
+        <button class="option" onclick="selectSingle(this,'skin','VI')"><span class="opt-letter">D</span> <span><strong>Fitzpatrick VI</strong><br><span style="font-size:.85rem;color:#666;">Deeply dark brown, tans very easily</span></span></button>
       </div>
     </div>
 
@@ -1104,7 +1104,7 @@ el.innerHTML = `
           ${cfg.ctaAlt ? `<a class="btn-cta-primary gold-cta" href="${cfg.ctaAlt.url}" target="_blank">${cfg.ctaAlt.label}</a>` : ''}
         </div>
         ${cfg.discountImageUrl ? `
-                    <a href="${LINKS[device].primary}" target="_blank" rel="noopener" style="display:block;"><img src="${cfg.discountImageUrl}" alt="Science Over Fluff exclusive discount code" style="width:100%;border-radius:4px;display:block;margin-bottom:20px;cursor:pointer;"></a>` : ''}
+          <a href="${LINKS[device].primary}" target="_blank" rel="noopener" style="display:block;"><img src="${cfg.discountImageUrl}" alt="Science Over Fluff exclusive discount code" style="width:100%;border-radius:4px;display:block;margin-bottom:20px;cursor:pointer;"></a>` : ''}
         <p style="font-size:.72rem;color:#aaa;line-height:1.5;margin-bottom:16px;">If you find the recommendation tool to be helpful, you can support future tools, articles, and other Science Over Fluff content by using the links and discount codes found here when making your purchase. Science Over Fluff may earn a commission at no extra cost to you.</p>
     <div class="section-label">${cfg.sectionLabel}</div>
     ${article}
