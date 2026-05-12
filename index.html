@@ -845,7 +845,7 @@ function getPersonalizedIntro(device) {
     },
     SLD: {
       IV_V:         { reason: `Skin tone match: Fitzpatrick ${skin}`,
-                      text: `Your skin tone is the deciding factor here. At Fitzpatrick ${skin}, you need a device that can safely deliver enough energy to reach the follicle without relying on the hair-skin contrast that IPL devices depend on. The S-LD does not rely on IPL technology at all; it is an LED-based device that emits wavelengths in the range of 780-850nm, making it safer and more effective for Fitzpatrick ${skin} skin than traditional IPL devices.` },
+                      text: `Your skin tone is the deciding factor here. At Fitzpatrick ${skin}, you need a device that can safely deliver enough energy to reach the follicle without relying on the hair-skin contrast that IPL devices depend on.<br><br>The S-LD does not rely on IPL technology; it is a powerful LED-based device that emits wavelengths in the range of 780-850nm, making it safer and more effective for Fitzpatrick ${skin} skin.` },
       bikini_beard: { reason: `Treatment area: ${area === 'bikini' ? 'Bikini region' : 'Beard / neck / shoulders / back / chest'}`,
                       text: `You selected ${areaLabel} as your priority treatment area, and that's what pushed the S-LD to the top. Hair in this area is hormonal, meaning it tends to be coarse and have deeper roots than hair in other areas — factors that cause typical IPL devices to underperform. Because the S-LD delivers 25 J/cm², it provides the necessary energy to effectively target these stubborn follicles where other devices fall short.` },
       budget:       { reason: 'Priority: budget',
@@ -969,17 +969,38 @@ function getArticleForDevice(device) {
               sub:'See how the Air 4 compares against other Ulike devices.',
               url:'https://www.scienceoverfluff.com/p/ulike-technical-review-and-results' },
   };
-  const article = articles[device];
+const article = articles[device];
   if (!article) return '';
+
+  const thumbnail = `
+    <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;border-radius:6px;">
+      <rect width="80" height="80" fill="#0c006d"/>
+      <!-- subtle grid -->
+      <line x1="0" y1="20" x2="80" y2="20" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+      <line x1="0" y1="40" x2="80" y2="40" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+      <line x1="0" y1="60" x2="80" y2="60" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+      <line x1="20" y1="0" x2="20" y2="80" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+      <line x1="40" y1="0" x2="40" y2="80" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+      <line x1="60" y1="0" x2="60" y2="80" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+      <!-- circle -->
+      <circle cx="40" cy="34" r="16" fill="none" stroke="rgba(235,151,24,.6)" stroke-width="1.5"/>
+      <!-- SOF initials -->
+      <text x="40" y="39" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="1">SOF</text>
+      <!-- label -->
+      <text x="40" y="58" text-anchor="middle" font-family="Arial,sans-serif" font-size="6.5" font-weight="600" fill="rgba(235,151,24,.9)" letter-spacing="1.5">ARTICLE</text>
+    </svg>`;
+
   return `
-    <a href="${article.url}" target="_blank" style="text-decoration:none;display:block;">
-      <div class="article-card" style="transition:box-shadow .2s,transform .2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.12)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-        <div class="article-card-inner">
-          <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">📄 Article</div>
-          <div class="article-label">Science Over Fluff</div>
-          <div class="article-title">${article.title}</div>
-          <div class="article-sub">${article.sub}</div>
-          <span class="article-link" style="display:inline-block;">Read on Science Over Fluff →</span>
+    <a href="${article.url}" target="_blank" rel="noopener" style="text-decoration:none;display:block;">
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:16px;transition:box-shadow .2s,transform .2s;cursor:pointer;"
+           onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.1)';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.boxShadow='';this.style.transform=''">
+        ${thumbnail}
+        <div style="min-width:0;">
+          <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:5px;">Science Over Fluff</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:1rem;color:var(--navy);line-height:1.35;margin-bottom:5px;">${article.title}</div>
+          <div style="font-size:.8rem;color:var(--mid);line-height:1.5;margin-bottom:8px;">${article.sub}</div>
+          <span style="font-size:.8rem;font-weight:600;color:var(--gold);">Read on Science Over Fluff →</span>
         </div>
       </div>
     </a>`;
