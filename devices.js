@@ -377,7 +377,7 @@ const DEVICES = [
     scanning: true,
     skinSensor: true,
     lifespan: "600,000 flashes",
-    skinTones: ["ok","ok",null,null,null,null],
+    skinTones: ["ok","ok","ok","caution",null,null],
     hairColors: ["ok","ok","x","x","x"],
     wins: [
       "Affordable",
@@ -416,7 +416,7 @@ const DEVICES = [
     scanning: true,
     skinSensor: true,
     lifespan: "450,000 flashes",
-    skinTones: ["ok","ok",null,null,null,null],
+    skinTones: ["ok","ok","ok","caution","caution",null],
     hairColors: ["ok","ok","x","x","x"],
     wins: [
       "Lowest use frequency of any IPL (every 2 weeks)",
