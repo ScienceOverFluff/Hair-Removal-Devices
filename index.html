@@ -92,7 +92,7 @@ button{font-family:inherit;cursor:pointer;}
 .page{max-width:1300px;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
 
 /* SEO INTRO */
-.seo-intro{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.75rem;margin-bottom:1.25rem;}
+.seo-intro{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.75rem;margin-bottom:1.25rem;position:relative;}
 .seo-intro h2{font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin-bottom:.5rem;}
 .seo-intro p{font-size:var(--fs);color:var(--text-mid);max-width:800px;}
 .seo-intro p+p{margin-top:.4rem;}
@@ -115,18 +115,18 @@ button{font-family:inherit;cursor:pointer;}
 
 /* caution box — top right */
 .caution-box{
-  display:flex;
-  align-items:flex-start;
-  gap:6px;
+  position:absolute;
+  top:1rem;
+  right:1.25rem;
   background:var(--warn-bg);
   border:1px solid rgba(196,126,16,.3);
   border-radius:var(--radius-sm);
-  padding:7px 10px;
+  padding:6px 10px;
   font-size:var(--fs-xs);
   color:var(--warn);
+  max-width:220px;
   line-height:1.4;
-  margin-top:.75rem;
-  max-width:800px;
+  z-index:1;
 }
 .caution-box strong{color:var(--navy);}
 
@@ -258,7 +258,7 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
   .quiz-bar-text{font-size:13px;}
   .quiz-bar-btn{font-size:13px;padding:9px 16px;}
   :root{--spec-w:88px;}
-  .caution-box{position:static;max-width:100%;margin-top:.5rem;}
+  .caution-box{position:static;margin-top:.75rem;}
 }
 </style>
 </head>
