@@ -3,52 +3,51 @@
  * ─────────────────────────────────────────────────────────────────────────────
  * THIS IS THE ONLY FILE YOU NEED TO EDIT to add or update devices.
  *
- * TO ADD A DEVICE: copy any entry below, paste it at the end of the array,
- * and fill in the values. Follow the comments for each field.
+ * TO ADD A DEVICE: copy any entry below, paste at the end of the array,
+ * and fill in the values. Follow the field reference below.
  *
  * AFFILIATE LINKS: all buy/review URLs live in each device's `links` object.
  * ─────────────────────────────────────────────────────────────────────────────
  *
  * FIELD REFERENCE
  * ───────────────
- * id           Unique slug. No spaces. e.g. "viqure_sld"
- * name         Display name shown in the table header.
- * type         "laser" or "ipl"
- * fluenceNum   Numeric max fluence — used for sort. e.g. 25
- * fluence      Display string. e.g. "25 J/cm²"
- * price        1–5 integer — number of $ signs shown.
- * priceLabel   "$" through "$$$$$"
- * priceRange   Human-readable range. e.g. "$300–$400"
- * wavelength   e.g. "780–850 nm"
- * window       Treatment window. e.g. "8 × 8 mm"
- * frequency    e.g. "Every 20–60 days"
- * cooling      true / false
- * scanning     true / false
- * skinSensor   true / false / null  (null = N/A, shown as "—" — use for laser devices)
- * lifespan     e.g. "100,000,000 flashes"
+ * id             Unique slug, no spaces. e.g. "viqure_sld"
+ * name           Display name shown in the table header.
+ * type           "laser" or "ipl"
+ * fluenceNum     Numeric max fluence — used for sort. e.g. 25
+ * fluence        Display string. e.g. "25 J/cm²"
+ * price          1–5 integer — number of $ signs shown.
+ * priceLabel     "$" through "$$$$$"
+ * priceRange     Human-readable range. e.g. "$300–$400"
+ * wavelength     e.g. "780–850 nm"
+ * window         Treatment window. e.g. "8 × 8 mm"
+ * frequency      e.g. "Every 20–60 days"
+ * cooling        true / false
+ * scanning       true / false
+ * skinSensor     true / false / null  (null = N/A — use for laser devices)
+ * lifespan       e.g. "100,000,000 flashes"
  *
- * skinTones    Array of 6 values, index 0 = Fitzpatrick I, index 5 = Fitzpatrick VI.
- *              Each value: "ok" | "x" | "caution"
- *              "ok"      = compatible
- *              "x"       = not safe / not compatible
- *              "caution" = may work but expect slower/weaker results
+ * skinTones      Array of 6 values, index 0 = Fitzpatrick I, 5 = Fitzpatrick VI.
+ *                "ok" | "x" | "caution"
  *
- * hairColors   Array of 4 values, index 0 = black, 1 = dark brown, 2 = medium brown,
- *              3 = light / blonde / red.
- *              Same values: "ok" | "x" | "caution"
+ * hairColors     Array of 4 values: 0 = black, 1 = dark brown, 2 = medium brown,
+ *                3 = light / blonde / red. Same values: "ok" | "x" | "caution"
  *
- * wins         Array of strings — what this device does well.
- * cons         Array of strings — drawbacks.
+ * wins           Array of strings — what this device does well.
+ * cons           Array of strings — drawbacks.
+ *
+ * userReports    String. One or two sentences summarising what people say on
+ *                Reddit and in reviews. Write in your own voice. Use null if
+ *                you don't have enough data yet — it won't show in the table.
  *
  * discountCode   String or null. e.g. "SOF15"
  * discountSaving String or null. e.g. "$105 off"
- * bestFor        Short tag shown under device name. e.g. "SOF Pick" or null.
  *
- * links        Object with named URLs. All affiliate links go here.
- *   .buy       Primary buy URL (required)
- *   .buyLabel  Button label. e.g. "Buy on ViQure.com"
- *   .review    Your SOF review URL or null
- *   .compare   Your SOF comparison article URL or null
+ * links          Object with named URLs. All affiliate links go here.
+ *   .buy         Primary buy URL (required)
+ *   .buyLabel    Button label. e.g. "Buy on ViQure.com"
+ *   .review      Your SOF review URL or null
+ *   .compare     Your SOF comparison article URL or null
  */
 
 const DEVICES = [
@@ -77,9 +76,9 @@ const DEVICES = [
     cons: [
       "Broader wavelength range carries higher burn risk for dark skin"
     ],
+    userReports: null,
     discountCode: null,
     discountSaving: null,
-    bestFor: null,
     links: {
       buy: "https://amazon.com/dp/PLACEHOLDER",
       buyLabel: "Buy on Amazon",
@@ -115,9 +114,9 @@ const DEVICES = [
       "Low fluence",
       "Users report inconsistent results"
     ],
+    userReports: null,
     discountCode: null,
     discountSaving: null,
-    bestFor: null,
     links: {
       buy: "https://amazon.com/dp/PLACEHOLDER",
       buyLabel: "Buy on Amazon",
@@ -152,9 +151,9 @@ const DEVICES = [
       "High frequency of use required (3× per week)",
       "Low fluence compared to premium options"
     ],
+    userReports: null,
     discountCode: null,
     discountSaving: null,
-    bestFor: null,
     links: {
       buy: "https://amazon.com/dp/PLACEHOLDER",
       buyLabel: "Buy on Amazon",
@@ -189,9 +188,9 @@ const DEVICES = [
       "Lower fluence than budget IPL options",
       "Price rivals far more effective laser devices"
     ],
+    userReports: null,
     discountCode: null,
     discountSaving: null,
-    bestFor: null,
     links: {
       buy: "https://amazon.com/dp/PLACEHOLDER",
       buyLabel: "Buy on Amazon",
@@ -226,9 +225,9 @@ const DEVICES = [
       "Large device head — harder to maneuver",
       "Wavelength range carries higher burn risk for dark skin"
     ],
+    userReports: null,
     discountCode: null,
     discountSaving: null,
-    bestFor: null,
     links: {
       buy: "https://amazon.com/dp/PLACEHOLDER",
       buyLabel: "Buy on Amazon",
@@ -264,9 +263,9 @@ const DEVICES = [
       "Poor battery life",
       "Very low lifetime flash count"
     ],
+    userReports: null,
     discountCode: null,
     discountSaving: null,
-    bestFor: null,
     links: {
       buy: "https://amazon.com/dp/PLACEHOLDER",
       buyLabel: "Buy on Amazon",
@@ -300,9 +299,9 @@ const DEVICES = [
       "High frequency of use required",
       "No skin tone sensor"
     ],
+    userReports: null,
     discountCode: "SOF4",
     discountSaving: "$52 off",
-    bestFor: null,
     links: {
       buy: "https://ulike.com/PLACEHOLDER",
       buyLabel: "Buy on Ulike.com",
@@ -337,9 +336,9 @@ const DEVICES = [
       "High frequency of use (3× per week)",
       "Results vary on fine hair or medium-brown hair"
     ],
+    userReports: null,
     discountCode: "SOF10",
     discountSaving: "$90 off",
-    bestFor: null,
     links: {
       buy: "https://ulike.com/PLACEHOLDER",
       buyLabel: "Buy on Ulike.com",
@@ -374,14 +373,14 @@ const DEVICES = [
       "Highest price point",
       "Must be used with ultrasound gel"
     ],
+    userReports: null,
     discountCode: "WELCOME",
     discountSaving: "10% off",
-    bestFor: null,
     links: {
       buy: "https://viqure.com/PLACEHOLDER",
       buyLabel: "Buy on ViQure.com",
       review: null,
-      compare: "https://compare.scienceoverfluff.com",
+      compare: null,
     },
   },
   {
@@ -411,9 +410,9 @@ const DEVICES = [
     cons: [
       "Must be used with ultrasound gel"
     ],
+    userReports: null,
     discountCode: "SOF15",
     discountSaving: "$105 off",
-    bestFor: "SOF Pick",
     links: {
       buy: "https://viqure.com/PLACEHOLDER",
       buyLabel: "Buy on ViQure.com",
@@ -423,7 +422,6 @@ const DEVICES = [
   },
 ];
 
-// Skin tone metadata (do not edit unless adding new Fitzpatrick levels)
 const SKIN_META = [
   { color: "#f5d5b0", label: "Fitzpatrick I",   roman: "I"   },
   { color: "#e0a878", label: "Fitzpatrick II",  roman: "II"  },
@@ -433,7 +431,6 @@ const SKIN_META = [
   { color: "#2e1208", label: "Fitzpatrick VI",  roman: "VI"  },
 ];
 
-// Hair color metadata
 const HAIR_META = [
   { color: "#1a1008", label: "Black"                },
   { color: "#3d1f0d", label: "Dark brown"           },
