@@ -733,6 +733,21 @@ document.addEventListener('click', function(e) {
   if (!nav.contains(e.target)) nav.classList.remove('open');
 });
 
+// ── USER FINGERPRINT ──────────────────────────────────────────────
+async function getFingerprint() {
+  const raw = [
+    navigator.language,
+    navigator.platform,
+    screen.width + 'x' + screen.height,
+    screen.colorDepth,
+    Intl.DateTimeFormat().resolvedOptions().timeZone,
+    navigator.hardwareConcurrency,
+  ].join('|');
+
+  const buffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(raw));
+  return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2,'0')).join('').slice(0,16);
+}
+
 // ── ANSWER SELECTION ──────────────────────────────────────────────
 function selectSingle(btn, key, value) {
   btn.closest('.options').querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
@@ -1074,6 +1089,7 @@ el.innerHTML = `
 // ── GOOGLE SHEETS ─────────────────────────────────────────────────
 async function submitToSheets(result) {
   if (!APPS_SCRIPT_URL) return;
+  const fingerprint = await getFingerprint();
 
   const resultUrl = `https://compare.scienceoverfluff.com/light-based-hair-removal-devices/quiz`
     + `?result=${encodeURIComponent(result)}`
@@ -1089,6 +1105,7 @@ async function submitToSheets(result) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         timestamp:      new Date().toISOString(),
+        fingerprint,
         skin_tone:      answers.skin,
         hair_color:     answers.hair,
         treatment_area: answers.area,
