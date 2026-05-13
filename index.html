@@ -828,7 +828,7 @@ function buildTable() {
     +grp("Performance")+row("Max fluence",fluenceCell)+row("Wavelength",function(d){return d.wavelength;})+row("Treatment frequency",function(d){return d.frequency;})
     +grp("Device specs")+row("Treatment window",function(d){return d.window;})+row("Skin cooling",function(d){return chk(d.cooling);})+row("Scanning / gliding",function(d){return chk(d.scanning);})+row("Skin tone sensor",function(d){return chk(d.skinSensor);})+row("Lifetime flashes",function(d){return d.lifespan;})
     +grp("Verdict")+row("Pros &amp; cons",verdictCell)
-    +(hasReports ? grp("What people say")+'<tr><td class="spec-col">User reports<br><span style="font-size:var(--fs-xs);color:var(--text-lt);font-weight:400;line-height:1.5;">Sources: Reddit · Amazon · Product page reviews</span></td>'+devs.map(function(d){ return '<td>'+userCell(d)+'</td>'; }).join('')+'</tr>' : "")
+    +(hasReports ? grp("What people say")+'<tr><td class="spec-col">User reports<br><span style="font-size:var(--fs-xs);color:var(--text-lt);font-weight:400;line-height:1.5;">Sources: Reddit · Amazon reviews</span></td>'+devs.map(function(d){ return '<td>'+userCell(d)+'</td>'; }).join('')+'</tr>' : "")
     +'</tbody></table>';
 
   setTimeout(updateFade, 50);
