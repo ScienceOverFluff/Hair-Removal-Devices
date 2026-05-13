@@ -66,8 +66,7 @@ button{font-family:inherit;cursor:pointer;}
 .quiz-bar {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
   background: var(--navy); border-top: 2px solid var(--gold);
-  height: var(--quiz-h);
-  display: flex; align-items: center; justify-content: center;
+  display: flex; justify-content: center;
 }
 /* remove the height/transition/overflow rules from the old .quiz-bar */
 .quiz-bar-text{color:rgba(255,255,255,.8);font-size:15px;line-height:1.35;flex:1;max-width:600px;}
@@ -361,48 +360,46 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
 
 <!-- STICKY QUIZ BAR — compact always-visible strip -->
 <div class="quiz-bar" id="quizBar">
-  <div id="quizCard" style="
-    background:#fff;
-    border-radius:14px 14px 0 0;
-    border-top:1px solid #ddd;
-    padding:16px 20px 18px;
-    max-width:900px;
-    width:100%;
-    transform:translateY(100%);
-    transition:transform .35s cubic-bezier(.16,1,.3,1);
-    display:flex;
-    align-items:flex-start;
-    gap:12px;
-  ">
-    <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png"
-         alt="SOF" style="width:40px;height:40px;border-radius:50%;flex-shrink:0;margin-top:2px;">
-    <div style="flex:1;min-width:0;">
-      <p style="font-size:14px;font-weight:700;color:var(--navy);margin:0 0 4px;line-height:1.3;">Not sure which device to go with?</p>
-      <p style="font-size:12px;color:var(--text-mid);margin:0 0 14px;line-height:1.5;">Answer 5 questions about your skin tone, hair color, and priorities. Takes about 60 seconds.</p>
-      <a href="./Quiz/" target="_blank" rel="noopener"
-         style="display:inline-block;padding:10px 22px;background:var(--gold);color:var(--navy);font-size:13px;font-weight:700;border-radius:100px;text-decoration:none;">
-        Take the quiz →
-      </a>
-    </div>
-    <button onclick="dismissCard()" aria-label="Close"
-            style="width:28px;height:28px;border-radius:50%;background:#f0f0f0;border:none;cursor:pointer;font-size:17px;color:#888;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-      ×
-    </button>
-  </div>
+  <div style="max-width:900px;width:100%;">
 
-  <!-- collapsed strip -->
-  <div id="quizStrip" style="max-width:900px;width:100%;display:flex;align-items:center;gap:12px;padding:10px 20px;">
-    <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png"
-         alt="SOF" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;">
-    <p id="stripText" style="flex:1;font-size:13px;font-weight:600;color:var(--white);margin:0;line-height:1.3;">
-      Not sure which device to go with?
-      <span style="font-weight:400;color:rgba(255,255,255,.6);display:block;font-size:11px;">Take the quiz for a personalized pick</span>
-    </p>
-    <a id="stripBtn" href="./Quiz/" target="_blank" rel="noopener" class="quiz-bar-btn" style="font-size:12px;padding:8px 16px;">Take the quiz →</a>
-    <button id="quizToggle" onclick="showCard()" aria-label="Expand quiz prompt"
-            style="background:none;border:none;color:rgba(255,255,255,.5);font-size:13px;cursor:pointer;white-space:nowrap;padding:0 2px;">
-      More ›
-    </button>
+    <!-- card body: hidden when collapsed via max-height -->
+    <div id="quizCard" style="
+      background:#fff;
+      border-radius:14px 14px 0 0;
+      padding:0 18px;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .35s cubic-bezier(.16,1,.3,1), padding .35s cubic-bezier(.16,1,.3,1);
+    ">
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:16px 0 18px;">
+        <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png"
+             alt="SOF" style="width:38px;height:38px;border-radius:50%;flex-shrink:0;margin-top:2px;">
+        <div style="flex:1;min-width:0;">
+          <p style="font-size:14px;font-weight:700;color:var(--navy);margin:0 0 4px;line-height:1.3;">Not sure which device to go with?</p>
+          <p style="font-size:12px;color:var(--text-mid);margin:0 0 13px;line-height:1.5;">Answer 5 questions about your skin tone, hair color, and priorities. Takes about 60 seconds.</p>
+          <a href="./Quiz/" target="_blank" rel="noopener"
+             style="display:inline-block;padding:9px 20px;background:var(--gold);color:var(--navy);font-size:13px;font-weight:700;border-radius:100px;text-decoration:none;">
+            Take the quiz →
+          </a>
+        </div>
+        <button onclick="dismissCard()" aria-label="Close"
+                style="width:26px;height:26px;border-radius:50%;background:#f0f0f0;border:none;cursor:pointer;font-size:16px;color:#888;display:flex;align-items:center;justify-content:center;flex-shrink:0;">×</button>
+      </div>
+    </div>
+
+    <!-- strip: always visible -->
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 18px;">
+      <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png"
+           alt="SOF" style="width:30px;height:30px;border-radius:50%;flex-shrink:0;">
+      <div id="stripText" style="flex:1;font-size:13px;font-weight:600;color:var(--white);line-height:1.3;">
+        Not sure which device to go with?
+        <span style="font-weight:400;color:rgba(255,255,255,.6);display:block;font-size:11px;">Take the quiz for a personalized pick</span>
+      </div>
+      <a id="stripBtn" href="./Quiz/" target="_blank" rel="noopener" class="quiz-bar-btn" style="font-size:12px;padding:8px 16px;">Take the quiz →</a>
+      <button id="quizToggle" onclick="showCard()" aria-label="Expand"
+              style="background:none;border:none;color:rgba(255,255,255,.5);font-size:12px;cursor:pointer;white-space:nowrap;padding:0 2px;">More ›</button>
+    </div>
+
   </div>
 </div>
 
@@ -420,24 +417,20 @@ var cardShown = false;
 function showCard() {
   if (cardShown) return;
   cardShown = true;
-  document.getElementById("quizCard").style.transform = "translateY(0)";
-  // quiet the strip
-  document.getElementById("stripText").innerHTML = '<span style="font-size:12px;color:rgba(255,255,255,.4);font-style:italic;">Science Over Fluff</span>';
+  document.getElementById("quizCard").style.maxHeight = "200px";
+  document.getElementById("stripText").innerHTML = '<span style="font-size:12px;color:rgba(255,255,255,.4);font-style:italic;font-weight:400;">Science Over Fluff</span>';
   document.getElementById("stripBtn").style.display = "none";
-  var toggle = document.getElementById("quizToggle");
-  toggle.textContent = "Collapse ˅";
-  toggle.onclick = dismissCard;
+  var t = document.getElementById("quizToggle");
+  t.textContent = "Collapse ˅"; t.onclick = dismissCard;
 }
 
 function dismissCard() {
   cardShown = false;
-  document.getElementById("quizCard").style.transform = "translateY(100%)";
-  // restore the strip
+  document.getElementById("quizCard").style.maxHeight = "0";
   document.getElementById("stripText").innerHTML = 'Not sure which device to go with?<span style="font-weight:400;color:rgba(255,255,255,.6);display:block;font-size:11px;">Take the quiz for a personalized pick</span>';
   document.getElementById("stripBtn").style.display = "";
-  var toggle = document.getElementById("quizToggle");
-  toggle.textContent = "More ›";
-  toggle.onclick = showCard;
+  var t = document.getElementById("quizToggle");
+  t.textContent = "More ›"; t.onclick = showCard;
 }
 
 setTimeout(showCard, 30000);
