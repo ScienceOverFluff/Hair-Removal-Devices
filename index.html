@@ -89,7 +89,7 @@ button{font-family:inherit;cursor:pointer;}
   text-decoration: none;
   transition: background .15s;
 }
-.quiz-bar-btn:hover { background: var(--gold-dk); }
+.quiz-bar-btn:hover { background: var(--group-fg); color: var(--white); }
 
 /* PAGE */
 .page{max-width:1300px;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
@@ -134,7 +134,24 @@ button{font-family:inherit;cursor:pointer;}
 .caution-box strong{color:var(--navy);}
 
 /* skin tone filter */
-.st-ctl-btn{display:inline-flex;flex-direction:column;align-items:center;gap:3px;padding:5px 7px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--white);font-size:10px;color:var(--text-lt);transition:all .12s;line-height:1;}
+.st-ctl-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 5px 7px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  font-size: 10px;
+  color: var(--text-lt);
+  transition: all .12s;
+  line-height: 1.2;
+  width: 52px;
+  height: 68px;
+  justify-content: flex-start;
+  text-align: center;
+}
 .st-ctl-btn:hover{border-color:var(--navy);}
 .st-ctl-btn.active{border-color:var(--navy);background:var(--navy-10);color:var(--navy);font-weight:600;}
 .st-ctl-circle{width:22px;height:22px;border-radius:50%;border:2px solid var(--white);box-shadow:0 0 0 1.5px var(--border);}
