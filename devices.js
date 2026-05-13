@@ -370,7 +370,7 @@ const DEVICES = [
     wins: [
       "Very low frequency of use",
       "Specialized treatment heads",
-      "Companion guidance app"
+      "Companion guidance app",
       "Can be used plugged in or cordless"
     ],
     cons: [
