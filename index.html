@@ -333,11 +333,11 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
 
   <!-- TABLE -->
   <div class="table-card" id="tableCard">
-    <div id="arrowLeft" style="position:absolute;top:150px;left:4px;transform:translateY(-50%);z-index:10;opacity:0;transition:opacity .3s;pointer-events:none;">
-      <div style="background:var(--cream);color:#434343;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,.15);">‹</div>
+    <div id="arrowLeft" style="position:fixed;left:8px;z-index:50;opacity:0;transition:opacity .3s;pointer-events:none;">
+      <div style="background:var(--cream);color:#434343;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 2px 8px rgba(0,0,0,.2);">‹</div>
     </div>
-    <div id="arrowRight" style="position:absolute;top:150px;right:4px;transform:translateY(-50%);z-index:10;opacity:0;transition:opacity .3s;pointer-events:none;">
-      <div style="background:var(--cream);color:#434343;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,.15);">›</div>
+    <div id="arrowRight" style="position:fixed;right:8px;z-index:50;opacity:0;transition:opacity .3s;pointer-events:none;">
+      <div style="background:var(--cream);color:#434343;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 2px 8px rgba(0,0,0,.2);">›</div>
     </div>
     <div class="table-empty" id="tableEmpty">
       <div class="table-empty-icon">📊</div>
@@ -542,21 +542,41 @@ function setSort(s, btn) {
 
 /* ── Show table scroll ── */
 var hintShown = false;
-function updateFade(){}
-function showScrollHint(){
-  if (hintShown) return;
+function updateFade() {
   var scroll = document.getElementById("tableScroll");
-  if (!scroll || scroll.scrollWidth <= scroll.clientWidth + 2) return;
-  hintShown = true;
-  document.getElementById("arrowRight").style.opacity = "1";
-  document.getElementById("arrowRight").style.pointerEvents = "auto";
-  scroll.addEventListener("scroll", function(){
-    var atRight = scroll.scrollLeft >= scroll.scrollWidth - scroll.clientWidth - 4;
-    var atLeft  = scroll.scrollLeft <= 4;
-    document.getElementById("arrowLeft").style.opacity  = atLeft  ? "0" : "1";
-    document.getElementById("arrowRight").style.opacity = atRight ? "0" : "1";
-  });
+  var card   = document.getElementById("tableCard");
+  var left   = document.getElementById("arrowLeft");
+  var right  = document.getElementById("arrowRight");
+  if (!scroll || !card || scroll.style.display === "none") {
+    left.style.opacity = "0"; right.style.opacity = "0"; return;
+  }
+
+  /* check if table card is visible in the viewport */
+  var rect = card.getBoundingClientRect();
+  var winH = window.innerHeight;
+  var inView = rect.top < winH && rect.bottom > 0;
+
+  if (!inView) {
+    left.style.opacity = "0"; right.style.opacity = "0"; return;
+  }
+
+  /* vertical center of the visible portion of the table */
+  var visTop    = Math.max(rect.top, 0);
+  var visBottom = Math.min(rect.bottom, winH);
+  var midY      = (visTop + visBottom) / 2;
+
+  left.style.top  = (midY - 18) + "px";
+  right.style.top = (midY - 18) + "px";
+
+  var overflowing = scroll.scrollWidth > scroll.clientWidth + 2;
+  var atStart = scroll.scrollLeft <= 2;
+  var atEnd   = scroll.scrollLeft + scroll.clientWidth >= scroll.scrollWidth - 2;
+
+  left.style.opacity  = (overflowing && !atStart) ? "1" : "0";
+  right.style.opacity = (overflowing && !atEnd)   ? "1" : "0";
 }
+
+function showScrollHint() { updateFade(); }
 
 /* ── Drag to pan ── */
 function initDragScroll() {
@@ -721,6 +741,7 @@ var tableObserver = new IntersectionObserver(function(entries){
 }, { threshold: 0.3 });
 tableObserver.observe(document.getElementById("tableCard"));
 window.addEventListener("resize", updateFade);
+window.addEventListener("scroll", updateFade);
 </script>
 </body>
 </html>
