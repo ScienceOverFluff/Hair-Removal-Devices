@@ -678,6 +678,10 @@ function buildTable() {
     return val ? '<span class="ck">✓</span>' : '<span class="cx">✗</span>';
   }
 
+  if (window.innerWidth <= 600) {
+    document.getElementById("tableCard").scrollIntoView({ behavior: "smooth" });
+  }
+
   var headers = devs.map(function(d){
     var hasSaving = d.discountCode && d.discountSaving;
     var links = '<div class="dev-links">'
