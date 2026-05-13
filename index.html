@@ -67,8 +67,8 @@ button{font-family:inherit;cursor:pointer;}
   position:fixed;bottom:0;left:0;right:0;z-index:100;
   background:var(--navy);border-top:2px solid var(--gold);
   height:var(--quiz-h);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:0 1.5rem;gap:1rem;
+  display:flex;align-items:center;justify-content:center;
+  padding:0;
   transition:height 1.8s cubic-bezier(.16,1,.3,1);
   overflow:hidden;
 }
@@ -362,11 +362,16 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
 </main>
 
 <!-- STICKY QUIZ BAR -->
-<div class="quiz-bar">
-  <button onclick="dismissCard()" style="position:absolute;top:.5rem;right:1rem;background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;line-height:1;" aria-label="Collapse">↓</button>
-  <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png" alt="SOF" style="width:44px;height:44px;border-radius:50%;border:2px solid var(--gold);">
-  <p class="quiz-bar-text" style="text-align:center;max-width:520px;"><strong>Not sure which device to go with?</strong><br>Take the quiz to get a personalized recommendation based on your unique physiology and priorities.</p>
-  <a href="./Quiz/" class="quiz-bar-btn" target="_blank" rel="noopener" onclick="dismissCard()">Take the quiz →</a>
+<div class="quiz-bar" id="quizBar">
+  <div style="max-width:900px;width:100%;display:flex;align-items:center;gap:1rem;padding:0 1rem;position:relative;">
+    <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png" alt="SOF" style="width:32px;height:32px;border-radius:50%;border:2px solid var(--gold);flex-shrink:0;">
+    <p style="flex:1;font-size:13px;color:rgba(255,255,255,.85);margin:0;line-height:1.4;text-align:left;">
+      <strong style="color:var(--white);">Not sure which device to go with?</strong>
+      Take the quiz to get a personalized recommendation.
+    </p>
+    <a href="./Quiz/" class="quiz-bar-btn" target="_blank" rel="noopener" style="font-size:13px;padding:9px 18px;flex-shrink:0;">Take the quiz →</a>
+    <button id="dismissBtn" onclick="dismissCard()" style="display:none;position:absolute;top:-28px;right:0;background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;line-height:1;" aria-label="Collapse">↓</button>
+  </div>
 </div>
 
 <script src="devices.js"></script>
@@ -382,11 +387,11 @@ var cardShown = false;
 function showCard(){
   if (cardShown) return;
   cardShown = true;
-  document.querySelector(".quiz-bar").style.height = "22vh";
+  document.getElementById("quizBar").style.height = "22vh";
   document.getElementById("dismissBtn").style.display = "block";
 }
 function dismissCard(){
-  document.querySelector(".quiz-bar").style.height = "var(--quiz-h)";
+  document.getElementById("quizBar").style.height = "var(--quiz-h)";
   document.getElementById("dismissBtn").style.display = "none";
   cardShown = false;
 }
