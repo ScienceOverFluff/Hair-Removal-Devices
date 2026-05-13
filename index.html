@@ -813,7 +813,8 @@ function buildTable() {
 
   function userCell(d){
     if (!d.userReports) return '<span class="user-reports-none">No data yet</span>';
-    return '<p class="user-reports-text">'+d.userReports+'</p>';
+    return '<p class="user-reports-text">'+d.userReports+'</p>'
+      +'<p style="font-size:var(--fs-xs);color:var(--text-lt);margin-top:6px;">Sources: Reddit · Amazon reviews · Product page reviews</p>';
   }
 
   var hasReports = devs.some(function(d){ return !!d.userReports; });
@@ -827,8 +828,8 @@ function buildTable() {
     +grp("Compatibility")+row("Skin tones",skinCell)+row("Hair colors",hairCell)
     +grp("Performance")+row("Max fluence",fluenceCell)+row("Wavelength",function(d){return d.wavelength;})+row("Treatment frequency",function(d){return d.frequency;})
     +grp("Device specs")+row("Treatment window",function(d){return d.window;})+row("Skin cooling",function(d){return chk(d.cooling);})+row("Scanning / gliding",function(d){return chk(d.scanning);})+row("Skin tone sensor",function(d){return chk(d.skinSensor);})+row("Lifetime flashes",function(d){return d.lifespan;})
-    +grp("SOF Verdict")+row("Wins &amp; cons",verdictCell)
-    +(hasReports ? grp("What people say")+row("User reports",userCell) : "")
+    +grp("Verdict")+row("Pros &amp; cons",verdictCell)
+    +(hasReports ? grp("What people say")+row("User reports\u00A0ⓘ",userCell) : "")
     +'</tbody></table>';
 
   setTimeout(updateFade, 50);
