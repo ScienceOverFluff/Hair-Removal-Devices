@@ -426,7 +426,7 @@ const DEVICES = [
       "Lower fluence than budget IPL options",
       "Price rivals far more effective laser devices"
     ],
-    userReports: null,
+    userReports: "Users report the Philips Lumea 9000 delivers significant hair reduction with consistent use, especially on legs and underarms. The cordless design (can be used plugged in or not) is a convenience, though results vary by body area with bikini and facial hair often requiring more persistence. Some users with darker blonde or auburn hair have reported slowed hair growth after consistent use of this device.",
     discountCode: null,
     discountSaving: null,
     bestFor: null,
