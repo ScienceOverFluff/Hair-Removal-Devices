@@ -67,7 +67,7 @@ button{font-family:inherit;cursor:pointer;}
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 300px;
+  width: 400px;
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,.2);
@@ -79,7 +79,7 @@ button{font-family:inherit;cursor:pointer;}
   padding: 8px 18px;
   background: var(--gold);
   color: var(--navy);
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 700;
   border-radius: var(--radius-pill);
   border: none;
@@ -418,7 +418,7 @@ function collapseQuiz() {
 function toggleQuiz() { quizExpanded ? collapseQuiz() : expandQuiz(); }
 
 collapseQuiz();
-setTimeout(expandQuiz, 30000);
+setTimeout(expandQuiz, 10000);
 
 /* ── State ── */
 var activeType    = "all";
