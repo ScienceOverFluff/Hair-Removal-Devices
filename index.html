@@ -66,7 +66,7 @@ button{font-family:inherit;cursor:pointer;}
 .quiz-bar {
   position: fixed;
   bottom: 20px;
-  right: -1px;
+  right: max(0px, calc(50vw - 700px));;
   width: 370px;
   border: 1px solid var(--group-fg);
   border-radius: 14px 0 0 14px;
@@ -386,10 +386,10 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
 
   <!-- TABLE -->
   <div class="table-card" id="tableCard">
-    <div id="arrowLeft" style="position:fixed;left:118px;z-index:50;opacity:0;transition:opacity .3s;cursor:pointer;" onclick="scrollTable(-300)">
+    <div id="arrowLeft" style="position:absolute;left:118px;z-index:50;opacity:0;transition:opacity .3s;cursor:pointer;" onclick="scrollTable(-300)">
       <div style="background:var(--gold);color:var(--cream);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 12px rgba(0,0,0,.35);">‹</div>
     </div>
-    <div id="arrowRight" style="position:fixed;right:8px;z-index:50;opacity:0;transition:opacity .3s;cursor:pointer;" onclick="scrollTable(300)">
+    <div id="arrowRight" style="position:absolute;right:8px;z-index:50;opacity:0;transition:opacity .3s;cursor:pointer;" onclick="scrollTable(300)">
       <div style="background:var(--gold);color:var(--cream);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 12px rgba(0,0,0,.35);">›</div>
     </div>
     <div class="table-empty" id="tableEmpty">
@@ -656,6 +656,9 @@ function updateFade() {
 
   left.style.top  = (midY - 18) + "px";
   right.style.top = (midY - 18) + "px";
+  left.style.left  = (rect.left + 118) + "px";
+  right.style.left = "auto";
+  right.style.right = (window.innerWidth - rect.right + 8) + "px";
 
   var overflowing = scroll.scrollWidth > scroll.clientWidth + 2;
   var atStart = scroll.scrollLeft <= 2;
