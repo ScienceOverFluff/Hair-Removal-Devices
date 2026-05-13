@@ -332,14 +332,8 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
   </div>
 
   <!-- TABLE -->
-  <div class="table-card" id="tableCard">
-    <div class="table-fade" id="tableFade"></div>
-    <div class="table-empty" id="tableEmpty">
-      <div class="table-empty-icon">📊</div>
-      <h3>Select devices to compare</h3>
-      <p>Pick at least 2 devices above to see a full side-by-side breakdown.</p>
-    </div>
-    <div class="table-scroll" id="tableScroll" style="display:none;"></div>
+  <div id="tableFade" style="position:absolute;top:50%;right:10px;transform:translateY(-50%);z-index:10;opacity:0;transition:opacity .2s;pointer-events:none;">
+    <div style="background:var(--navy);color:var(--white);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 8px rgba(12,0,109,.25);">›</div>
   </div>
 
   <div class="seo-content" aria-hidden="true" id="seoContent"></div>
