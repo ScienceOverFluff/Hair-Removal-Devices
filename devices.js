@@ -274,7 +274,7 @@ const DEVICES = [
       "High frequency of use (3× per week)",
       "Results vary on fine hair or medium-brown hair"
     ],
-    userReports: null,
+    userReports: "Users report the Ulike Air 10 is comfortable to use, with many seeing noticeable slowing and thinning of hair after consistent use over weeks to months. Results vary by body area and hair type, though fair skin with dark hair tends to respond best.",
     discountCode: "SOF10",
     discountSaving: "$90 off",
     bestFor: null,
@@ -312,7 +312,7 @@ const DEVICES = [
       "High frequency of use required",
       "No skin tone sensor"
     ],
-    userReports: "users generally report positive results with this device.",
+    userReports: "The Ulike Air 4 is a relatively new device (successor to the Air 3), so there are currently no long-term user reviews.",
     discountCode: "SOF4",
     discountSaving: "$52 off",
     bestFor: null,
@@ -350,9 +350,9 @@ const DEVICES = [
       "High frequency of use required",
       "No skin tone sensor"
     ],
-    userReports: "users generally report positive results with this device.",
-    discountCode: "SOF4",
-    discountSaving: "$52 off",
+    userReports: "Users report the Ulike X provides fast, noticeable hair reduction on dark coarse hair, with many seeing results within weeks and praising the cooling feature for comfort. However, results vary significantly by person and body area (face responds less reliably than body).",
+    discountCode: "SOFX",
+    discountSaving: "$170 off",
     bestFor: null,
     links: {
       buy: "https://amazon.com/dp/PLACEHOLDER",
@@ -387,46 +387,7 @@ const DEVICES = [
     cons: [
       "Broader wavelength range carries higher burn risk for dark skin"
     ],
-    userReports: null,
-    discountCode: null,
-    discountSaving: null,
-    bestFor: null,
-    links: {
-      buy: "https://amazon.com/dp/PLACEHOLDER",
-      buyLabel: "Get it on Amazon →",
-      buy2: null,
-      buy2Label: null,
-      review: null,
-      compare: null,
-    },
-  },
-  {
-    id: "silkn_motion",
-    name: "Silk'n Motion Premium",
-    type: "ipl",
-    fluenceNum: 5,
-    fluence: "5 J/cm²",
-    price: 1,
-    priceLabel: "$",
-    wavelength: "475–1200 nm",
-    window: "3 cm²",
-    frequency: "Every 2 weeks",
-    cooling: false,
-    scanning: true,
-    skinSensor: true,
-    lifespan: "600,000 flashes",
-    skinTones: ["ok","ok","ok","caution",null,null],
-    hairColors: ["ok","ok","x","x","x"],
-    wins: [
-      "Affordable",
-      "Lowest use frequency of any IPL (every 2 weeks)",
-      "Highest flash count of any IPL device"
-    ],
-    cons: [
-      "Large device head — harder to maneuver",
-      "Wavelength range carries higher burn risk for dark skin"
-    ],
-    userReports: null,
+    userReports: "Users report the Braun Silk-Expert Pro 5 delivers significant hair reduction on legs and armpits with regular use, though burns are a commonly reported risk for those with darker skin tones. Pubic areas tend to be slower and may never reach full baldness, but most users still consider Braun a reliable home IPL option.",
     discountCode: null,
     discountSaving: null,
     bestFor: null,
