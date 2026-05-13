@@ -334,11 +334,11 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
 
   <!-- TABLE -->
   <div class="table-card" id="tableCard">
-    <div id="arrowLeft" style="position:fixed;left:118px;z-index:50;opacity:0;transition:opacity .3s;pointer-events:none;">
-      <div style="background:var(--navy);color:var(--cream);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 12px rgba(0,0,0,.35);">‹</div>
+    <div id="arrowLeft" style="position:fixed;left:118px;z-index:50;opacity:0;transition:opacity .3s;cursor:pointer;" onclick="scrollTable(-300)">
+      <div style="background:var(--gold);color:var(--cream);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 12px rgba(0,0,0,.35);">‹</div>
     </div>
-    <div id="arrowRight" style="position:fixed;right:8px;z-index:50;opacity:0;transition:opacity .3s;pointer-events:none;">
-      <div style="background:var(--navy);color:var(--cream);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 12px rgba(0,0,0,.35);">›</div>
+    <div id="arrowRight" style="position:fixed;right:8px;z-index:50;opacity:0;transition:opacity .3s;cursor:pointer;" onclick="scrollTable(300)">
+      <div style="background:var(--gold);color:var(--cream);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 12px rgba(0,0,0,.35);">›</div>
     </div>
     <div class="table-empty" id="tableEmpty">
       <div class="table-empty-icon">📊</div>
@@ -610,6 +610,13 @@ function initDragScroll() {
   });
   /* touch pan already works natively; just update fade on scroll */
   scroll.addEventListener("scroll", updateFade);
+}
+
+/* ── Arrows to scroll table ── */
+function scrollTable(amount) {
+  var scroll = document.getElementById("tableScroll");
+  if (!scroll) return;
+  scroll.scrollBy({ left: amount, behavior: "smooth" });
 }
 
 /* ── Table builder ── */
