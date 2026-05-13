@@ -302,7 +302,7 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
         <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png" alt="Science Over Fluff">
       </div>
       <div class="hdr-titles">
-        <h1>Hair Removal Device Comparison</h1>
+        <h1>Hair Removal Device Comparison Tool</h1>
         <p>Science Over Fluff — Data-driven reviews</p>
       </div>
     </div>
@@ -351,13 +351,13 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
       <button class="ctl-btn active" onclick="setSort('fluence',this)">Fluence <span id="arr-fluence">↓</span></button>
       <button class="ctl-btn" onclick="setSort('price',this)">Price Range <span id="arr-price">↑</span></button>
       <div class="controls-divider"></div>
-      <nav class="price-key">
-        <span><strong>$</strong> — up to $300</span>
-        <span><strong>$$</strong> — $300–$400</span>
-        <span><strong>$$$</strong> — $400–$500</span>
-        <span><strong>$$$$</strong> — $500–$600</span>
-        <span><strong>$$$$$</strong> — $600+</span>
-      </nav>
+      <span class="controls-label">Price</span>
+      <button class="ctl-btn active" onclick="setPriceFilter(null,this)">All</button>
+      <button class="ctl-btn" onclick="setPriceFilter(1,this)">$</button>
+      <button class="ctl-btn" onclick="setPriceFilter(2,this)">$$</button>
+      <button class="ctl-btn" onclick="setPriceFilter(3,this)">$$$</button>
+      <button class="ctl-btn" onclick="setPriceFilter(4,this)">$$$$</button>
+      <button class="ctl-btn" onclick="setPriceFilter(5,this)">$$$$$</button>
     </div>
     <div class="controls-row" style="align-items:flex-start;gap:1.5rem;margin-top:.25rem;">
       <div style="display:flex;flex-direction:column;gap:5px;">
@@ -474,6 +474,7 @@ document.addEventListener('click', function(e) {
 var activeType    = "all";
 var activeSkin    = null;
 var activeHair    = null;
+var activePrice   = null;
 var activeSort    = "fluence";
 var sortDir       = { fluence: 1, price: 1 };
 /* selectedOrder tracks insertion order for column ordering */
@@ -485,6 +486,7 @@ function getVisible() {
   if (activeType !== "all") devs = devs.filter(function(d){ return d.type === activeType; });
   if (activeSkin !== null)  devs = devs.filter(function(d){ return d.skinTones[activeSkin] && d.skinTones[activeSkin] !== null; });
   if (activeHair !== null) devs = devs.filter(function(d){ return d.hairColors[activeHair] === "ok"; });
+  if (activePrice !== null) devs = devs.filter(function(d){ return d.price === activePrice; });
   if (activeSort === "fluence") devs.sort(function(a,b){ return sortDir.fluence * (b.fluenceNum - a.fluenceNum); });
   if (activeSort === "price")   devs.sort(function(a,b){ return sortDir.price   * (b.price    - a.price); });
   return devs;
@@ -556,6 +558,14 @@ function buildHairFilter() {
     });
     el.appendChild(b);
   });
+}
+
+/* ── Price filter ── */
+function setPriceFilter(val, btn) {
+  activePrice = val;
+  btn.closest('.controls-row').querySelectorAll('.ctl-btn[onclick*="setPriceFilter"]').forEach(function(b){ b.classList.remove("active"); });
+  btn.classList.add("active");
+  syncSelectedToVisible(); selectAll(); renderChips(); buildTable();
 }
 
 /* ── Chips ── */
