@@ -68,6 +68,7 @@ button{font-family:inherit;cursor:pointer;}
   bottom: 20px;
   right: 0px;
   width: 400px;
+  border: 2px solid var(--white);
   border-radius: 14px 0 0 14px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,.2);
@@ -499,7 +500,7 @@ function buildHairFilter() {
     var b = document.createElement("button");
     b.className = "st-ctl-btn" + (activeHair === i ? " active" : "");
     b.title = h.label;
-    b.innerHTML = '<img src="'+h.img+'" style="width:32px;height:32px;object-fit:cover;border-radius:4px;" alt="'+h.label+'">';
+    b.innerHTML = '<img src="'+h.img+'" style="width:32px;height:32px;object-fit:cover;border-radius:4px;" alt="'+h.label+'"><span style="font-size:9px;margin-top:2px;line-height:1.2;text-align:center;">'+h.label+'</span>';
     b.addEventListener("click", function(){
       activeHair = (activeHair === i) ? null : i;
       buildHairFilter(); syncSelectedToVisible(); selectAll(); renderChips(); buildTable();
