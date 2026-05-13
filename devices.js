@@ -77,7 +77,7 @@ const DEVICES = [
       "Highest price point",
       "Must be used with ultrasound gel"
     ],
-    userReports: "",
+    userReports: "Many users report purchasing the EpiPro after other devices have failed them, though its high price tag often deters first-time buyers. Users consistently say the high fluence delivers successful results for stubborn areas like male facial hair, and overall reviews are generally positive.",
     discountCode: "WELCOME",
     discountSaving: "10% off",
     bestFor: null,
@@ -116,7 +116,7 @@ const DEVICES = [
     cons: [
       "Must be used with ultrasound gel"
     ],
-    userReports: null,
+    userReports: "Users report significant hair reduction across various skin and hair types, including Fitzpatrick IV-V and stubborn areas like the Brazilian. The cooling tip makes pain more manageable, especially in sensitive areas, despite not being completely painless.",
     discountCode: "SOF15",
     discountSaving: "$105 off",
     bestFor: null,
