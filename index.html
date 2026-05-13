@@ -62,24 +62,6 @@ button{font-family:inherit;cursor:pointer;}
 .hdr-titles h1{font-family:'DM Serif Display',serif;font-size:17px;color:var(--white);line-height:1.2;}
 .hdr-titles p{font-size:var(--fs-xs);color:rgba(255,255,255,.5);margin-top:1px;}
 
-/* QUIZ MODAL */
-.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(12,0,109,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .3s;}
-.modal-overlay.open{opacity:1;pointer-events:all;}
-.modal-box{background:var(--white);border-radius:16px;padding:2.5rem 2rem;max-width:480px;width:100%;position:relative;transform:translateY(20px);transition:transform .3s;box-shadow:0 24px 60px rgba(12,0,109,.25);}
-.modal-overlay.open .modal-box{transform:translateY(0);}
-.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:1px solid var(--border);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--text-lt);cursor:pointer;transition:all .12s;line-height:1;}
-.modal-close:hover{border-color:var(--text-mid);color:var(--text);}
-.modal-logo{width:56px;height:56px;border-radius:50%;overflow:hidden;margin:0 auto 1.25rem;border:2px solid var(--cream);}
-.modal-logo img{width:100%;height:100%;object-fit:cover;}
-.modal-box h2{font-family:'DM Serif Display',serif;font-size:26px;color:var(--navy);text-align:center;line-height:1.25;margin-bottom:.6rem;}
-.modal-box p{font-size:var(--fs);color:var(--text-mid);text-align:center;max-width:360px;margin:0 auto;line-height:1.6;}
-.modal-actions{display:flex;flex-direction:column;gap:.65rem;margin-top:1.5rem;}
-.modal-quiz-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;background:var(--gold);color:var(--navy);font-size:16px;font-weight:700;border-radius:var(--radius-pill);border:none;text-decoration:none;transition:background .15s,transform .1s;cursor:pointer;}
-.modal-quiz-btn:hover{background:var(--gold-dk);transform:translateY(-1px);}
-.modal-quiz-btn svg{width:18px;height:18px;flex-shrink:0;}
-.modal-skip{background:none;border:none;font-size:var(--fs-sm);color:var(--text-lt);text-decoration:underline;cursor:pointer;text-align:center;padding:4px;}
-.modal-skip:hover{color:var(--text-mid);}
-
 /* STICKY BOTTOM QUIZ BAR */
 .quiz-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--navy);border-top:2px solid var(--gold);height:var(--quiz-h);display:flex;align-items:center;justify-content:center;padding:0 1.5rem;gap:1.25rem;}
 .quiz-bar-text{color:rgba(255,255,255,.8);font-size:15px;line-height:1.35;flex:1;max-width:600px;}
@@ -279,21 +261,13 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
   </div>
 </header>
 
-<!-- QUIZ MODAL -->
-<div class="modal-overlay" id="quizModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()" aria-label="Close">×</button>
-    <div class="modal-logo">
-      <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png" alt="Science Over Fluff">
-    </div>
-    <h2 id="modalTitle">Not sure which device is right for you?</h2>
-    <p>Answer 5 questions and get a personalized recommendation based on your physiology and priorities.</p>
-    <div class="modal-actions">
-      <a href="./Quiz/" target="_blank" rel="noopener" class="modal-quiz-btn" onclick="closeModal()">
-        Get a recommendation →
-      </a>
-      <button class="modal-skip" onclick="closeModal()">I'll keep comparing manually</button>
-    </div>
+<!-- SLIDE-UP QUIZ CARD -->
+<div id="quizCard" style="position:fixed;bottom:var(--quiz-h);left:0;right:0;z-index:99;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);padding:0 1.5rem 0;pointer-events:none;">
+  <div style="max-width:680px;margin:0 auto;background:var(--white);border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:var(--radius) var(--radius) 0 0;padding:1rem 1.25rem;display:flex;align-items:center;gap:1rem;box-shadow:0 -4px 24px rgba(12,0,109,.12);pointer-events:all;">
+    <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png" alt="SOF" style="width:36px;height:36px;border-radius:50%;flex-shrink:0;">
+    <p style="font-size:var(--fs-sm);color:var(--text-mid);flex:1;line-height:1.4;"><strong style="color:var(--text);">Not sure which device is right for you?</strong> Answer 6 quick questions and get a personalized recommendation.</p>
+    <a href="./Quiz/" target="_blank" rel="noopener" class="quiz-bar-btn" style="font-size:13px;padding:9px 18px;flex-shrink:0;" onclick="dismissCard()">Take the quiz →</a>
+    <button onclick="dismissCard()" style="background:none;border:none;font-size:20px;color:var(--text-lt);cursor:pointer;padding:0 0 0 4px;line-height:1;" aria-label="Dismiss">×</button>
   </div>
 </div>
 
@@ -303,7 +277,7 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
   <section class="seo-intro">
     <h2>Which at-home hair removal device should you get?</h2>
     <p>This tool compares the most popular at-home laser and IPL hair removal devices based on the specs that actually matter to users: price range, skin/hair compatibility, performance (fluence), treatment frequency, and comfort-enhancing features. All data is sourced from manufacturer specifications.</p>
-    <p><strong>IPL vs. LED vs. laser:</strong> IPL devices are a cost-effective option that deliver results for candidates with pale skin and dark hair. Laser and LED devices are significantly more powerful and much safer for those with dark skin tones.</p>
+    <p><strong>IPL vs. LED vs. laser:</strong> IPL devices are a cost-effective option that deliver results for candidates with pale skin and dark hair. Laser and LED devices are significantly more powerful, which makes them more effective for treating stubborn areas like the bikini region or male facial hair. They are also safer for those with dark skin tones due to the wavelengths they emit.</p>
     <!-- caution box top-right -->
     <div class="caution-box">
       <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Device-Quiz/main/Images/Caution.png" 
@@ -400,13 +374,17 @@ var MODAL_DELAY_MS = 30000;
 /* ── Footer year ── */
 document.getElementById("footerYear").textContent = new Date().getFullYear();
 
-/* ── Modal ── */
-var modalShown = false;
-function openModal(){ if(modalShown) return; modalShown=true; document.getElementById("quizModal").classList.add("open"); }
-function closeModal(){ document.getElementById("quizModal").classList.remove("open"); }
-document.getElementById("quizModal").addEventListener("click",function(e){ if(e.target===this) closeModal(); });
-document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeModal(); });
-setTimeout(openModal, MODAL_DELAY_MS);
+/* ── Slide-up quiz card ── */
+var cardShown = false;
+function showCard(){
+  if (cardShown) return;
+  cardShown = true;
+  document.getElementById("quizCard").style.transform = "translateY(0)";
+}
+function dismissCard(){
+  document.getElementById("quizCard").style.transform = "translateY(100%)";
+}
+setTimeout(showCard, 30000);
 
 /* ── State ── */
 var activeType    = "all";
