@@ -268,20 +268,6 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
   </div>
 </header>
 
-/* ── Slide-up quiz bar ── */
-var cardShown = false;
-function showCard(){
-  if (cardShown) return;
-  cardShown = true;
-  document.querySelector(".quiz-bar").style.height = "auto";
-  document.querySelector(".quiz-bar").style.padding = "1.25rem 1.5rem";
-  document.querySelector(".quiz-bar").style.transform = "translateY(0)";
-}
-function dismissCard(){
-  document.querySelector(".quiz-bar").style.transform = "translateY(100%)";
-}
-setTimeout(showCard, 30000);
-
 <main class="page" role="main">
 
   <!-- SEO INTRO -->
@@ -385,15 +371,17 @@ var MODAL_DELAY_MS = 30000;
 /* ── Footer year ── */
 document.getElementById("footerYear").textContent = new Date().getFullYear();
 
-/* ── Slide-up quiz card ── */
+/* ── Slide-up quiz bar ── */
 var cardShown = false;
 function showCard(){
   if (cardShown) return;
   cardShown = true;
-  document.getElementById("quizCard").style.transform = "translateY(0)";
+  document.querySelector(".quiz-bar").style.height = "auto";
+  document.querySelector(".quiz-bar").style.padding = "1.25rem 1.5rem";
+  document.querySelector(".quiz-bar").style.transform = "translateY(0)";
 }
 function dismissCard(){
-  document.getElementById("quizCard").style.transform = "translateY(100%)";
+  document.querySelector(".quiz-bar").style.transform = "translateY(100%)";
 }
 setTimeout(showCard, 30000);
 
