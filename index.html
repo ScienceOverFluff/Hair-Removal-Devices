@@ -813,8 +813,7 @@ function buildTable() {
 
   function userCell(d){
     if (!d.userReports) return '<span class="user-reports-none">No data yet</span>';
-    return '<p class="user-reports-text">'+d.userReports+'</p>'
-      +'<p style="font-size:var(--fs-xs);color:var(--text-lt);margin-top:6px;">Sources: Reddit · Amazon reviews · Product page reviews</p>';
+    return '<p class="user-reports-text">'+d.userReports+'</p>';
   }
 
   var hasReports = devs.some(function(d){ return !!d.userReports; });
@@ -829,7 +828,7 @@ function buildTable() {
     +grp("Performance")+row("Max fluence",fluenceCell)+row("Wavelength",function(d){return d.wavelength;})+row("Treatment frequency",function(d){return d.frequency;})
     +grp("Device specs")+row("Treatment window",function(d){return d.window;})+row("Skin cooling",function(d){return chk(d.cooling);})+row("Scanning / gliding",function(d){return chk(d.scanning);})+row("Skin tone sensor",function(d){return chk(d.skinSensor);})+row("Lifetime flashes",function(d){return d.lifespan;})
     +grp("Verdict")+row("Pros &amp; cons",verdictCell)
-    +(hasReports ? grp("What people say")+row("User reports\u00A0ⓘ",userCell) : "")
+    +(hasReports ? grp("What people say")+row("User reports<br><span style="font-size:var(--fs-xs);color:var(--text-lt);font-weight:400;line-height:1.5;">Reddit<br>Amazon<br>Product page</span></td>'",userCell) : "")
     +'</tbody></table>';
 
   setTimeout(updateFade, 50);
