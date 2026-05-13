@@ -70,8 +70,8 @@ const DEVICES = [
     hairColors: ["ok","ok","ok","ok","ok"],
     wins: [
       "Highest fluence of any at-home device",
-      "Safe for dark skin (Fitzpatrick VI)",
-      "Works on dark blonde / light brown / dark auburn hair"
+      "Safe for all skin tones including very dark skin",
+      "Works on a wide range of hair colors"
     ],
     cons: [
       "Highest price point",
@@ -109,9 +109,10 @@ const DEVICES = [
     hairColors: ["ok","ok","ok","x","x"],
     wins: [
       "Best fluence-to-price ratio of any at-home device",
-      "Works on brown skin (Fitzpatrick IV–V)",
+      "Works on a wide range of skin tones including darker skin",
       "Effective on hormonal hair (face, pubic region)",
-      "Highest lifetime flash count of any device tested"
+      "Highly maneuverable due to smaller treatment head",
+      "Highest lifetime flash count of any device"
     ],
     cons: [
       "Must be used with ultrasound gel"
@@ -126,7 +127,7 @@ const DEVICES = [
       buy2: null,
       buy2Label: null,
       review: "https://scienceoverfluff.com/viqure-s-ld-review",
-      compare: "https://compare.scienceoverfluff.com",
+      compare: null,
     },
   },
   {
