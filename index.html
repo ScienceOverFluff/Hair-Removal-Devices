@@ -657,7 +657,7 @@ function updateFade() {
   left.style.top  = (midY - 18) + "px";
   right.style.top = (midY - 18) + "px";
   left.style.left  = (rect.left + 118) + "px";
-  right.style.right = (window.innerWidth - rect.right) + "px";
+  right.style.right = (window.innerWidth - rect.right - 8) + "px";
 
   var overflowing = scroll.scrollWidth > scroll.clientWidth + 2;
   var atStart = scroll.scrollLeft <= 2;
