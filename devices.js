@@ -156,7 +156,7 @@ const DEVICES = [
       "Poor battery life",
       "Very low lifetime flash count"
     ],
-    userReports: null,
+    userReports: "Many users report the Tria 4X works well for small areas and facial hair, but the small treatment window makes large areas slow and tedious. Users consistently report significant pain at higher settings, common battery issues that interrupt sessions, and device failures, though some still see effective long-lasting reduction with consistent use.",
     discountCode: null,
     discountSaving: null,
     bestFor: null,
@@ -195,7 +195,7 @@ const DEVICES = [
       "High frequency of use required (3× per week)",
       "Low fluence compared to premium options"
     ],
-    userReports: null,
+    userReports: "Users report mixed results, with many seeing slow progress or only thinning rather than full elimination even after weeks of use. Pain levels vary, and expectations should be tempered for immediate dramatic results.",
     discountCode: null,
     discountSaving: null,
     bestFor: null,
@@ -235,7 +235,7 @@ const DEVICES = [
       "Low fluence",
       "Users report inconsistent results"
     ],
-    userReports: null,
+    userReports: "Users report the V6S is easy to use but has lower fluence than many competing devices, making it less effective for full hair removal. Most users say it only thins hair and slows growth rather than eliminating it, even after months of use. Some users saw little to no improvement.",
     discountCode: null,
     discountSaving: null,
     bestFor: null,
