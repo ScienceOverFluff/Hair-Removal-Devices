@@ -66,7 +66,6 @@ button{font-family:inherit;cursor:pointer;}
 .quiz-bar {
   position: fixed;
   bottom: 20px;
-  right: max(0px, calc(50vw - 700px));;
   width: 370px;
   border: 1px solid var(--group-fg);
   border-radius: 14px;
@@ -448,12 +447,14 @@ function expandQuiz() {
   quizExpanded = true;
   document.getElementById("quizCardBody").style.display = "block";
   document.getElementById("quizChevron").textContent = "˅";
+  updateQuizBarRadius()
 }
 
 function collapseQuiz() {
   quizExpanded = false;
   document.getElementById("quizCardBody").style.display = "none";
   document.getElementById("quizChevron").textContent = "›";
+  updateQuizBarRadius()
 }
 
 function toggleQuiz() { quizExpanded ? collapseQuiz() : expandQuiz(); }
@@ -665,14 +666,19 @@ function updateFade() {
 
   left.style.opacity  = (overflowing && !atStart) ? "1" : "0";
   right.style.opacity = (overflowing && !atEnd)   ? "1" : "0";
+  updateQuizBarRadius()
 }
 
 function updateQuizBarRadius() {
   var bar = document.getElementById("quizBar");
-  var rect = bar.getBoundingClientRect();
-  var atEdge = window.innerWidth - rect.right <= 2;
-  bar.style.borderRadius = atEdge ? "14px 0 0 14px" : "14px";
-  bar.style.right = atEdge ? "-1px" : bar.style.right;
+  var floatRight = Math.max(0, (window.innerWidth - 1400) / 2);
+  if (floatRight <= 1) {
+    bar.style.right = "-1px";
+    bar.style.borderRadius = "14px 0 0 14px";
+  } else {
+    bar.style.right = floatRight + "px";
+    bar.style.borderRadius = "14px";
+  }
 }
 
 window.addEventListener("resize", updateQuizBarRadius);
