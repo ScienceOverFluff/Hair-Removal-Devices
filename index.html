@@ -94,6 +94,18 @@ button{font-family:inherit;cursor:pointer;}
 /* PAGE */
 .page{max-width:1300px;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
 
+/* DROPDOWN MENU */
+.nav-menu{position:relative;}
+.nav-toggle{background:none;border:1.5px solid rgba(255,255,255,.4);border-radius:8px;color:#fff;padding:8px 14px;font-family:'DM Sans',sans-serif;font-size:.87rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .18s,border-color .18s;}
+.nav-toggle:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7);}
+.nav-toggle svg{transition:transform .2s;}
+.nav-menu.open .nav-toggle svg{transform:rotate(180deg);}
+.nav-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#fff;border:1.5px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);min-width:230px;z-index:200;overflow:hidden;}
+.nav-menu.open .nav-dropdown{display:block;}
+.nav-dropdown a{display:block;padding:13px 18px;font-size:.88rem;color:#222;text-decoration:none;font-weight:500;transition:background .15s,color .15s;border-bottom:1px solid var(--border);}
+.nav-dropdown a:last-child{border-bottom:none;}
+.nav-dropdown a:hover{background:#f0eeff;color:var(--navy);}
+
 /* SEO INTRO */
 .seo-intro{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.75rem;margin-bottom:1.25rem;position:relative;}
 .seo-intro h2{font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin-bottom:.5rem;}
@@ -297,6 +309,19 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
   </div>
 </header>
 
+<div class="nav-menu" id="navMenu">
+  <button class="nav-toggle" onclick="toggleNav()">
+    Menu
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 4L6 8L10 4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <div class="nav-dropdown">
+    <a href="https://www.scienceoverfluff.com/archive" target="_blank" rel="noopener">Data-Driven Product Reviews</a>
+    <a href="./Quiz/" target="_blank" rel="noopener">Device Recommendation Quiz</a>
+  </div>
+</div>
+
 <main class="page" role="main">
 
   <!-- SEO INTRO -->
@@ -436,6 +461,15 @@ function toggleQuiz() { quizExpanded ? collapseQuiz() : expandQuiz(); }
 
 collapseQuiz();
 setTimeout(expandQuiz, 10000);
+
+/* ── Dropdown Menu ── */
+function toggleNav() {
+  document.getElementById('navMenu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  var nav = document.getElementById('navMenu');
+  if (!nav.contains(e.target)) nav.classList.remove('open');
+});
 
 /* ── State ── */
 var activeType    = "all";
