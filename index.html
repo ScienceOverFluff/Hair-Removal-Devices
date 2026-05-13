@@ -67,18 +67,14 @@ button{font-family:inherit;cursor:pointer;}
   position:fixed;bottom:0;left:0;right:0;z-index:100;
   background:var(--navy);border-top:2px solid var(--gold);
   height:56px;
+}
+.quiz-bar-inner{
+  max-width:1300px;
+  margin:0 auto;
+  height:100%;
   display:flex;flex-direction:row;align-items:center;
   padding:0 1rem 0 1.25rem;
   gap:12px;
-}
-.quiz-bar-text{
-  flex:1;
-  color:var(--white);
-  font-size:14px;
-  font-weight:500;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
 }
 .quiz-bar-text strong{color:var(--white);font-size:16px;}
 .quiz-bar-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;background:var(--gold);color:var(--navy);font-size:15px;font-weight:700;border-radius:var(--radius-pill);border:none;white-space:nowrap;text-decoration:none;flex-shrink:0;transition:background .15s,transform .1s;}
@@ -378,13 +374,15 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
 
 <!-- STICKY QUIZ BAR -->
 <div class="quiz-bar">
-  <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png" 
-    alt="SOF" style="width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gold);flex-shrink:0;">
-  <span class="quiz-bar-text">Not sure which device to go with?</span>
-  <a href="./Quiz/" class="quiz-bar-btn" target="_blank" rel="noopener">Take the quiz →</a>
-  <button onclick="this.closest('.quiz-bar').style.display='none'" 
-    style="background:none;border:none;color:rgba(255,255,255,.35);font-size:20px;cursor:pointer;padding:0 0 0 4px;line-height:1;flex-shrink:0;" 
-    aria-label="Dismiss">×</button>
+  <div class="quiz-bar-inner">
+    <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png" 
+      alt="SOF" style="width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gold);flex-shrink:0;">
+    <span class="quiz-bar-text">Not sure which device to go with?</span>
+    <a href="./Quiz/" class="quiz-bar-btn" target="_blank" rel="noopener">Take the quiz →</a>
+    <button onclick="this.closest('.quiz-bar').style.display='none'" 
+      style="background:none;border:none;color:rgba(255,255,255,.35);font-size:20px;cursor:pointer;padding:0;line-height:1;flex-shrink:0;" 
+      aria-label="Dismiss">×</button>
+  </div>
 </div>
 
 <script src="devices.js"></script>
@@ -719,7 +717,7 @@ function buildTable() {
     +(hasReports ? grp("What people say")+row("User reports",userCell) : "")
     +'</tbody></table>';
 
-  setTimeout(updateFade, 50);
+  setTimeout(function(){ hintShown = false; showScrollHint(); }, 50);
 }
 
 function buildSeoContent(){
@@ -741,12 +739,6 @@ renderChips();
 buildTable();
 buildSeoContent();
 initDragScroll();
-var tableObserver = new IntersectionObserver(function(entries){
-  entries.forEach(function(entry){
-    if (entry.isIntersecting){ setTimeout(showScrollHint, 600); tableObserver.disconnect(); }
-  });
-}, { threshold: 0.3 });
-tableObserver.observe(document.getElementById("tableCard"));
 window.addEventListener("resize", updateFade);
 </script>
 </body>
