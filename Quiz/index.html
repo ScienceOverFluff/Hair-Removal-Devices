@@ -692,7 +692,7 @@
 <footer>
   <span>This tool gets updated from time to time to stay relevant. &nbsp;·&nbsp;
     <a href="https://www.scienceoverfluff.com/archive" target="_blank" style="color:var(--cream);text-decoration:none;">scienceoverfluff.com</a>
-    &nbsp;·&nbsp; © 2026
+    &nbsp;·&nbsp; © © <span id="footerYear"></span>
   </span>
 </footer>
 
@@ -719,6 +719,9 @@ const LINKS = {
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw49xidP1fbKGEf9mjTnsm9R-bz6aOLxv2ewOhqCyzVaJVgJaQryoibSDUMZvs1uQQr/exec';
 
 const answers = { skin: null, hair: null, area: null, density: [], priority: null, email: '', newsletter: true };
+
+// ── FOOTER YEAR ───────────────────────────────────────────────────
+document.getElementById("footerYear").textContent = new Date().getFullYear();
 
 // ── DROPDOWN NAV ──────────────────────────────────────────────────
 function toggleNav() {
