@@ -548,11 +548,14 @@ function showScrollHint(){
   var scroll = document.getElementById("tableScroll");
   if (!scroll || scroll.scrollWidth <= scroll.clientWidth + 2) return;
   hintShown = true;
-  var hint = document.getElementById("scrollHint");
-  hint.style.opacity = "1";
+  document.getElementById("arrowRight").style.opacity = "1";
+  document.getElementById("arrowRight").style.pointerEvents = "auto";
   scroll.addEventListener("scroll", function(){
-    hint.style.opacity = "0";
-  }, { once: true });
+    var atRight = scroll.scrollLeft >= scroll.scrollWidth - scroll.clientWidth - 4;
+    var atLeft  = scroll.scrollLeft <= 4;
+    document.getElementById("arrowLeft").style.opacity  = atLeft  ? "0" : "1";
+    document.getElementById("arrowRight").style.opacity = atRight ? "0" : "1";
+  });
 }
 
 /* ── Drag to pan ── */
