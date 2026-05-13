@@ -667,6 +667,17 @@ function updateFade() {
   right.style.opacity = (overflowing && !atEnd)   ? "1" : "0";
 }
 
+function updateQuizBarRadius() {
+  var bar = document.getElementById("quizBar");
+  var rect = bar.getBoundingClientRect();
+  var atEdge = window.innerWidth - rect.right <= 2;
+  bar.style.borderRadius = atEdge ? "14px 0 0 14px" : "14px";
+  bar.style.right = atEdge ? "-1px" : bar.style.right;
+}
+
+window.addEventListener("resize", updateQuizBarRadius);
+updateQuizBarRadius();
+
 function showScrollHint() { updateFade(); }
 
 /* ── Drag to pan ── */
