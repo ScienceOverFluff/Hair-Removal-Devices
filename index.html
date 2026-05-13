@@ -64,16 +64,30 @@ button{font-family:inherit;cursor:pointer;}
 
 /* STICKY BOTTOM QUIZ BAR */
 .quiz-bar {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
-  background: var(--navy); border-top: 2px solid var(--gold);
-  display: flex; justify-content: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,.2);
+  z-index: 100;
 }
-/* remove the height/transition/overflow rules from the old .quiz-bar */
-.quiz-bar-text{color:rgba(255,255,255,.8);font-size:15px;line-height:1.35;flex:1;max-width:600px;}
-.quiz-bar-text strong{color:var(--white);font-size:16px;}
-.quiz-bar-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;background:var(--gold);color:var(--navy);font-size:15px;font-weight:700;border-radius:var(--radius-pill);border:none;white-space:nowrap;text-decoration:none;flex-shrink:0;transition:background .15s,transform .1s;}
-.quiz-bar-btn:hover{background:var(--gold-dk);transform:translateY(-1px);}
-.quiz-bar-btn svg{width:16px;height:16px;}
+
+.quiz-bar-btn {
+  display: inline-block;
+  padding: 8px 18px;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  border: none;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background .15s;
+}
+.quiz-bar-btn:hover { background: var(--gold-dk); }
 
 /* PAGE */
 .page{max-width:1300px;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
@@ -360,46 +374,36 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
 
 <!-- STICKY QUIZ BAR — compact always-visible strip -->
 <div class="quiz-bar" id="quizBar">
-  <div style="max-width:900px;width:100%;">
-
-    <!-- card body: hidden when collapsed via max-height -->
-    <div id="quizCard" style="
-      background:#fff;
-      border-radius:14px 14px 0 0;
-      padding:0 18px;
-      max-height:0;
-      overflow:hidden;
-      transition:max-height .35s cubic-bezier(.16,1,.3,1), padding .35s cubic-bezier(.16,1,.3,1);
-    ">
-      <div style="display:flex;align-items:flex-start;gap:12px;padding:16px 0 18px;">
-        <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png"
-             alt="SOF" style="width:38px;height:38px;border-radius:50%;flex-shrink:0;margin-top:2px;">
-        <div style="flex:1;min-width:0;">
-          <p style="font-size:14px;font-weight:700;color:var(--navy);margin:0 0 4px;line-height:1.3;">Not sure which device to go with?</p>
-          <p style="font-size:12px;color:var(--text-mid);margin:0 0 13px;line-height:1.5;">Answer 5 questions about your skin tone, hair color, and priorities. Takes about 60 seconds.</p>
-          <a href="./Quiz/" target="_blank" rel="noopener"
-             style="display:inline-block;padding:9px 20px;background:var(--gold);color:var(--navy);font-size:13px;font-weight:700;border-radius:100px;text-decoration:none;">
-            Take the quiz →
-          </a>
-        </div>
-        <button onclick="dismissCard()" aria-label="Close"
-                style="width:26px;height:26px;border-radius:50%;background:#f0f0f0;border:none;cursor:pointer;font-size:16px;color:#888;display:flex;align-items:center;justify-content:center;flex-shrink:0;">×</button>
-      </div>
+  <div id="quizCardBody" style="
+    background:#fff;
+    padding:16px 16px 18px;
+    display:flex;
+    align-items:flex-start;
+    gap:11px;
+    border-bottom:1px solid #eee;
+  ">
+    <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png"
+         alt="SOF" style="width:36px;height:36px;border-radius:50%;flex-shrink:0;margin-top:1px;">
+    <div style="flex:1;min-width:0;">
+      <p style="font-size:13px;font-weight:700;color:var(--navy);margin:0 0 4px;line-height:1.3;">Not sure which device to go with?</p>
+      <p style="font-size:11px;color:var(--text-mid);margin:0 0 12px;line-height:1.5;">Answer 5 questions about your skin tone, hair color, and priorities. Takes about 60 seconds.</p>
+      <a href="./Quiz/" target="_blank" rel="noopener"
+         style="display:inline-block;padding:8px 18px;background:var(--gold);color:var(--navy);font-size:12px;font-weight:700;border-radius:100px;text-decoration:none;">
+        Take the quiz →
+      </a>
     </div>
-
-    <!-- strip: always visible -->
-    <div style="display:flex;align-items:center;gap:12px;padding:10px 18px;">
-      <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png"
-           alt="SOF" style="width:30px;height:30px;border-radius:50%;flex-shrink:0;">
-      <div id="stripText" style="flex:1;font-size:13px;font-weight:600;color:var(--white);line-height:1.3;">
-        Not sure which device to go with?
-        <span style="font-weight:400;color:rgba(255,255,255,.6);display:block;font-size:11px;">Take the quiz for a personalized pick</span>
-      </div>
-      <a id="stripBtn" href="./Quiz/" target="_blank" rel="noopener" class="quiz-bar-btn" style="font-size:12px;padding:8px 16px;">Take the quiz →</a>
-      <button id="quizToggle" onclick="showCard()" aria-label="Expand"
-              style="background:none;border:none;color:rgba(255,255,255,.5);font-size:12px;cursor:pointer;white-space:nowrap;padding:0 2px;">More ›</button>
+    <button onclick="collapseQuiz()" aria-label="Close"
+            style="width:24px;height:24px;border-radius:50%;background:#f0f0f0;border:none;cursor:pointer;font-size:15px;color:#999;display:flex;align-items:center;justify-content:center;flex-shrink:0;">×</button>
+  </div>
+  <div onclick="toggleQuiz()"
+       style="background:var(--navy);display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;">
+    <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png"
+         alt="SOF" style="width:28px;height:28px;border-radius:50%;flex-shrink:0;">
+    <div style="flex:1;font-size:12px;font-weight:600;color:var(--white);line-height:1.3;">
+      Not sure which device?
+      <span style="font-weight:400;color:rgba(255,255,255,.55);font-size:11px;display:block;margin-top:1px;">Take the quiz →</span>
     </div>
-
+    <span id="quizChevron" style="color:rgba(255,255,255,.5);font-size:13px;line-height:1;">˅</span>
   </div>
 </div>
 
@@ -412,28 +416,26 @@ var MODAL_DELAY_MS = 30000;
 document.getElementById("footerYear").textContent = new Date().getFullYear();
 
 /* ── Slide-up quiz bar ── */
-var cardShown = false;
+var quizExpanded = false;
 
-function showCard() {
-  if (cardShown) return;
-  cardShown = true;
-  document.getElementById("quizCard").style.maxHeight = "200px";
-  document.getElementById("stripText").innerHTML = '<span style="font-size:12px;color:rgba(255,255,255,.4);font-style:italic;font-weight:400;">Science Over Fluff</span>';
-  document.getElementById("stripBtn").style.display = "none";
-  var t = document.getElementById("quizToggle");
-  t.textContent = "Collapse ˅"; t.onclick = dismissCard;
+function expandQuiz() {
+  quizExpanded = true;
+  document.getElementById("quizCardBody").style.display = "flex";
+  document.getElementById("quizChevron").textContent = "˅";
 }
 
-function dismissCard() {
-  cardShown = false;
-  document.getElementById("quizCard").style.maxHeight = "0";
-  document.getElementById("stripText").innerHTML = 'Not sure which device to go with?<span style="font-weight:400;color:rgba(255,255,255,.6);display:block;font-size:11px;">Take the quiz for a personalized pick</span>';
-  document.getElementById("stripBtn").style.display = "";
-  var t = document.getElementById("quizToggle");
-  t.textContent = "More ›"; t.onclick = showCard;
+function collapseQuiz() {
+  quizExpanded = false;
+  document.getElementById("quizCardBody").style.display = "none";
+  document.getElementById("quizChevron").textContent = "›";
 }
 
-setTimeout(showCard, 30000);
+function toggleQuiz() {
+  quizExpanded ? collapseQuiz() : expandQuiz();
+}
+
+collapseQuiz(); // start collapsed
+setTimeout(expandQuiz, 30000);
 
 /* ── State ── */
 var activeType    = "all";
