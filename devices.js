@@ -1,54 +1,6 @@
 /**
  * SOF Device Database — devices.js
- * ─────────────────────────────────────────────────────────────────────────────
- * THIS IS THE ONLY FILE YOU NEED TO EDIT to add or update devices.
- *
- * FIELD REFERENCE
- * ───────────────
- * id             Unique slug, no spaces. e.g. "viqure_sld"
- * name           Display name shown in the table header.
- * type           "laser" or "ipl"
- * fluenceNum     Numeric max fluence — used for sort. e.g. 25
- * fluence        Display string. e.g. "25 J/cm²"
- * price          1–5 integer — number of $ signs shown.
- * priceLabel     "$" through "$$$$$"
- * wavelength     e.g. "780–850 nm"
- * window         Treatment window. e.g. "8 × 8 mm"
- * frequency      e.g. "Every 20–60 days"
- * cooling        true / false
- * scanning       true / false
- * skinSensor     true / false / null  (null = N/A — use for laser devices)
- * lifespan       e.g. "100,000,000 flashes"
- *
- * skinTones      Array of up to 6 values (Fitzpatrick I–VI).
- *                Only include tones the device is compatible with.
- *                Use "ok" for fully compatible, "caution" for use with care.
- *                Incompatible tones should be OMITTED entirely.
- *                Format: [fitzI, fitzII, fitzIII, fitzIV, fitzV, fitzVI]
- *                e.g. ["ok","ok","ok","caution",null,null] means safe for I-III,
- *                caution for IV, not safe for V-VI (omit V and VI).
- *
- * hairColors     Array of 5 values in this exact order:
- *                [black, darkBrown, lightBrown, darkBlonde, auburn]
- *                "ok" = compatible (image shown), "x" = not compatible (image hidden)
- *                No caution needed — incompatibility is shown by omitting the image.
- *
- * wins           Array of strings.
- * cons           Array of strings.
- * userReports    String or null. 1-2 sentences from Reddit/reviews.
- *
- * discountCode   String or null.
- * discountSaving String or null. e.g. "$105 off"
- * bestFor        Short badge string or null. e.g. "SOF Pick"
- *
- * links          Object:
- *   .buy         Primary buy URL (required)
- *   .buyLabel    e.g. "Buy on ViQure.com"
- *   .buy2        Secondary buy URL or null
- *   .buy2Label   e.g. "Also on Amazon" or null
- *   .review      SOF review URL or null
- *   .compare     SOF comparison article URL or null
- */
+ * ───────────────────────────────────────────────────────────────────────────── */
 
 const DEVICES = [
   {
@@ -139,7 +91,7 @@ const DEVICES = [
     price: 4,
     priceLabel: "$$$$",
     wavelength: "810 nm",
-    window: "10 mm circular",
+    window: "10 mm (circular)",
     frequency: "Every 2 weeks",
     cooling: false,
     scanning: false,
@@ -148,7 +100,7 @@ const DEVICES = [
     skinTones: ["ok","ok","ok","ok",null,null],
     hairColors: ["ok","ok","ok","x","x"],
     wins: [
-      "First at-home diode laser on the market",
+      "Established product (first on the market for at-home use)",
       "Compact and maneuverable for small areas"
     ],
     cons: [
@@ -193,8 +145,8 @@ const DEVICES = [
       "Large treatment window covers area faster"
     ],
     cons: [
-      "High frequency of use required (3× per week)",
-      "Low fluence compared to premium options"
+      "High frequency of use",
+      "Low fluence compared to similar devices"
     ],
     userReports: "Users report mixed results, with many seeing slow progress or only thinning rather than full elimination even after weeks of use. Pain levels vary, and expectations should be tempered for immediate dramatic results.",
     discountCode: null,
@@ -232,9 +184,8 @@ const DEVICES = [
       "Large treatment window"
     ],
     cons: [
-      "High frequency of use required",
-      "Low fluence",
-      "Users report inconsistent results"
+      "High frequency of use",
+      "Very low fluence for a laser-based device",
     ],
     userReports: "Users report the V6S is easy to use but has lower fluence than many competing devices, making it less effective for full hair removal. Most users say it only thins hair and slows growth rather than eliminating it, even after months of use. Some users saw little to no improvement.",
     discountCode: null,
@@ -264,16 +215,16 @@ const DEVICES = [
     scanning: true,
     skinSensor: true,
     lifespan: "300,000 flashes",
-    skinTones: ["ok","ok","ok",null,null,null],
-    hairColors: ["ok","ok","x","x","x"],
+    skinTones: ["ok","ok","ok","caution","caution",null],
+    hairColors: ["ok","ok","ok","x","x"],
     wins: [
-      "Least painful IPL device — active cooling",
+      "Least painful IPL device",
       "Affordable price point",
-      "Dual Lights technology: 4 flashes per second"
+      "4 flashes per second (Dual Lights technology)"
     ],
     cons: [
       "High frequency of use (3× per week)",
-      "Results vary on fine hair or medium-brown hair"
+      "Results vary on difficult-to-treat hair (finer hair or medium-brown hair color)"
     ],
     userReports: "Users report the Ulike Air 10 is comfortable to use, with many seeing noticeable slowing and thinning of hair after consistent use over weeks to months. Results vary by body area and hair type, though fair skin with dark hair tends to respond best.",
     discountCode: "SOF10",
@@ -303,15 +254,14 @@ const DEVICES = [
     scanning: true,
     skinSensor: false,
     lifespan: "300,000 flashes",
-    skinTones: ["ok","ok","ok",null,null,null],
-    hairColors: ["ok","ok","x","x","x"],
+    skinTones: ["ok","ok","ok","caution",null,null],
+    hairColors: ["ok","ok","ok","x","x"],
     wins: [
-      "Most affordable at-home IPL device",
-      "Highest fluence of any IPL tested"
+      "One of the most affordable IPL devices",
+      "High fluence"
     ],
     cons: [
       "High frequency of use required",
-      "No skin tone sensor"
     ],
     userReports: "The Ulike Air 4 is a relatively new device (successor to the Air 3), so there are currently no long-term user reviews.",
     discountCode: "SOF4",
@@ -332,8 +282,8 @@ const DEVICES = [
     type: "ipl",
     fluenceNum: 6.67,
     fluence: "6.67 J/cm²",
-    price: 1,
-    priceLabel: "$",
+    price: 2,
+    priceLabel: "$$",
     wavelength: "550–1200 nm",
     window: "3.9 cm²",
     frequency: "3× per week",
@@ -341,15 +291,14 @@ const DEVICES = [
     scanning: true,
     skinSensor: true,
     lifespan: "300,000 flashes",
-    skinTones: ["ok","ok","ok",null,null,null],
-    hairColors: ["ok","ok","x","x","x"],
+    skinTones: ["ok","ok","ok","caution","caution",null],
+    hairColors: ["ok","ok","ok","x","x"],
     wins: [
-      "Affordable at-home IPL device",
-      "High fluence"
+      "Affordable price point",
+      "2 flashes per second (Dual Lights technology)"
     ],
     cons: [
-      "High frequency of use required",
-      "No skin tone sensor"
+      "High frequency of use",
     ],
     userReports: "Users report the Ulike X provides fast, noticeable hair reduction on dark coarse hair, with many seeing results within weeks and praising the cooling feature for comfort. However, results vary significantly by person and body area (face responds less reliably than body).",
     discountCode: "SOFX",
@@ -373,20 +322,20 @@ const DEVICES = [
     price: 2,
     priceLabel: "$$",
     wavelength: "510–2000 nm",
-    window: "1.5 / 3 / 4 cm²",
+    window: "1.5cm² / 3cm² / 4cm²",
     frequency: "Once per week",
     cooling: false,
     scanning: true,
     skinSensor: true,
     lifespan: "400,000 flashes",
-    skinTones: ["ok","ok","ok",null,null,null],
-    hairColors: ["ok","ok","x","x","x"],
+    skinTones: ["ok","ok","ok","caution","caution",null],
+    hairColors: ["ok","ok","ok","x","x"],
     wins: [
       "Low frequency of use — once per week",
-      "2 specialized treatment heads included"
+      "Specialized treatment heads for different treatment areas"
     ],
     cons: [
-      "Broader wavelength range carries higher burn risk for dark skin"
+      "Wavelength range carries higher burn risk for dark skin"
     ],
     userReports: "Users report the Braun Silk-Expert Pro 5 delivers significant hair reduction on legs and armpits with regular use, though burns are a commonly reported risk for those with darker skin tones. Pubic areas tend to be slower and may never reach full baldness, but most users still consider Braun a reliable home IPL option.",
     discountCode: null,
@@ -410,24 +359,25 @@ const DEVICES = [
     price: 4,
     priceLabel: "$$$$",
     wavelength: "520–1200 nm / 590–1200 nm",
-    window: "2 / 3 / 4.1 cm²",
+    window: "2cm² / 3cm² / 4.1cm²",
     frequency: "Every 2 weeks",
     cooling: false,
     scanning: true,
     skinSensor: true,
     lifespan: "450,000 flashes",
-    skinTones: ["ok","ok","ok","caution","caution",null],
-    hairColors: ["ok","ok","x","x","x"],
+    skinTones: ["ok","ok","ok","caution",null,null],
+    hairColors: ["ok","ok","ok","ok","x"],
     wins: [
-      "Lowest use frequency of any IPL (every 2 weeks)",
-      "4 specialized treatment heads",
+      "Very low frequency of use",
+      "Specialized treatment heads",
       "Companion guidance app"
+      "Can be used plugged in or cordless"
     ],
     cons: [
-      "Lower fluence than budget IPL options",
-      "Price rivals far more effective laser devices"
+      "Lower fluence than some budget IPL options",
+      "High price point for an IPL device"
     ],
-    userReports: "Users report the Philips Lumea 9000 delivers significant hair reduction with consistent use, especially on legs and underarms. The cordless design (can be used plugged in or not) is a convenience, though results vary by body area with bikini and facial hair often requiring more persistence. Some users with darker blonde or auburn hair have reported slowed hair growth after consistent use of this device.",
+    userReports: "Users report the Philips Lumea 9000 delivers significant hair reduction with consistent use, especially on legs and underarms. The cordless design (can be used plugged in or not) is a convenience, though results vary by body area with bikini and facial hair often requiring more persistence. Some users with darker blonde hair have reported slowed hair growth after consistent use of this device.",
     discountCode: null,
     discountSaving: null,
     bestFor: null,
