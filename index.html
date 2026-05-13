@@ -67,7 +67,7 @@ button{font-family:inherit;cursor:pointer;}
   position:fixed;bottom:0;left:0;right:0;z-index:100;
   background:var(--navy);border-top:2px solid var(--gold);
   height:var(--quiz-h);
-  display:flex;align-items:center;justify-content:center;
+  display:flex;align-items:flex-start;justify-content:center;
   padding:0;
   transition:height 1.8s cubic-bezier(.16,1,.3,1);
   overflow:hidden;
@@ -363,14 +363,14 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
 
 <!-- STICKY QUIZ BAR -->
 <div class="quiz-bar" id="quizBar">
-  <div style="max-width:900px;width:100%;display:flex;align-items:center;gap:1rem;padding:0 1rem;position:relative;">
-    <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png" alt="SOF" style="width:32px;height:32px;border-radius:50%;border:2px solid var(--gold);flex-shrink:0;">
-    <p style="flex:1;font-size:13px;color:rgba(255,255,255,.85);margin:0;line-height:1.4;text-align:left;">
-      <strong style="color:var(--white);">Not sure which device to go with?</strong>
-      Take the quiz to get a personalized recommendation.
-    </p>
+  <div style="max-width:900px;width:100%;display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.25rem;position:relative;">
+    <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png" alt="SOF" style="width:42px;height:42px;border-radius:50%;flex-shrink:0;margin-top:2px;">
+    <div style="flex:1;min-width:0;">
+      <p style="font-size:15px;font-weight:700;color:var(--white);margin:0 0 3px 0;line-height:1.3;">Not sure which device to go with?</p>
+      <p style="font-size:13px;color:rgba(255,255,255,.75);margin:0;line-height:1.4;">Take the quiz to get a personalized recommendation.</p>
+    </div>
     <a href="./Quiz/" class="quiz-bar-btn" target="_blank" rel="noopener" style="font-size:13px;padding:9px 18px;flex-shrink:0;">Take the quiz →</a>
-    <button id="dismissBtn" onclick="dismissCard()" style="display:none;position:absolute;top:-28px;right:0;background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;line-height:1;" aria-label="Collapse">↓</button>
+    <button id="dismissBtn" onclick="dismissCard()" style="display:none;position:absolute;top:8px;right:8px;background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;line-height:1;" aria-label="Collapse">↓</button>
   </div>
 </div>
 
