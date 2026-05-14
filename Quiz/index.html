@@ -121,7 +121,7 @@
   .quiz-wrap {
     max-width: 680px;
     margin: 0 auto;
-    padding: 40px 20px 60px;
+    padding: 40px 20px 320px;
   }
 
   /* ── INTRO ── */
@@ -508,17 +508,19 @@
   .restart-link:hover { color: var(--navy); }
 
   .floating-card {
+    display: none;
     background: transparent;
     border: none;
-    padding: 24px;
+    padding: 0 20px 16px;
     position: fixed;
     bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 20;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
     max-width: 680px;
-    margin: 0 auto;
+    z-index: 20;
   }
+  .floating-card.visible { display: block; }
 
   /* ── FOOTER ── */
   footer {
@@ -695,6 +697,7 @@
   <!-- ══════ RESULT (dynamic) ══════ -->
   <div id="result-dynamic" class="result-screen"></div>
 
+<div id="floating-card-portal"></div>
 </div><!-- /quiz-wrap -->
 
 <footer>
@@ -1113,20 +1116,24 @@ el.innerHTML = `
         ${cfg.discountImageUrl ? `
           <a href="${LINKS[device].primary}" target="_blank" rel="noopener" style="display:block;"><img src="${cfg.discountImageUrl}" alt="Science Over Fluff exclusive discount code" style="width:100%;border-radius:4px;display:block;margin-bottom:20px;cursor:pointer;"></a>` : ''}
         <p style="font-size:.72rem;color:#aaa;line-height:1.5;margin-bottom:16px;">If you find the recommendation tool to be helpful, you can support future tools, articles, and other Science Over Fluff content by using the links and discount codes found here when making your purchase. Science Over Fluff may earn a commission at no extra cost to you.</p>
-    <a href="https://compare.scienceoverfluff.com/light-based-hair-removal-devices" target="_blank" rel="noopener"
-       style="display:block;text-align:center;margin-top:20px;padding:13px 20px;border:2px solid var(--navy);border-radius:var(--radius);font-size:.92rem;font-weight:600;color:var(--navy);text-decoration:none;transition:background .18s,color .18s;"
-       onmouseover="this.style.background='var(--navy)';this.style.color='#fff'"
-       onmouseout="this.style.background='';this.style.color='var(--navy)'">
-      Compare this device against others →
-    </a>
+        <a href="https://compare.scienceoverfluff.com/light-based-hair-removal-devices" target="_blank" rel="noopener"
+           style="display:block;text-align:center;margin-top:20px;padding:13px 20px;border:2px solid var(--navy);border-radius:var(--radius);font-size:.92rem;font-weight:600;color:var(--navy);text-decoration:none;transition:background .18s,color .18s;"
+           onmouseover="this.style.background='var(--navy)';this.style.color='#fff'"
+           onmouseout="this.style.background='';this.style.color='var(--navy)'">
+          Compare this device against others →
+        </a>
       </div>
-    </div>
-    <div class="floating-card">
-      <div class="section-label" style="color:#434343;margin-top:0;">${cfg.sectionLabel}</div>
-      ${article}
-      <span class="restart-link" style="margin-top:16px;" onclick="restartQuiz()">← Retake the quiz</span>
     </div>`;
 
+  const portal = document.getElementById('floating-card-portal');
+  portal.className = 'floating-card visible';
+  portal.innerHTML = `
+    <div class="section-label" style="color:#434343;margin-top:0;">${cfg.sectionLabel}</div>
+    ${article}
+    <span class="restart-link" style="margin-top:16px;" onclick="restartQuiz()">← Retake the quiz</span>`;
+
+el.classList.add('active');
+window.scrollTo({ top: 0, behavior: 'smooth' });
   el.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1169,6 +1176,10 @@ async function submitToSheets(result) {
 function restartQuiz() {
   answers.skin=null; answers.hair=null; answers.area=null;
   answers.density=[]; answers.priority=null; answers.email=''; answers.newsletter=true;
+
+  const portal = document.getElementById('floating-card-portal');
+  portal.className = 'floating-card';
+  portal.innerHTML = '';
 
   document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
   document.querySelectorAll('input[type="checkbox"]').forEach(c => {
