@@ -487,27 +487,31 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
 
 </main>
 
-<!-- STICKY QUIZ BAR — compact always-visible strip -->
-<div class="quiz-body" id="quizCardBody">
-  <div style="display:flex;align-items:flex-start;gap:12px;">
-    <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png"
-         alt="Science Over Fluff" class="strip-logo" style="border:2px solid #eee;">
-    <div>
-      <p class="quiz-desc">Answer 5 questions about your skin tone, hair color, and priorities for a personalized recommendation. Takes 60 seconds.</p>
-    </div>
-  </div>
-  <button onclick="collapseQuiz()" aria-label="Close" class="quiz-close-btn">×</button>
-</div>
+<!-- STICKY QUIZ BAR -->
+<div class="quiz-bar" id="quizBar">
 
-<div onclick="toggleQuiz()" class="quiz-strip">
-  <div class="strip-text">
-    Science Over Fluff
-    <span class="strip-sub">Not sure which device to get?</span>
+  <div class="quiz-body" id="quizCardBody">
+    <div style="display:flex;align-items:flex-start;gap:12px;">
+      <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png"
+           alt="Science Over Fluff" class="strip-logo" style="border:2px solid #eee;">
+      <div>
+        <p class="quiz-desc">Answer 5 questions about your skin tone, hair color, and priorities for a personalized recommendation. Takes 60 seconds.</p>
+      </div>
+    </div>
+    <button onclick="collapseQuiz()" aria-label="Close" class="quiz-close-btn">×</button>
   </div>
-  <a href="https://compare.scienceoverfluff.com/light-based-hair-removal-devices/quiz"
-     target="_blank" rel="noopener" class="quiz-bar-btn"
-     onclick="event.stopPropagation()">Take the quiz →</a>
-  <span id="quizChevron" class="quiz-chevron">&#8963;</span>
+
+  <div onclick="toggleQuiz()" class="quiz-strip">
+    <div class="strip-text">
+      Not sure which device to get?
+      <span class="strip-sub">Science Over Fluff</span>
+    </div>
+    <a href="https://compare.scienceoverfluff.com/light-based-hair-removal-devices/quiz"
+       target="_blank" rel="noopener" class="quiz-bar-btn"
+       onclick="event.stopPropagation()">Take the quiz →</a>
+    <span id="quizChevron" class="quiz-chevron">&#8963;</span>
+  </div>
+
 </div>
 
 <script src="devices.js"></script>
