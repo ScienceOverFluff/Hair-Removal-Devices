@@ -1098,6 +1098,50 @@ function getArticleForDevice(device) {
     </a>`;
 }
 
+// ── EMAIL CAPTURE BLOCK (injected into results page) ─────────────
+function getEmailCaptureHTML(device) {
+  return `
+    <div class="result-email-section" id="resultEmailSection">
+      <div class="email-label">Save your result</div>
+      <div class="email-heading">Email this recommendation to yourself</div>
+      <p class="email-sub">We'll send you a link to this personalized result — useful if you want to revisit it or share it before buying.</p>
+      <input type="email" id="resultEmailInput" placeholder="you@example.com">
+      <label class="newsletter-row" for="resultNewsletterCheck">
+        <input type="checkbox" id="resultNewsletterCheck" checked>
+        <span class="nl-box"></span>
+        <span class="nl-label">Sign me up for the Science Over Fluff newsletter: technical reviews of beauty devices straight to your inbox.</span>
+      </label>
+      <button class="btn-primary" id="resultEmailBtn" onclick="submitResultEmail('${device}')" style="margin-bottom:8px;">Send my result →</button>
+      <div class="email-sent-confirm" id="emailSentConfirm">✓ Sent — check your inbox.</div>
+    </div>`;
+}
+
+// ── SUBMIT EMAIL FROM RESULTS PAGE ────────────────────────────────
+async function submitResultEmail(device) {
+  const emailInput = document.getElementById('resultEmailInput');
+  const confirmEl  = document.getElementById('emailSentConfirm');
+  const btn        = document.getElementById('resultEmailBtn');
+
+  const email = emailInput.value.trim();
+  if (!email || !email.includes('@')) {
+    emailInput.style.borderColor = '#f5a0a0';
+    emailInput.focus();
+    return;
+  }
+  emailInput.style.borderColor = '';
+
+  answers.email      = email;
+  answers.newsletter = document.getElementById('resultNewsletterCheck').checked;
+
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  await submitToSheets(device);
+
+  btn.style.display = 'none';
+  confirmEl.classList.add('show');
+}
+
 // ── RENDER RESULT ─────────────────────────────────────────────────
 function renderResult(device) {
   document.getElementById('quiz-section').style.display = 'none';
@@ -1216,6 +1260,7 @@ function renderResult(device) {
             📄 Quiz methodology
           </a>
         </div>
+        ${getEmailCaptureHTML(device)}
       </div>
     </div>`;
 
