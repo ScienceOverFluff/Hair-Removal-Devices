@@ -259,6 +259,7 @@ button{font-family:inherit;cursor:pointer;}
 /* drag-to-scroll cursor */
 .table-scroll{overflow-x:auto;cursor:grab;}
 .table-scroll.dragging{cursor:grabbing;user-select:none;}
+#floatBar::-webkit-scrollbar { display:none; }
 
 table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:max-content;min-width:100%;}
 
@@ -467,6 +468,24 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
   </div>
 
   <div class="seo-content" aria-hidden="true" id="seoContent"></div>
+
+  <!-- FLOATING TABLE HEADER -->
+  <div id="floatBar" style="
+    position:fixed;top:0;left:0;right:0;z-index:99;
+    background:var(--navy);
+    border-bottom:2px solid var(--gold);
+    display:none;
+    overflow-x:auto;
+    scrollbar-width:none;
+  ">
+    <div id="floatBarInner" style="
+      display:flex;
+      align-items:center;
+      min-width:max-content;
+      padding:8px 12px;
+      gap:12px;
+    "></div>
+  </div>
 
   <!-- FOOTER -->
   <p class="page-footer">
@@ -905,6 +924,46 @@ function buildTable() {
     +'</tbody></table>';
 
   setTimeout(updateFade, 50);
+  setTimeout(updateFloatBar, 50);
+}
+}
+
+/* Floating table header */
+function updateFloatBar() {
+  var bar = document.getElementById("floatBar");
+  var inner = document.getElementById("floatBarInner");
+  var tableCard = document.getElementById("tableCard");
+  var scroll = document.getElementById("tableScroll");
+
+  if (!tableCard || scroll.style.display === "none") {
+    bar.style.display = "none"; return;
+  }
+
+  /* show only when table header has scrolled off screen */
+  var rect = tableCard.getBoundingClientRect();
+  var headerHeight = 60; /* approx thead height */
+  if (rect.top > -headerHeight) {
+    bar.style.display = "none"; return;
+  }
+
+  /* build slots for selected devices */
+  var devs = [];
+  selectedOrder.forEach(function(id){
+    var d = DEVICES.find(function(x){ return x.id === id; });
+    if (d) devs.push(d);
+  });
+
+  if (!devs.length) { bar.style.display = "none"; return; }
+
+  bar.style.display = "block";
+  inner.innerHTML = devs.map(function(d){
+    return '<div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">'
+      +'<span style="font-size:12px;font-weight:600;color:rgba(255,255,255,.8);white-space:nowrap;">'+d.name+'</span>'
+      +'<a href="'+d.links.buy+'" target="_blank" rel="noopener sponsored"'
+      +' style="display:inline-block;padding:6px 12px;background:var(--gold);color:var(--navy);font-size:11px;font-weight:700;border-radius:var(--radius-pill);text-decoration:none;white-space:nowrap;">'
+      +d.links.buyLabel+' ↗</a>'
+      +'</div>';
+  }).join('<div style="width:1px;height:24px;background:rgba(255,255,255,.15);flex-shrink:0;"></div>');
 }
 
 function buildSeoContent(){
@@ -932,8 +991,8 @@ var tableObserver = new IntersectionObserver(function(entries){
   });
 }, { threshold: 0.3 });
 tableObserver.observe(document.getElementById("tableCard"));
-window.addEventListener("resize", updateFade);
-window.addEventListener("scroll", updateFade);
+window.addEventListener("scroll", function(){ updateFade(); updateFloatBar(); });
+window.addEventListener("resize", function(){ updateFade(); updateFloatBar(); });
 </script>
 </body>
 </html>
