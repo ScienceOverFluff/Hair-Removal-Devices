@@ -808,7 +808,7 @@ function initDragScroll() {
     scroll.classList.remove("dragging");
   });
   /* touch pan already works natively; just update fade on scroll */
-  scroll.addEventListener("scroll", updateFade);
+  scroll.addEventListener("scroll", function(){ updateFade(); updateFloatBar(); });
 }
 
 /* ── Arrows to scroll table ── */
@@ -942,7 +942,8 @@ function updateFloatBar() {
   /* show only when table header has scrolled off screen */
   var rect = tableCard.getBoundingClientRect();
   var siteHeaderHeight = document.querySelector('.site-header').offsetHeight;
-  if (rect.top > -(siteHeaderHeight)) {
+  var theadHeight = 120;
+  if (rect.top > siteHeaderHeight - theadHeight) {
     bar.style.display = "none"; return;
   }
 
