@@ -472,8 +472,8 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
   <!-- FLOATING TABLE HEADER -->
   <div id="floatBar" style="
     position:fixed;top:0;left:0;right:0;z-index:105;
-    background:var(--navy);
-    border-bottom:2px solid var(--gold);
+    background:transparent;
+    border-bottom:none;
     display:none;
     overflow-x:auto;
     scrollbar-width:none;
@@ -954,6 +954,10 @@ function updateFloatBar() {
   if (!devs.length) { bar.style.display = "none"; return; }
 
   bar.style.display = "block";
+  var cardRect = tableCard.getBoundingClientRect();
+  bar.style.left = cardRect.left + "px";
+  bar.style.right = "auto";
+  bar.style.width = cardRect.width + "px";
   inner.innerHTML = devs.map(function(d){
     return '<div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">'
       +'<span style="font-size:12px;font-weight:600;color:rgba(255,255,255,.8);white-space:nowrap;">'+d.name+'</span>'
