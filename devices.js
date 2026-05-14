@@ -330,7 +330,7 @@ const DEVICES = [
     hairColors: ["ok","ok","ok","ok","ok"],
     wins: [
       "Highest fluence of any at-home device",
-      "Safe for all skin tones including very dark skin",
+      "Rated for all skin tones including very dark skin",
       "Works on a wide range of hair colors"
     ],
     cons: [
