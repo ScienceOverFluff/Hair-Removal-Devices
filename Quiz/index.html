@@ -505,14 +505,13 @@
 
   .section-label { font-size: .8rem; font-weight: 600; color: var(--mid); text-transform: uppercase; letter-spacing: .08em; margin: 28px 0 12px; }
 
-  .restart-link { display: block; text-align: center; margin-top: 32px; color: var(--mid); font-size: .87rem; cursor: pointer; text-decoration: underline; }
-  .restart-link:hover { color: var(--navy); }
-
+  /* ── FLOATING CARD ── */
   .floating-card {
     display: none;
-    background: transparent;
-    border: none;
-    padding: 0 20px 16px;
+    /* solid background so labels and button always readable */
+    background: var(--cream);
+    border-top: 1.5px solid var(--border);
+    padding: 16px 20px 20px;
     position: fixed;
     bottom: 0;
     left: 50%;
@@ -520,8 +519,40 @@
     width: 100%;
     max-width: 680px;
     z-index: 20;
+    /* soften top edge */
+    box-shadow: 0 -4px 24px rgba(0,0,0,.08);
   }
   .floating-card.visible { display: block; }
+
+  /* label row inside floating card */
+  .floating-section-label {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  /* retake button */
+  .btn-retake {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 13px 20px;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--mid);
+    cursor: pointer;
+    text-align: center;
+    transition: background .18s, color .18s, border-color .18s;
+  }
+  .btn-retake:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
 
   /* ── FOOTER ── */
   footer {
@@ -700,9 +731,10 @@
 
 </div><!-- /quiz-wrap -->
 
+<!-- Portal lives outside quiz-wrap so fixed positioning works correctly -->
 <div id="floating-card-portal"></div>
 
-<footer>
+<footer id="site-footer">
   <span>This tool gets updated from time to time to stay relevant. &nbsp;·&nbsp;
     <a href="https://www.scienceoverfluff.com/archive" target="_blank" style="color:#434343;text-decoration:none;">scienceoverfluff.com</a>
     &nbsp;·&nbsp; © <span id="footerYear"></span>
@@ -848,7 +880,7 @@ function getPersonalizedIntro(device) {
       VI:           { reason: 'Skin tone match: Fitzpatrick VI',
                       text: `Your skin tone is the primary factor here. At Fitzpatrick VI, you need a device that can safely deliver enough energy to reach the follicle without relying on the hair-skin contrast that IPL devices depend on. The EpiPro is not an IPL device; it is a real diode laser with an 808nm wavelength that makes it safer for dark skin tones. It is one of the very few at-home devices that are rated for treating Fitzpatrick VI skin.` },
       medium_hair:  { reason: 'Hair color: light brown / dark blonde',
-                      text: `Your hair color is the deciding factor. Light-based hair removal works by targeting melanin (pigment) in the hair; the follicle absorbs the light, converts it to heat, and that heat disables the hair producing cells. Light brown, dark blonde, and dark auburn hair sits in a tricky range where there is enough pigment to absorb some light, but less of the device energy gets converted to follicle-destroying heat. Because typical home devices lack the power to effectively heat these lighter pigments, they often fail to produce results in this range. <br><br>The EpiPro’s high 30 J/cm² output is specifically designed to bridge this gap, providing the intensity needed to reach these stubborn follicles — though you should still expect progress to be slower than it would for someone with dark hair.` },
+                      text: `Your hair color is the deciding factor. Light-based hair removal works by targeting melanin (pigment) in the hair; the follicle absorbs the light, converts it to heat, and that heat disables the hair producing cells. Light brown, dark blonde, and dark auburn hair sits in a tricky range where there is enough pigment to absorb some light, but less of the device energy gets converted to follicle-destroying heat. Because typical home devices lack the power to effectively heat these lighter pigments, they often fail to produce results in this range. <br><br>The EpiPro's high 30 J/cm² output is specifically designed to bridge this gap, providing the intensity needed to reach these stubborn follicles — though you should still expect progress to be slower than it would for someone with dark hair.` },
       bikini_beard: { reason: `Treatment area: ${area === 'bikini' ? 'Bikini region' : 'Beard / neck / shoulders / back / chest'}`,
                       text: `You selected ${areaLabel} as your priority treatment area, and that's what pushed the EpiPro to the top. Hair in this area is hormonal, meaning it tends to be coarse and have deeper roots than hair in other areas — factors that cause typical IPL devices to underperform. Because the EpiPro delivers 30 J/cm², it provides the necessary energy to effectively target these stubborn follicles where other devices fall short.` },
       permanent:    { reason: 'Priority: maximum permanence',
@@ -982,7 +1014,7 @@ function getArticleForDevice(device) {
               sub:'See how the Air 4 compares against other Ulike devices.',
               url:'https://www.scienceoverfluff.com/p/ulike-technical-review-and-results' },
   };
-const article = articles[device];
+  const article = articles[device];
   if (!article) return '';
 
   return `
@@ -1033,7 +1065,7 @@ function renderResult(device) {
     return;
   }
 
-if (device==='peachfuzz') {
+  if (device==='peachfuzz') {
     el.innerHTML = `
       <div class="result-eyebrow">Your Result</div>
       <h2 class="result-headline">Peach Fuzz: Why Light-Based Devices Aren't the Answer</h2>
@@ -1050,8 +1082,8 @@ if (device==='peachfuzz') {
             </div>
           </div>
         </a>
-      </div>
-      <span class="restart-link" onclick="restartQuiz()">← Retake the quiz</span>`;
+        <button onclick="restartQuiz()" class="btn-retake" style="margin-top:16px;">← Retake the quiz</button>
+      </div>`;
     el.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     return;
@@ -1064,29 +1096,27 @@ if (device==='peachfuzz') {
               ctaUrl:LINKS.EpiPro.primary,
               ctaLabel:'→ Get the ViQure EpiPro',
               ctaAlt:null,
-              sectionLabel:'Have questions about this device?<br><br><span style="color:var(--gold);"><em>Read more:</em></span>' },
+              sectionLabel:'Have questions about this device?<br><em style="color:var(--gold);">Read more:</em>' },
     SLD:    { headline:'The ViQure S-LD',
               productImageUrl: 'https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/ViQure-S-LD.png',
               discountImageUrl: 'https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/ViQure-S-LD-Discount-Code.png',
               ctaUrl:LINKS.SLD.primary,
               ctaLabel:'→ Get the ViQure S-LD',
               ctaAlt:null,
-              sectionLabel:'I used the S-LD for my own hair removal journey.<br><br><span style="color:var(--gold);"><em>Read more:</em></span>' },
+              sectionLabel:'I used the S-LD for my own hair removal journey.<br><em style="color:var(--gold);">Read more:</em>' },
     Air10:  { headline:'The Ulike Air 10',
               productImageUrl: 'https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Ulike-Air-10.png',
               discountImageUrl: 'https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Ulike-Air-10-Discount-Code.png',
               ctaUrl:LINKS.Air10.primary,
               ctaLabel:'→ Get it on Amazon',
-              ctaAlt:{url:LINKS.Air10.secondary,
-              label:'→ Get it on Ulike.com'},
-              sectionLabel:'<span style="color:var(--gold);"><em>Read more:</em></span>' },
+              ctaAlt:{url:LINKS.Air10.secondary, label:'→ Get it on Ulike.com'},
+              sectionLabel:'<em style="color:var(--gold);">Read more:</em>' },
     Air4:   { headline:'The Ulike Air 4',
               productImageUrl: 'https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Ulike-Air-4.png',
               discountImageUrl: 'https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Ulike-Air-4-Discount-Code.png',
               ctaUrl:LINKS.Air4.primary,
               ctaLabel:'→ Get it on Amazon',
-              ctaAlt:{url:LINKS.Air4.secondary,
-              label:'→ Get it on Ulike.com'},
+              ctaAlt:{url:LINKS.Air4.secondary, label:'→ Get it on Ulike.com'},
               sectionLabel:'See how it compares against other Ulike devices:' },
     Lumea:  { headline:'The Philips Lumea 9000',
               productImageUrl: 'https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Philips-Lumea-9000.png',
@@ -1102,7 +1132,7 @@ if (device==='peachfuzz') {
   const bullets = getPersonalizedBullets(device);
   const article = getArticleForDevice(device);
 
-el.innerHTML = `
+  el.innerHTML = `
     <div class="result-eyebrow">Your Recommendation</div>
 
     <div class="product-card" style="margin-top:24px">
@@ -1128,16 +1158,33 @@ el.innerHTML = `
       </div>
     </div>`;
 
+  // ── BUILD FLOATING CARD PORTAL ──
   const portal = document.getElementById('floating-card-portal');
   portal.className = 'floating-card visible';
-  portal.innerHTML = `
-    <div class="section-label" style="color:#434343;margin-top:0;">${cfg.sectionLabel}</div>
-    ${article}
-    <span class="restart-link" style="margin-top:16px;" onclick="restartQuiz()">← Retake the quiz</span>`;
-  document.querySelector('.quiz-wrap').style.paddingBottom = (portal.offsetHeight + 32) + 'px';
 
-el.classList.add('active');
-window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Section label (only render if there's content)
+  const labelHtml = cfg.sectionLabel
+    ? `<div class="floating-section-label">${cfg.sectionLabel}</div>`
+    : '';
+
+  // Article card (only render if there's an article)
+  const articleHtml = article
+    ? `<div style="margin-bottom:0;">${article}</div>`
+    : '';
+
+  // Retake button
+  const retakeHtml = `<button class="btn-retake" onclick="restartQuiz()">← Retake the quiz</button>`;
+
+  portal.innerHTML = labelHtml + articleHtml + retakeHtml;
+
+  // Add bottom padding to quiz-wrap so page content isn't hidden behind the card
+  requestAnimationFrame(() => {
+    document.querySelector('.quiz-wrap').style.paddingBottom = (portal.offsetHeight + 32) + 'px';
+    updateFloatingCard();
+  });
+
+  el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ── GOOGLE SHEETS ─────────────────────────────────────────────────
@@ -1199,7 +1246,8 @@ function restartQuiz() {
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-  // ── RESTORE FROM URL ──────────────────────────────────────────────
+
+// ── RESTORE FROM URL ──────────────────────────────────────────────
 (function() {
   const p = new URLSearchParams(window.location.search);
   if (!p.get('result')) return;
@@ -1211,26 +1259,42 @@ function restartQuiz() {
   renderResult(p.get('result'));
 })();
 
-  // ── FLOATING CARD ─────────────────────────────────────────────────
+// ── FLOATING CARD UNDOCK LOGIC ────────────────────────────────────
+// When the footer scrolls into view, switch the card from fixed to
+// absolute so it sits above the footer rather than overlapping it.
 function updateFloatingCard() {
   const portal = document.getElementById('floating-card-portal');
   if (!portal.classList.contains('visible')) return;
-  const footer = document.querySelector('footer');
-  const footerTop = footer.getBoundingClientRect().top;
-  const cardHeight = portal.offsetHeight;
-  if (footerTop <= window.innerHeight - cardHeight - 16) {
-    portal.style.position = 'absolute';
-    portal.style.bottom = (footer.offsetHeight + 16) + 'px';
-    portal.style.left = '50%';
+
+  const footer = document.getElementById('site-footer');
+  const footerRect = footer.getBoundingClientRect();
+  const cardH = portal.offsetHeight;
+  const viewportH = window.innerHeight;
+
+  if (footerRect.top < viewportH) {
+    // Footer is visible — undock: place card just above the footer using
+    // document-absolute positioning.
+    const docScrollTop  = window.scrollY || document.documentElement.scrollTop;
+    const footerTopAbs  = docScrollTop + footerRect.top; // footer's top in document coords
+    const cardTopAbs    = footerTopAbs - cardH - 0;      // card sits flush on top of footer
+
+    portal.style.position  = 'absolute';
+    portal.style.top       = cardTopAbs + 'px';
+    portal.style.bottom    = 'auto';
+    portal.style.left      = '50%';
     portal.style.transform = 'translateX(-50%)';
   } else {
-    portal.style.position = 'fixed';
-    portal.style.bottom = '0';
-    portal.style.left = '50%';
+    // Footer not visible — keep card fixed at bottom of viewport.
+    portal.style.position  = 'fixed';
+    portal.style.top       = 'auto';
+    portal.style.bottom    = '0';
+    portal.style.left      = '50%';
     portal.style.transform = 'translateX(-50%)';
   }
 }
-window.addEventListener('scroll', updateFloatingCard);
+
+window.addEventListener('scroll', updateFloatingCard, { passive: true });
+window.addEventListener('resize', updateFloatingCard, { passive: true });
 </script>
 </body>
 </html>
