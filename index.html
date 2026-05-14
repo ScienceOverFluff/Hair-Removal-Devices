@@ -946,7 +946,9 @@ function updateFloatBar() {
 
   /* show only when table header has scrolled off screen */
   var rect = tableCard.getBoundingClientRect();
-  if (rect.top > 0) {
+  var thead = tableCard.querySelector('thead tr');
+  var theadHeight = thead ? thead.offsetHeight : 120;
+  if (rect.top > -theadHeight) {
     bar.style.display = "none"; return;
   }
 
@@ -961,9 +963,9 @@ function updateFloatBar() {
 
   bar.style.display = "block";
   var cardRect = tableCard.getBoundingClientRect();
-  bar.style.left = cardRect.left + "px";
+  bar.style.left = (cardRect.left + specW) + "px";
   bar.style.right = "auto";
-  bar.style.width = cardRect.width + "px";
+  bar.style.width = (cardRect.width - specW) + "px";
   bar.style.overflow = "hidden";
   /* read actual column widths from the rendered table */
     var thead = tableCard.querySelector('thead tr');
@@ -972,7 +974,7 @@ function updateFloatBar() {
     var specW = specTh ? specTh.offsetWidth : 110;
     var colW = colThs.length > 0 ? colThs[0].offsetWidth : 190;
     
-    inner.innerHTML = '<div style="flex-shrink:0;width:' + specW + 'px;"></div>'
+    inner.innerHTML = ''
       + devs.map(function(d, i){
         var w = colThs[i] ? colThs[i].offsetWidth : colW;
         return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex-shrink:0;width:' + w + 'px;">'
