@@ -105,7 +105,7 @@ const DEVICES = [
       "High frequency of use",
       "Low fluence compared to similar devices"
     ],
-    userReports: "Users report mixed results, with many seeing slow progress or only thinning rather than full elimination even after weeks of use. Pain levels vary, and expectations should be tempered for immediate dramatic results.",
+    userReports: "Users report mixed results, with many seeing slow progress or only thinning rather than full elimination even after weeks of use. Pain levels vary, and expectations should be tempered.",
     discountCode: null,
     discountSaving: null,
     bestFor: null,
