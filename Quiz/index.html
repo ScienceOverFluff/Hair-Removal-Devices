@@ -508,12 +508,16 @@
   .restart-link:hover { color: var(--navy); }
 
   .floating-card {
-    background: var(--white);
-    border: 1.5px solid var(--border);
-    border-radius: 14px;
-    box-shadow: 0 8px 32px rgba(0,0,0,.15);
+    background: transparent;
+    border: none;
     padding: 24px;
-    margin-top: 24px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    max-width: 680px;
+    margin: 0 auto;
   }
 
   /* ── FOOTER ── */
