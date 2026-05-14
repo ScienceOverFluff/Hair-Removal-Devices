@@ -292,51 +292,54 @@
   }
   .btn-primary:hover { background: #1a0fa0; transform: translateY(-1px); }
 
-  /* ── EMAIL CAPTURE (results page) ── */
-  .result-email-section {
-    border-top: 1px solid var(--border);
-    margin-top: 28px;
-    padding-top: 24px;
-  }
-  .result-email-section .email-label {
-    font-size: .72rem;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--gold);
+.btn-skip {
+  display: block;
+  text-align: center;
+  margin-top: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+  background: #fff;
+  border: 2px solid var(--navy);
+  border-radius: var(--radius);
+  width: 92%;
+  font-family: 'DM Sans', sans-serif;
+  padding: 13px 0;
+  transition: background .18s, color .18s;
+}
+.btn-skip:hover { background: var(--navy); color: #fff; }
+
+  /* ── EMAIL SECTION ── */
+  #email-section { display: none; }
+
+  .email-section {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px;
     margin-bottom: 8px;
   }
-  .result-email-section .email-heading {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.15rem;
-    color: #000;
-    margin-bottom: 6px;
-  }
-  .result-email-section .email-sub {
-    font-size: .85rem;
-    color: var(--mid);
-    line-height: 1.6;
-    margin-bottom: 14px;
-  }
-  .result-email-section input[type="email"] {
+  .email-section input[type="email"] {
     width: 100%;
-    padding: 13px 16px;
+    padding: 14px 16px;
     border: 1.5px solid var(--border);
     border-radius: var(--radius);
-    font-size: .97rem;
+    font-size: 1rem;
     font-family: inherit;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
     outline: none;
     transition: border-color .18s;
-    background: var(--white);
   }
-  .result-email-section input[type="email"]:focus { border-color: var(--navy); }
+  .email-section input[type="email"]:focus { border-color: var(--navy); }
 
   .newsletter-row {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 14px;
+    margin-bottom: 20px;
     cursor: pointer;
   }
   .newsletter-row input[type="checkbox"] { display: none; }
@@ -363,19 +366,7 @@
   }
   .newsletter-row input:not(:checked) + .nl-box { background: #fff; border-color: #ccc; }
   .newsletter-row input:not(:checked) + .nl-box::after { opacity: 0; }
-  .newsletter-row .nl-label { font-size: .85rem; color: #444; line-height: 1.4; }
-
-  .email-sent-confirm {
-    display: none;
-    background: #f0fff4;
-    border: 1.5px solid #68d391;
-    border-radius: var(--radius);
-    padding: 12px 16px;
-    font-size: .88rem;
-    color: #276749;
-    margin-top: 4px;
-  }
-  .email-sent-confirm.show { display: block; }
+  .newsletter-row .nl-label { font-size: .9rem; color: #444; line-height: 1.4; }
 
   /* ── VALIDATION ERROR ── */
   .validation-error {
@@ -526,6 +517,7 @@
   /* ── FLOATING CARD ── */
   .floating-card {
     display: none;
+    /* solid background so labels and button always readable */
     background: var(--cream);
     border-top: 1.5px solid var(--border);
     padding: 16px 20px 20px;
@@ -536,10 +528,12 @@
     width: 100%;
     max-width: 680px;
     z-index: 20;
+    /* soften top edge */
     box-shadow: 0 -4px 24px rgba(0,0,0,.08);
   }
   .floating-card.visible { display: block; }
 
+  /* label row inside floating card */
   .floating-section-label {
     font-size: .75rem;
     font-weight: 700;
@@ -550,6 +544,7 @@
     line-height: 1.5;
   }
 
+  /* retake button */
   .btn-retake {
     display: block;
     width: 100%;
@@ -587,6 +582,7 @@
     .floating-section-label {
       margin-bottom: 8px;
     }
+    /* Tighten the article card's inner strip and body */
     .floating-card [style*="background:#434343"] {
       padding: 6px 10px !important;
     }
@@ -603,11 +599,13 @@
 <body>
 
 <header class="site-header">
+  <!-- Logo -->
   <a href="https://www.scienceoverfluff.com/archive" target="_blank" style="display:flex;align-items:center;gap:20px;text-decoration:none;">
     <img src="https://raw.githubusercontent.com/ScienceOverFluff/ScienceOverFluff/main/Images/Science-Over-Fluff_Logo.png" alt="Science Over Fluff — evidence-based product reviews of at-home light-based hair removal devices" style="height:46px;">
     <div class="logo">Science Over Fluff</div>
   </a>
 
+  <!-- Dropdown nav -->
   <div class="nav-menu" id="navMenu">
     <button class="nav-toggle" onclick="toggleNav()">
       Menu
@@ -624,7 +622,7 @@
 
 <div class="quiz-wrap">
 
-  <!-- ══════ INTRO + QUESTIONS ══════ -->
+  <!-- ══════ INTRO + QUESTIONS (always visible) ══════ -->
   <div id="quiz-section">
     <div class="intro-badge">Device Recommendation Tool</div>
     <h1 class="intro-title">Which light-based hair removal device is right for you?</h1>
@@ -736,17 +734,42 @@
 
     <!-- GET RESULTS BUTTON -->
     <div class="question-block">
-      <!-- ↓ CHANGED: calls submitQuiz() directly, no email gate -->
-      <button class="btn-primary" onclick="submitQuiz()">Get my recommendation →</button>
+      <button class="btn-primary" onclick="checkAndRevealEmail()">Get my recommendation →</button>
       <div class="validation-error" id="validationError">Please answer all five questions before continuing.</div>
     </div>
   </div><!-- /quiz-section -->
+
+<!-- ══════ EMAIL SECTION (standalone, hidden until Qs complete) ══════ -->
+  <div id="email-section">
+    <div class="q-divider"></div>
+    <div class="question-block">
+      <div class="q-label">Almost done</div>
+      <h2 class="q-title">Get your results</h2>
+      <div class="email-section">
+        <p style="font-size:.92rem;color:#444;margin-bottom:14px;line-height:1.6">Enter your email to have your recommendation sent to you — useful if you want to revisit it later or share it.</p>
+        <input type="email" id="emailInput" placeholder="you@example.com">
+        <label class="newsletter-row" for="newsletterCheck">
+          <input type="checkbox" id="newsletterCheck" checked>
+          <span class="nl-box"></span>
+          <span class="nl-label">Sign me up for the Science Over Fluff newsletter: technical reviews of beauty devices straight to your inbox.</span>
+        </label>
+        <button class="btn-primary" onclick="submitQuiz(false)">See my recommendation →</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:10px;">
+        <div style="flex:1;height:1px;background:var(--border);"></div>
+        <span style="font-size:.8rem;color:var(--mid);white-space:nowrap;">or</span>
+        <div style="flex:1;height:1px;background:var(--border);"></div>
+      </div>
+      <button class="btn-skip" onclick="submitQuiz(true)">Skip →</button>
+    </div>
+  </div>
 
   <!-- ══════ RESULT (dynamic) ══════ -->
   <div id="result-dynamic" class="result-screen"></div>
 
 </div><!-- /quiz-wrap -->
 
+<!-- Portal lives outside quiz-wrap so fixed positioning works correctly -->
 <div id="floating-card-portal"></div>
 
 <footer id="site-footer">
@@ -818,8 +841,8 @@ function syncDensity() {
   answers.density = Array.from(document.querySelectorAll('#density-options input:checked')).map(i => i.value);
 }
 
-// ── SUBMIT (now called directly from the button) ──────────────────
-function submitQuiz() {
+// ── REVEAL EMAIL SECTION ──────────────────────────────────────────
+function checkAndRevealEmail() {
   const errEl = document.getElementById('validationError');
   const missing = [];
   if (!answers.skin)           missing.push('skin tone (Q1)');
@@ -835,6 +858,19 @@ function submitQuiz() {
   }
 
   errEl.classList.remove('show');
+  document.querySelector('.quiz-wrap').style.paddingBottom = '60px';
+  document.getElementById('quiz-section').style.display = 'none';
+  const emailSection = document.getElementById('email-section');
+  emailSection.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── SUBMIT ────────────────────────────────────────────────────────
+function submitQuiz(skip) {
+  if (!skip) {
+    answers.email = document.getElementById('emailInput').value.trim();
+    answers.newsletter = document.getElementById('newsletterCheck').checked;
+  }
   calculateResult();
 }
 
@@ -883,7 +919,7 @@ function getPersonalizedIntro(device) {
       VI:           { reason: 'Skin tone match: Fitzpatrick VI',
                       text: `Your skin tone is the primary factor here. At Fitzpatrick VI, you need a device that can safely deliver enough energy to reach the follicle without relying on the hair-skin contrast that IPL devices depend on. The EpiPro is not an IPL device; it is a real diode laser with an 808nm wavelength that makes it safer for dark skin tones. It is one of the very few at-home devices that are rated for treating Fitzpatrick VI skin.` },
       medium_hair:  { reason: 'Hair color: light brown / dark blonde',
-                      text: `Your hair color is the deciding factor. Light-based hair removal works by targeting melanin (pigment) in the hair; the follicle absorbs the light, converts it to heat, and that heat disables the hair producing cells. Light brown, dark blonde, and dark auburn hair sits in a tricky range where there is enough pigment to absorb some light, but less of the device energy gets converted to follicle-destroying heat. Because typical home devices lack the power to effectively heat these lighter pigments, they often fail to produce results in this range. <br><br>The EpiPro's high 30 J/cm² output is specifically designed to bridge this gap, providing the intensity needed to reach these stubborn follicles — though you should still expect progress to be slower than it would be for someone with dark hair.` },
+                      text: `Your hair color is the deciding factor. Light-based hair removal works by targeting melanin (pigment) in the hair; the follicle absorbs the light, converts it to heat, and that heat disables the hair producing cells. Light brown, dark blonde, and dark auburn hair sits in a tricky range where there is enough pigment to absorb some light, but less of the device energy gets converted to follicle-destroying heat. Because typical home devices lack the power to effectively heat these lighter pigments, they often fail to produce results in this range. <br><br>The EpiPro's high 30 J/cm² output is specifically designed to bridge this gap, providing the intensity needed to reach these stubborn follicles — though you should still expect progress to be slower than it would for someone with dark hair.` },
       bikini_beard: { reason: `Treatment area: ${area === 'bikini' ? 'Bikini region' : 'Beard / neck / shoulders / back / chest'}`,
                       text: `You selected ${areaLabel} as your priority treatment area, and that's what pushed the EpiPro to the top. Hair in this area is hormonal, meaning it tends to be coarse and have deeper roots than hair in other areas — factors that cause typical IPL devices to underperform. Because the EpiPro delivers 30 J/cm², it provides the necessary energy to effectively target these stubborn follicles where other devices fall short.` },
       permanent:    { reason: 'Priority: maximum permanence',
@@ -915,7 +951,7 @@ function getPersonalizedIntro(device) {
     },
     Lumea: {
       medium_hair: { reason: 'Hair color: light brown / dark blonde',
-                     text: `Your hair color is the deciding factor. Light-based hair removal works by targeting melanin (pigment) in the hair; the follicle absorbs the light, converts it to heat, and that heat disables the hair producing cells. Light brown, dark blonde, and dark auburn hair sits in a tricky range where there is enough pigment to absorb some light, but less of the device energy gets converted to follicle-destroying heat. <br><br>The Lumea overcomes this limitation by utilizing wavelengths that are absorbed more readily by melanin — though you should still expect progress to be slower than it would be for someone with dark hair.` },
+                     text: `Your hair color is the deciding factor. Light-based hair removal works by targeting melanin (pigment) in the hair; the follicle absorbs the light, converts it to heat, and that heat disables the hair producing cells. Light brown, dark blonde, and dark auburn hair sits in a tricky range where there is enough pigment to absorb some light, but less of the device energy gets converted to follicle-destroying heat. <br><br>The Lumea overcomes this limitation by utilizing wavelengths that are absorbed more readily by melanin — though you should still expect progress to be slower than it would for someone with dark hair.` },
       frequency:   { reason: 'Priority: low session frequency',
                      text: `You mentioned that a device requiring frequent use wouldn't fit your schedule, which is why the Lumea is your top recommendation. While many home devices require weekly treatments to be effective, the Lumea is specifically engineered for a low-maintenance routine. It only needs to be used once every two weeks, allowing you to achieve consistent hair reduction without the time commitment required by standard IPL devices.` },
       default:     { reason: '',
@@ -1025,6 +1061,8 @@ function getArticleForDevice(device) {
       <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;transition:box-shadow .2s,transform .2s;"
            onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.1)';this.style.transform='translateY(-2px)'"
            onmouseout="this.style.boxShadow='';this.style.transform=''">
+
+        <!-- strip -->
         <div style="display:flex;align-items:center;gap:10px;background:#434343;padding:8px 12px;">
           <img src="https://raw.githubusercontent.com/ScienceOverFluff/ScienceOverFluff/main/Images/Science-Over-Fluff_Logo.png"
                alt="Science Over Fluff"
@@ -1032,6 +1070,8 @@ function getArticleForDevice(device) {
           <span style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);flex:1;">Science Over Fluff</span>
           <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);">📄 Article</span>
         </div>
+
+        <!-- body -->
         <div style="display:flex;align-items:center;gap:12px;padding:12px;">
           <div style="min-width:0;flex:1;">
             <div style="font-family:'DM Serif Display',serif;font-size:.88rem;color:var(--navy);line-height:1.3;margin-bottom:4px;">${article.title}</div>
@@ -1039,62 +1079,15 @@ function getArticleForDevice(device) {
           </div>
           <span style="font-size:1rem;color:var(--gold);flex-shrink:0;">→</span>
         </div>
+
       </div>
     </a>`;
-}
-
-// ── EMAIL CAPTURE BLOCK (injected into results page) ─────────────
-function getEmailCaptureHTML(device) {
-  const deviceNames = {
-    EpiPro: 'the ViQure EpiPro', SLD: 'the ViQure S-LD',
-    Air10: 'the Ulike Air 10', Air4: 'the Ulike Air 4', Lumea: 'the Philips Lumea 9000'
-  };
-  const name = deviceNames[device] || 'your recommended device';
-  return `
-    <div class="result-email-section" id="resultEmailSection">
-      <div class="email-label">Save your result</div>
-      <div class="email-heading">Email this recommendation to yourself</div>
-      <p class="email-sub">We'll send you a link to this personalized result — useful if you want to revisit it or share it before buying.</p>
-      <input type="email" id="resultEmailInput" placeholder="you@example.com">
-      <label class="newsletter-row" for="resultNewsletterCheck">
-        <input type="checkbox" id="resultNewsletterCheck" checked>
-        <span class="nl-box"></span>
-        <span class="nl-label">Sign me up for the Science Over Fluff newsletter: technical reviews of beauty devices straight to your inbox.</span>
-      </label>
-      <button class="btn-primary" id="resultEmailBtn" onclick="submitResultEmail('${device}')" style="margin-bottom:8px;">Send my result →</button>
-      <div class="email-sent-confirm" id="emailSentConfirm">✓ Sent — check your inbox.</div>
-    </div>`;
-}
-
-// ── SUBMIT EMAIL FROM RESULTS PAGE ────────────────────────────────
-async function submitResultEmail(device) {
-  const emailInput = document.getElementById('resultEmailInput');
-  const confirmEl  = document.getElementById('emailSentConfirm');
-  const btn        = document.getElementById('resultEmailBtn');
-
-  const email = emailInput.value.trim();
-  if (!email || !email.includes('@')) {
-    emailInput.style.borderColor = '#f5a0a0';
-    emailInput.focus();
-    return;
-  }
-  emailInput.style.borderColor = '';
-
-  answers.email      = email;
-  answers.newsletter = document.getElementById('resultNewsletterCheck').checked;
-
-  btn.disabled = true;
-  btn.textContent = 'Sending…';
-
-  await submitToSheets(device);
-
-  btn.style.display = 'none';
-  confirmEl.classList.add('show');
 }
 
 // ── RENDER RESULT ─────────────────────────────────────────────────
 function renderResult(device) {
   document.getElementById('quiz-section').style.display = 'none';
+  document.getElementById('email-section').style.display = 'none';
   const el = document.getElementById('result-dynamic');
 
   if (device==='hairlight') {
@@ -1183,11 +1176,11 @@ function renderResult(device) {
 
     <div class="product-card" style="margin-top:24px">
       <div class="product-card-body">
-        <h2 class="result-headline">${cfg.headline}</h2>
-        ${reasonTag}
+      <h2 class="result-headline">${cfg.headline}</h2>
+      ${reasonTag}
         <div class="personalized-intro" style="padding-bottom:20px;margin-bottom:20px;">${intro}</div>
         ${cfg.productImageUrl ? `<a href="${LINKS[device].primary}" target="_blank" rel="noopener" style="display:block;text-align:center;"><img src="${cfg.productImageUrl}" alt="${cfg.headline}" style="width:250px;display:block;margin:0 auto 20px;object-fit:contain;cursor:pointer;"></a>` : ''}
-        ${bullets ? `<p style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Why this wins for you</p><ul class="product-bullets">${bullets}</ul>` : ''}
+         ${bullets ? `<p style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Why this wins for you</p><ul class="product-bullets">${bullets}</ul>` : ''}
         <div class="cta-group">
           <a class="btn-cta-primary" href="${cfg.ctaUrl}" target="_blank">${cfg.ctaLabel}</a>
           ${cfg.ctaAlt ? `<a class="btn-cta-primary gold-cta" href="${cfg.ctaAlt.url}" target="_blank">${cfg.ctaAlt.label}</a>` : ''}
@@ -1210,10 +1203,6 @@ function renderResult(device) {
             📄 Quiz methodology
           </a>
         </div>
-
-        <!-- ↓ NEW: email capture, inline at bottom of card -->
-        ${getEmailCaptureHTML(device)}
-
       </div>
     </div>`;
 
@@ -1221,16 +1210,22 @@ function renderResult(device) {
   const portal = document.getElementById('floating-card-portal');
   portal.className = 'floating-card visible';
 
+  // Section label (only render if there's content)
   const labelHtml = cfg.sectionLabel
     ? `<div class="floating-section-label">${cfg.sectionLabel}</div>`
     : '';
+
+  // Article card (only render if there's an article)
   const articleHtml = article
     ? `<div style="margin-bottom:0;">${article}</div>`
     : '';
+
+  // Retake button
   const retakeHtml = `<button class="btn-retake" onclick="restartQuiz()">← Retake the quiz</button>`;
 
   portal.innerHTML = labelHtml + articleHtml + retakeHtml;
 
+  // Add bottom padding to quiz-wrap so page content isn't hidden behind the card
   requestAnimationFrame(() => {
     document.querySelector('.quiz-wrap').style.paddingBottom = (portal.offsetHeight + 32) + 'px';
     updateFloatingCard();
@@ -1285,8 +1280,12 @@ function restartQuiz() {
   document.querySelector('.quiz-wrap').style.paddingBottom = '60px';
 
   document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-  document.querySelectorAll('input[type="checkbox"]').forEach(c => { c.checked = false; });
+  document.querySelectorAll('input[type="checkbox"]').forEach(c => {
+    c.checked = c.id === 'newsletterCheck';
+  });
+  document.getElementById('emailInput').value = '';
   document.getElementById('validationError').classList.remove('show');
+  document.getElementById('email-section').style.display = 'none';
   document.getElementById('quiz-section').style.display = 'block';
 
   const resultEl = document.getElementById('result-dynamic');
@@ -1309,6 +1308,8 @@ function restartQuiz() {
 })();
 
 // ── FLOATING CARD UNDOCK LOGIC ────────────────────────────────────
+// When the footer scrolls into view, switch the card from fixed to
+// absolute so it sits above the footer rather than overlapping it.
 function updateFloatingCard() {
   const portal = document.getElementById('floating-card-portal');
   if (!portal.classList.contains('visible')) return;
@@ -1319,9 +1320,11 @@ function updateFloatingCard() {
   const viewportH = window.innerHeight;
 
   if (footerRect.top < viewportH) {
+    // Footer is visible — undock: place card just above the footer using
+    // document-absolute positioning.
     const docScrollTop  = window.scrollY || document.documentElement.scrollTop;
-    const footerTopAbs  = docScrollTop + footerRect.top;
-    const cardTopAbs    = footerTopAbs - cardH - 0;
+    const footerTopAbs  = docScrollTop + footerRect.top; // footer's top in document coords
+    const cardTopAbs    = footerTopAbs - cardH - 0;      // card sits flush on top of footer
 
     portal.style.position  = 'absolute';
     portal.style.top       = cardTopAbs + 'px';
@@ -1329,6 +1332,7 @@ function updateFloatingCard() {
     portal.style.left      = '50%';
     portal.style.transform = 'translateX(-50%)';
   } else {
+    // Footer not visible — keep card fixed at bottom of viewport.
     portal.style.position  = 'fixed';
     portal.style.top       = 'auto';
     portal.style.bottom    = '0';
