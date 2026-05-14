@@ -929,6 +929,7 @@ function buildTable() {
 
 /* Floating table header */
 function updateFloatBar() {
+  console.log("floatBar check, rect.top:", document.getElementById("tableCard").getBoundingClientRect().top);
   var bar = document.getElementById("floatBar");
   var inner = document.getElementById("floatBarInner");
   var tableCard = document.getElementById("tableCard");
