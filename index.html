@@ -474,24 +474,24 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
 <!-- STICKY QUIZ BAR — compact always-visible strip -->
 <div class="quiz-bar" id="quizBar">
 
-  <div id="quizCardBody" style="background:#fff;padding:16px 25px 18px 16px;border-bottom:1px solid #eee;position:relative;">
-    <div class="quiz-body" id="quizCardBody">
+  <div class="quiz-body" id="quizCardBody">
     <button onclick="collapseQuiz()" aria-label="Close" class="quiz-close-btn">×</button>
     <p class="quiz-desc">Answer 5 questions about your skin tone, hair color, and priorities for a personalized recommendation. Takes 60 seconds.</p>
   </div>
-  
+
   <div onclick="toggleQuiz()" class="quiz-strip">
     <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Science-Over-Fluff_Logo.png"
          alt="Science Over Fluff" class="strip-logo">
     <div class="strip-text">
       Not sure which device to get?
-      <span class="strip-sub">Science Over Fluff</span>
+      <span class="strip-sub">Science Over Fluff quiz · 60 sec</span>
     </div>
     <a href="https://compare.scienceoverfluff.com/light-based-hair-removal-devices/quiz"
        target="_blank" rel="noopener" class="quiz-bar-btn"
        onclick="event.stopPropagation()">Take the quiz →</a>
     <span id="quizChevron" class="quiz-chevron">&#8963;</span>
   </div>
+
 </div>
 
 <script src="devices.js"></script>
