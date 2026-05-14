@@ -863,7 +863,7 @@ function buildTable() {
     tableScrolledIntoView = true;
     var card = document.getElementById("tableCard");
     var headerHeight = document.querySelector('.site-header').offsetHeight;
-    var top = card.getBoundingClientRect().top + window.pageYOffset - headerHeight - 8;
+    var top = card.getBoundingClientRect().top + window.pageYOffset - headerHeight - 100;
     window.scrollTo({ top: top, behavior: "smooth" });
   }
 
