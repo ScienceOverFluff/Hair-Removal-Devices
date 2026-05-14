@@ -943,7 +943,7 @@ function updateFloatBar() {
   var rect = tableCard.getBoundingClientRect();
   var siteHeaderHeight = document.querySelector('.site-header').offsetHeight;
   var theadHeight = 120;
-  if (rect.top > siteHeaderHeight - theadHeight) {
+  if (rect.top > 0) {
     bar.style.display = "none"; return;
   }
 
