@@ -964,15 +964,23 @@ function updateFloatBar() {
   bar.style.left = cardRect.left + "px";
   bar.style.right = "auto";
   bar.style.width = cardRect.width + "px";
-  inner.innerHTML = '<div style="flex-shrink:0;width:var(--spec-w);"></div>'
-    + devs.map(function(d){
-      return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex-shrink:0;width:var(--col-w);">'
-        +'<span style="font-size:11px;font-weight:700;color:var(--navy);white-space:nowrap;background:#fff;padding:2px 8px;border-radius:var(--radius-pill);">'+d.name+'</span>'
-        +'<a href="'+d.links.buy+'" target="_blank" rel="noopener sponsored"'
-        +' style="display:inline-block;padding:6px 12px;background:var(--gold);color:var(--navy);font-size:11px;font-weight:700;border-radius:var(--radius-pill);text-decoration:none;white-space:nowrap;">'
-        +d.links.buyLabel+' ↗</a>'
-        +'</div>';
-    }).join('');
+  /* read actual column widths from the rendered table */
+    var thead = tableCard.querySelector('thead tr');
+    var specTh = thead ? thead.querySelector('th.spec-col') : null;
+    var colThs = thead ? thead.querySelectorAll('th:not(.spec-col)') : [];
+    var specW = specTh ? specTh.offsetWidth : 110;
+    var colW = colThs.length > 0 ? colThs[0].offsetWidth : 190;
+    
+    inner.innerHTML = '<div style="flex-shrink:0;width:' + specW + 'px;"></div>'
+      + devs.map(function(d, i){
+        var w = colThs[i] ? colThs[i].offsetWidth : colW;
+        return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex-shrink:0;width:' + w + 'px;">'
+          +'<span style="font-size:11px;font-weight:700;color:var(--navy);white-space:nowrap;background:#fff;padding:2px 8px;border-radius:100px;">'+d.name+'</span>'
+          +'<a href="'+d.links.buy+'" target="_blank" rel="noopener sponsored"'
+          +' style="display:inline-block;padding:6px 12px;background:#eb9718;color:#0c006d;font-size:11px;font-weight:700;border-radius:100px;text-decoration:none;white-space:nowrap;">'
+          +d.links.buyLabel+' ↗</a>'
+          +'</div>';
+      }).join('');
 }
 
 function buildSeoContent(){
