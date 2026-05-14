@@ -809,7 +809,12 @@ function initDragScroll() {
     scroll.classList.remove("dragging");
   });
   /* touch pan already works natively; just update fade on scroll */
-  scroll.addEventListener("scroll", function(){ updateFade(); updateFloatBar(); });
+  scroll.addEventListener("scroll", function(){
+  updateFade();
+  updateFloatBar();
+  var inner = document.getElementById("floatBarInner");
+  if (inner) inner.style.transform = "translateX(-" + scroll.scrollLeft + "px)";
+});
 }
 
 /* ── Arrows to scroll table ── */
@@ -959,14 +964,15 @@ function updateFloatBar() {
   bar.style.left = cardRect.left + "px";
   bar.style.right = "auto";
   bar.style.width = cardRect.width + "px";
-  inner.innerHTML = devs.map(function(d){
-    return '<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;">'
-      +'<span style="font-size:11px;font-weight:700;color:var(--navy);white-space:nowrap;background:#fff;padding:2px 8px;border-radius:var(--radius-pill);">'+d.name+'</span>'
-      +'<a href="'+d.links.buy+'" target="_blank" rel="noopener sponsored"'
-      +' style="display:inline-block;padding:6px 12px;background:var(--gold);color:var(--navy);font-size:11px;font-weight:700;border-radius:var(--radius-pill);text-decoration:none;white-space:nowrap;">'
-      +d.links.buyLabel+' ↗</a>'
-      +'</div>';
-  }).join('<div style="width:1px;height:24px;background:rgba(255,255,255,.15);flex-shrink:0;"></div>');
+  inner.innerHTML = '<div style="flex-shrink:0;width:var(--spec-w);"></div>'
+    + devs.map(function(d){
+      return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex-shrink:0;width:var(--col-w);">'
+        +'<span style="font-size:11px;font-weight:700;color:var(--navy);white-space:nowrap;background:#fff;padding:2px 8px;border-radius:var(--radius-pill);">'+d.name+'</span>'
+        +'<a href="'+d.links.buy+'" target="_blank" rel="noopener sponsored"'
+        +' style="display:inline-block;padding:6px 12px;background:var(--gold);color:var(--navy);font-size:11px;font-weight:700;border-radius:var(--radius-pill);text-decoration:none;white-space:nowrap;">'
+        +d.links.buyLabel+' ↗</a>'
+        +'</div>';
+    }).join('');
 }
 
 function buildSeoContent(){
