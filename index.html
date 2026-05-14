@@ -940,8 +940,8 @@ function updateFloatBar() {
 
   /* show only when table header has scrolled off screen */
   var rect = tableCard.getBoundingClientRect();
-  var headerHeight = 60; /* approx thead height */
-  if (rect.top > -headerHeight) {
+  var siteHeaderHeight = document.querySelector('.site-header').offsetHeight;
+  if (rect.top > -(siteHeaderHeight)) {
     bar.style.display = "none"; return;
   }
 
