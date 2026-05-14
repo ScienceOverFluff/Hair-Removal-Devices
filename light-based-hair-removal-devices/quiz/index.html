@@ -368,6 +368,58 @@
   .newsletter-row input:not(:checked) + .nl-box::after { opacity: 0; }
   .newsletter-row .nl-label { font-size: .9rem; color: #444; line-height: 1.4; }
 
+  /* ── EMAIL CAPTURE (results page) ── */
+  .result-email-section {
+    border-top: 1px solid var(--border);
+    margin-top: 28px;
+    padding-top: 24px;
+  }
+  .result-email-section .email-label {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .result-email-section .email-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: #000;
+    margin-bottom: 6px;
+  }
+  .result-email-section .email-sub {
+    font-size: .85rem;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .result-email-section input[type="email"] {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-size: .97rem;
+    font-family: inherit;
+    margin-bottom: 10px;
+    outline: none;
+    transition: border-color .18s;
+    background: var(--white);
+  }
+  .result-email-section input[type="email"]:focus { border-color: var(--navy); }
+
+  .email-sent-confirm {
+    display: none;
+    background: #f0fff4;
+    border: 1.5px solid #68d391;
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    font-size: .88rem;
+    color: #276749;
+    margin-top: 4px;
+  }
+  .email-sent-confirm.show { display: block; }
+
   /* ── VALIDATION ERROR ── */
   .validation-error {
     background: #fff3f3;
@@ -734,35 +786,10 @@
 
     <!-- GET RESULTS BUTTON -->
     <div class="question-block">
-      <button class="btn-primary" onclick="checkAndRevealEmail()">Get my recommendation →</button>
+      <button class="btn-primary" onclick="submitQuiz()">Get my recommendation →</button>
       <div class="validation-error" id="validationError">Please answer all five questions before continuing.</div>
     </div>
   </div><!-- /quiz-section -->
-
-<!-- ══════ EMAIL SECTION (standalone, hidden until Qs complete) ══════ -->
-  <div id="email-section">
-    <div class="q-divider"></div>
-    <div class="question-block">
-      <div class="q-label">Almost done</div>
-      <h2 class="q-title">Get your results</h2>
-      <div class="email-section">
-        <p style="font-size:.92rem;color:#444;margin-bottom:14px;line-height:1.6">Enter your email to have your recommendation sent to you — useful if you want to revisit it later or share it.</p>
-        <input type="email" id="emailInput" placeholder="you@example.com">
-        <label class="newsletter-row" for="newsletterCheck">
-          <input type="checkbox" id="newsletterCheck" checked>
-          <span class="nl-box"></span>
-          <span class="nl-label">Sign me up for the Science Over Fluff newsletter: technical reviews of beauty devices straight to your inbox.</span>
-        </label>
-        <button class="btn-primary" onclick="submitQuiz(false)">See my recommendation →</button>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;margin-top:10px;">
-        <div style="flex:1;height:1px;background:var(--border);"></div>
-        <span style="font-size:.8rem;color:var(--mid);white-space:nowrap;">or</span>
-        <div style="flex:1;height:1px;background:var(--border);"></div>
-      </div>
-      <button class="btn-skip" onclick="submitQuiz(true)">Skip →</button>
-    </div>
-  </div>
 
   <!-- ══════ RESULT (dynamic) ══════ -->
   <div id="result-dynamic" class="result-screen"></div>
@@ -841,8 +868,8 @@ function syncDensity() {
   answers.density = Array.from(document.querySelectorAll('#density-options input:checked')).map(i => i.value);
 }
 
-// ── REVEAL EMAIL SECTION ──────────────────────────────────────────
-function checkAndRevealEmail() {
+// ── SUBMIT ────────────────────────────────────────────────────────
+function submitQuiz() {
   const errEl = document.getElementById('validationError');
   const missing = [];
   if (!answers.skin)           missing.push('skin tone (Q1)');
@@ -858,19 +885,6 @@ function checkAndRevealEmail() {
   }
 
   errEl.classList.remove('show');
-  document.querySelector('.quiz-wrap').style.paddingBottom = '60px';
-  document.getElementById('quiz-section').style.display = 'none';
-  const emailSection = document.getElementById('email-section');
-  emailSection.style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ── SUBMIT ────────────────────────────────────────────────────────
-function submitQuiz(skip) {
-  if (!skip) {
-    answers.email = document.getElementById('emailInput').value.trim();
-    answers.newsletter = document.getElementById('newsletterCheck').checked;
-  }
   calculateResult();
 }
 
@@ -1087,7 +1101,6 @@ function getArticleForDevice(device) {
 // ── RENDER RESULT ─────────────────────────────────────────────────
 function renderResult(device) {
   document.getElementById('quiz-section').style.display = 'none';
-  document.getElementById('email-section').style.display = 'none';
   const el = document.getElementById('result-dynamic');
 
   if (device==='hairlight') {
@@ -1281,11 +1294,9 @@ function restartQuiz() {
 
   document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
   document.querySelectorAll('input[type="checkbox"]').forEach(c => {
-    c.checked = c.id === 'newsletterCheck';
+    c.checked = false;
   });
-  document.getElementById('emailInput').value = '';
   document.getElementById('validationError').classList.remove('show');
-  document.getElementById('email-section').style.display = 'none';
   document.getElementById('quiz-section').style.display = 'block';
 
   const resultEl = document.getElementById('result-dynamic');
