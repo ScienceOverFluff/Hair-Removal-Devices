@@ -1024,7 +1024,7 @@ function renderResult(device) {
       <div class="no-match-card">
         <img src="https://raw.githubusercontent.com/ScienceOverFluff/Hair-Removal-Devices/main/Images/Light-Hair.png" alt="Laser, LED, and IPL hair removal does not work on light hair" style="width:100%; display:block; max-width:400px; margin: 0 auto 20px auto;">
         <p style="font-size:.95rem;color:#444;line-height:1.7">Unfortunately, IPL, laser, and LED devices won't give you results with your hair color. Light-based hair removal works by targeting melanin, which is the pigment inside your hair follicle. As the light energy hits the hair, it converts to heat and "cooks" the hair producing cells, permanent disabling them. Light blonde, red, grey, and white hair simply doesn't contain enough melanin for the device to work effectively. <br><br>No at-home light-based hair removal device will change this. If you want permanent hair reduction, electrolysis is currently the only method clinically proven to work regardless of hair color.</p>
-      <span class="restart-link" onclick="restartQuiz()">← Retake the quiz</span>`;
+      <button onclick="restartQuiz()" style="display:block;width:100%;margin-top:10px;padding:13px;background:#fff;border:1.5px solid var(--border);border-radius:14px;font-family:'DM Sans',sans-serif;font-size:.87rem;font-weight:600;color:var(--mid);cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.15);transition:background .18s,color .18s;" onmouseover="this.style.background='var(--navy)';this.style.color='#fff'" onmouseout="this.style.background='#fff';this.style.color='var(--mid)'">← Retake the quiz</button>
     el.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     return;
@@ -1207,6 +1207,27 @@ function restartQuiz() {
   answers.priority = p.get('priority');
   renderResult(p.get('result'));
 })();
+
+  // ── FLOATING CARD ─────────────────────────────────────────────────
+function updateFloatingCard() {
+  const portal = document.getElementById('floating-card-portal');
+  if (!portal.classList.contains('visible')) return;
+  const footer = document.querySelector('footer');
+  const footerTop = footer.getBoundingClientRect().top;
+  const cardHeight = portal.offsetHeight;
+  if (footerTop < cardHeight + 16) {
+    portal.style.position = 'absolute';
+    portal.style.bottom = (footer.offsetHeight + 16) + 'px';
+    portal.style.left = '50%';
+    portal.style.transform = 'translateX(-50%)';
+  } else {
+    portal.style.position = 'fixed';
+    portal.style.bottom = '0';
+    portal.style.left = '50%';
+    portal.style.transform = 'translateX(-50%)';
+  }
+}
+window.addEventListener('scroll', updateFloatingCard);
 </script>
 </body>
 </html>
