@@ -507,6 +507,15 @@
   .restart-link { display: block; text-align: center; margin-top: 32px; color: var(--mid); font-size: .87rem; cursor: pointer; text-decoration: underline; }
   .restart-link:hover { color: var(--navy); }
 
+  .floating-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.15);
+    padding: 24px;
+    margin-top: 24px;
+  }
+
   /* ── FOOTER ── */
   footer {
     text-align: center;
@@ -1100,8 +1109,6 @@ el.innerHTML = `
         ${cfg.discountImageUrl ? `
           <a href="${LINKS[device].primary}" target="_blank" rel="noopener" style="display:block;"><img src="${cfg.discountImageUrl}" alt="Science Over Fluff exclusive discount code" style="width:100%;border-radius:4px;display:block;margin-bottom:20px;cursor:pointer;"></a>` : ''}
         <p style="font-size:.72rem;color:#aaa;line-height:1.5;margin-bottom:16px;">If you find the recommendation tool to be helpful, you can support future tools, articles, and other Science Over Fluff content by using the links and discount codes found here when making your purchase. Science Over Fluff may earn a commission at no extra cost to you.</p>
-    <div class="section-label" style="color:#434343;">${cfg.sectionLabel}</div>
-    ${article}
     <a href="https://compare.scienceoverfluff.com/light-based-hair-removal-devices" target="_blank" rel="noopener"
        style="display:block;text-align:center;margin-top:20px;padding:13px 20px;border:2px solid var(--navy);border-radius:var(--radius);font-size:.92rem;font-weight:600;color:var(--navy);text-decoration:none;transition:background .18s,color .18s;"
        onmouseover="this.style.background='var(--navy)';this.style.color='#fff'"
@@ -1110,7 +1117,11 @@ el.innerHTML = `
     </a>
       </div>
     </div>
-    <span class="restart-link" onclick="restartQuiz()">← Retake the quiz</span>`;
+    <div class="floating-card">
+      <div class="section-label" style="color:#434343;margin-top:0;">${cfg.sectionLabel}</div>
+      ${article}
+      <span class="restart-link" style="margin-top:16px;" onclick="restartQuiz()">← Retake the quiz</span>
+    </div>`;
 
   el.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
