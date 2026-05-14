@@ -1203,7 +1203,17 @@ function renderResult(device) {
     : '';
 
   // Retake button
-  const retakeHtml = `<button class="btn-retake" onclick="restartQuiz()">← Retake the quiz</button>`;
+  const retakeHtml = `
+  <div style="display:flex;gap:8px;margin-top:12px;">
+    <button class="btn-retake" onclick="restartQuiz()" style="flex:1;">← Retake the quiz</button>
+    <a href="https://www.scienceoverfluff.com/p/quiz-which-permanent-hair-removal-device-should-you-choose"
+       target="_blank" rel="noopener"
+       style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:13px 12px;background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;color:var(--mid);text-decoration:none;transition:background .18s,color .18s,border-color .18s;"
+       onmouseover="this.style.borderColor='var(--navy)';this.style.color='var(--navy)'"
+       onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--mid)'">
+      📄 Methodology
+    </a>
+  </div>`;
 
   portal.innerHTML = labelHtml + articleHtml + retakeHtml;
 
