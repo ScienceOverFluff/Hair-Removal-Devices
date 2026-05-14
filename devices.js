@@ -33,7 +33,7 @@ const DEVICES = [
     bestFor: null,
     links: {
       buy: "https://geni.us/Braun_SilkExpert_Pro_5",
-      buyLabel: "Get it on Amazon →",
+      buyLabel: "Get it on Amazon",
       buy2: null,
       buy2Label: null,
       review: null,
@@ -72,7 +72,7 @@ const DEVICES = [
     bestFor: null,
     links: {
       buy: "https://geni.us/DermRays_V6S",
-      buyLabel: "Get it on Amazon →",
+      buyLabel: "Get it on Amazon",
       buy2: null,
       buy2Label: null,
       review: null,
@@ -111,7 +111,7 @@ const DEVICES = [
     bestFor: null,
     links: {
       buy: "https://geni.us/DermRays_V8S",
-      buyLabel: "Get it on Amazon →",
+      buyLabel: "Get it on Amazon",
       buy2: null,
       buy2Label: null,
       review: null,
@@ -151,7 +151,7 @@ const DEVICES = [
     bestFor: null,
     links: {
       buy: "https://geni.us/Philips_Lumea_9000",
-      buyLabel: "Get it on Amazon →",
+      buyLabel: "Get it on Amazon",
       buy2: null,
       buy2Label: null,
       review: null,
@@ -191,7 +191,7 @@ const DEVICES = [
     bestFor: null,
     links: {
       buy: "https://geni.us/Tria_4X",
-      buyLabel: "Get it on Amazon →",
+      buyLabel: "Get it on Amazon",
       buy2: null,
       buy2Label: null,
       review: null,
@@ -228,9 +228,9 @@ const DEVICES = [
     bestFor: null,
     links: {
       buy: "https://geni.us/Ulike_Air_4",
-      buyLabel: "Get it on Amazon →",
+      buyLabel: "Get it on Amazon",
       buy2: "https://www.awin1.com/cread.php?awinmid=33267&awinaffid=2721030&clickref=comparison-Ulike-Air4&ued=https%3A%2F%2Fwww.ulike.com%2Fproducts%2Fsapphire-air-4-ipl-laser-hair-removal",
-      buy2Label: "Get it: Ulike.com →",
+      buy2Label: "Get it: Ulike.com",
       review: null,
       compare: "https://www.scienceoverfluff.com/p/ulike-technical-review-and-results",
     },
@@ -267,9 +267,9 @@ const DEVICES = [
     bestFor: null,
     links: {
       buy: "https://geni.us/Ulike_Air_10",
-      buyLabel: "Get it on Amazon →",
+      buyLabel: "Get it on Amazon",
       buy2: "https://www.awin1.com/cread.php?awinmid=33267&awinaffid=2721030&clickref=comparison-Ulike-Air10&ued=https%3A%2F%2Fwww.ulike.com%2Fproducts%2Fsapphire-air-10-ipl-hair-removal",
-      buy2Label: "Get it: Ulike.com →",
+      buy2Label: "Get it: Ulike.com",
       review: "https://www.scienceoverfluff.com/p/ulike-technical-review-and-results",
       compare: null,
     },
@@ -304,9 +304,9 @@ const DEVICES = [
     bestFor: null,
     links: {
       buy: "https://geni.us/Ulike_X",
-      buyLabel: "Get it on Amazon →",
+      buyLabel: "Get it on Amazon",
       buy2: "https://www.awin1.com/cread.php?awinmid=33267&awinaffid=2721030&clickref=comparison-Ulike-X&ued=https%3A%2F%2Fwww.ulike.com%2Fproducts%2Fulike-x-ipl-hair-removal",
-      buy2Label: "Get it: Ulike.com →",
+      buy2Label: "Get it: Ulike.com",
       review: null,
       compare: "https://www.scienceoverfluff.com/p/ulike-technical-review-and-results",
     },
@@ -343,7 +343,7 @@ const DEVICES = [
     bestFor: null,
     links: {
       buy: "https://www.awin1.com/cread.php?awinmid=49223&awinaffid=2721030&clickref=comparison-EpiPro&ued=https%3A%2F%2Fviqure.com%2Fproducts%2F808nm-professional-diode-laser-removal-for-home-or-salon-use",
-      buyLabel: "Get it: ViQure.com →",
+      buyLabel: "Get it: ViQure.com",
       buy2: null,
       buy2Label: null,
       review: null,
@@ -383,7 +383,7 @@ const DEVICES = [
     bestFor: null,
     links: {
       buy: "https://www.awin1.com/cread.php?awinmid=49223&awinaffid=2721030&clickref=comparison-S-LD&ued=https%3A%2F%2Fviqure.com%2Fproducts%2Fplanar-led-hair-removal-device",
-      buyLabel: "Get it: ViQure.com →",
+      buyLabel: "Get it: ViQure.com",
       buy2: null,
       buy2Label: null,
       review: "https://www.scienceoverfluff.com/p/viqure-s-ld-at-home-hair-removal-timelines-hacks-results",
