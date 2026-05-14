@@ -482,7 +482,7 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
       display:flex;
       align-items:center;
       min-width:max-content;
-      padding:8px 12px;
+      padding:8px 0px;
       filter:drop-shadow(0 2px 8px rgba(0,0,0,.25));
       gap:0px;
     "></div>
@@ -964,6 +964,7 @@ function updateFloatBar() {
   bar.style.left = cardRect.left + "px";
   bar.style.right = "auto";
   bar.style.width = cardRect.width + "px";
+  bar.style.overflow = "hidden";
   /* read actual column widths from the rendered table */
     var thead = tableCard.querySelector('thead tr');
     var specTh = thead ? thead.querySelector('th.spec-col') : null;
