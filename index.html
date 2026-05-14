@@ -963,16 +963,14 @@ function updateFloatBar() {
 
   bar.style.display = "block";
   var cardRect = tableCard.getBoundingClientRect();
+  var specTh = thead ? thead.querySelector('th.spec-col') : null;
+  var colThs = thead ? thead.querySelectorAll('th:not(.spec-col)') : [];
+  var specW = specTh ? specTh.offsetWidth : 110;
+  var colW = colThs.length > 0 ? colThs[0].offsetWidth : 190;
   bar.style.left = (cardRect.left + specW) + "px";
   bar.style.right = "auto";
   bar.style.width = (cardRect.width - specW) + "px";
   bar.style.overflow = "hidden";
-  /* read actual column widths from the rendered table */
-    var thead = tableCard.querySelector('thead tr');
-    var specTh = thead ? thead.querySelector('th.spec-col') : null;
-    var colThs = thead ? thead.querySelectorAll('th:not(.spec-col)') : [];
-    var specW = specTh ? specTh.offsetWidth : 110;
-    var colW = colThs.length > 0 ? colThs[0].offsetWidth : 190;
     
     inner.innerHTML = ''
       + devs.map(function(d, i){
