@@ -402,9 +402,9 @@ const SKIN_META = [
 ];
 
 const HAIR_META = [
-  { label: "Black",       img: "https://raw.githubusercontent.com/ScienceOverFluff/light-based-hair-removal-devices/main/Images/Black-Hair.png"      },
-  { label: "Dark brown",  img: "https://raw.githubusercontent.com/ScienceOverFluff/light-based-hair-removal-devices/main/Images/Dark-Brown-Hair.png" },
-  { label: "Light brown", img: "https://raw.githubusercontent.com/ScienceOverFluff/light-based-hair-removal-devices/main/Images/Light-Brown-Hair.png"},
-  { label: "Dark blonde", img: "https://raw.githubusercontent.com/ScienceOverFluff/light-based-hair-removal-devices/main/Images/Dark-Blonde-Hair.png"},
-  { label: "Auburn",      img: "https://raw.githubusercontent.com/ScienceOverFluff/light-based-hair-removal-devices/main/Images/Auburn-Hair.png" },
+  { label: "Black",       img: "https://raw.githubusercontent.com/ScienceOverFluff/ScienceOverFluff/main/Images/Black-Hair.png"      },
+  { label: "Dark brown",  img: "https://raw.githubusercontent.com/ScienceOverFluff/ScienceOverFluff/main/Images/Dark-Brown-Hair.png" },
+  { label: "Light brown", img: "https://raw.githubusercontent.com/ScienceOverFluff/ScienceOverFluff/main/Images/Light-Brown-Hair.png"},
+  { label: "Dark blonde", img: "https://raw.githubusercontent.com/ScienceOverFluff/ScienceOverFluff/main/Images/Dark-Blonde-Hair.png"},
+  { label: "Auburn",      img: "https://raw.githubusercontent.com/ScienceOverFluff/ScienceOverFluff/main/Images/Auburn-Hair.png" },
 ];
