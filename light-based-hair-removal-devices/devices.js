@@ -136,7 +136,7 @@ const DEVICES = [
     skinTones: ["ok","ok","ok","caution",null,null],
     hairColors: ["ok","ok","ok","ok","x"],
     wins: [
-      "Very low frequency of use",
+      "Low frequency of use",
       "Specialized treatment heads",
       "Companion guidance app"
     ],
@@ -174,7 +174,7 @@ const DEVICES = [
     skinTones: ["ok","ok","ok","caution",null,null],
     hairColors: ["ok","ok","ok","ok","x"],
     wins: [
-      "Very low frequency of use",
+      "Low frequency of use",
       "Specialized treatment heads",
       "Companion guidance app",
       "Can be used plugged in or cordless"
