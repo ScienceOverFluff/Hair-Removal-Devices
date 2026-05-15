@@ -266,8 +266,8 @@ const DEVICES = [
     links: {
       buy: "https://geni.us/Ulike_Air_3",
       buyLabel: "Get it on Amazon",
-      buy2: null,
-      buy2Label: null,
+      buy2: "https://www.awin1.com/cread.php?awinmid=33267&awinaffid=2721030&clickref=comparison-Ulike-Air3&ued=https%3A%2F%2Fwww.ulike.com%2Fproducts%2Fsapphire-air-3-ipl-hair-removal",
+      buy2Label: "Get it: Ulike.com",
       review: null,
       compare: null,
     },
