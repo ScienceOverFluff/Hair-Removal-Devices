@@ -17,7 +17,7 @@ const DEVICES = [
     cooling: false,
     scanning: true,
     skinSensor: true,
-    lifespan: "400,000 flashes",
+    lifespan: "400,000",
     skinTones: ["ok","ok","ok","caution","caution",null],
     hairColors: ["ok","ok","ok","x","x"],
     wins: [
@@ -54,7 +54,7 @@ const DEVICES = [
     cooling: true,
     scanning: true,
     skinSensor: null,
-    lifespan: "30,000,000 flashes",
+    lifespan: "30,000,000",
     skinTones: ["ok","ok","ok","ok","ok","ok"],
     hairColors: ["ok","ok","ok","x","x"],
     wins: [
@@ -93,7 +93,7 @@ const DEVICES = [
     cooling: true,
     scanning: true,
     skinSensor: null,
-    lifespan: "30,000,000 flashes",
+    lifespan: "30,000,000",
     skinTones: ["ok","ok","ok","ok","ok",null],
     hairColors: ["ok","ok","ok","x","x"],
     wins: [
@@ -132,7 +132,7 @@ const DEVICES = [
     cooling: false,
     scanning: true,
     skinSensor: true,
-    lifespan: "450,000 flashes",
+    lifespan: "450,000",
     skinTones: ["ok","ok","ok","caution",null,null],
     hairColors: ["ok","ok","ok","ok","x"],
     wins: [
@@ -170,7 +170,7 @@ const DEVICES = [
     cooling: false,
     scanning: true,
     skinSensor: true,
-    lifespan: "450,000 flashes",
+    lifespan: "450,000",
     skinTones: ["ok","ok","ok","caution",null,null],
     hairColors: ["ok","ok","ok","ok","x"],
     wins: [
@@ -210,7 +210,7 @@ const DEVICES = [
     cooling: false,
     scanning: false,
     skinSensor: null,
-    lifespan: "90,000 flashes",
+    lifespan: "90,000",
     skinTones: ["ok","ok","ok","ok",null,null],
     hairColors: ["ok","ok","ok","x","x"],
     wins: [
@@ -250,7 +250,7 @@ const DEVICES = [
     cooling: true,
     scanning: true,
     skinSensor: false,
-    lifespan: "300,000 flashes",
+    lifespan: "300,000",
     skinTones: ["ok","ok","ok","caution",null,null],
     hairColors: ["ok","ok","ok","x","x"],
     wins: [
@@ -286,7 +286,7 @@ const DEVICES = [
     cooling: true,
     scanning: true,
     skinSensor: false,
-    lifespan: "300,000 flashes",
+    lifespan: "300,000",
     skinTones: ["ok","ok","ok","caution",null,null],
     hairColors: ["ok","ok","ok","x","x"],
     wins: [
@@ -323,7 +323,7 @@ const DEVICES = [
     cooling: true,
     scanning: true,
     skinSensor: true,
-    lifespan: "300,000 flashes",
+    lifespan: "300,000",
     skinTones: ["ok","ok","ok","caution","caution",null],
     hairColors: ["ok","ok","ok","x","x"],
     wins: [
@@ -362,7 +362,7 @@ const DEVICES = [
     cooling: true,
     scanning: true,
     skinSensor: true,
-    lifespan: "300,000 flashes",
+    lifespan: "300,000",
     skinTones: ["ok","ok","ok","caution","caution",null],
     hairColors: ["ok","ok","ok","x","x"],
     wins: [
@@ -399,7 +399,7 @@ const DEVICES = [
     cooling: true,
     scanning: true,
     skinSensor: null,
-    lifespan: "5,000,000 flashes",
+    lifespan: "5,000,000",
     skinTones: ["ok","ok","ok","ok","ok","ok"],
     hairColors: ["ok","ok","ok","ok","ok"],
     wins: [
@@ -438,7 +438,7 @@ const DEVICES = [
     cooling: true,
     scanning: true,
     skinSensor: null,
-    lifespan: "100,000,000 flashes",
+    lifespan: "100,000,000",
     skinTones: ["ok","ok","ok","ok","ok",null],
     hairColors: ["ok","ok","ok","x","x"],
     wins: [
