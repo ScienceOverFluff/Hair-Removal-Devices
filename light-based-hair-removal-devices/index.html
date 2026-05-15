@@ -410,7 +410,7 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
        style="display:block;text-align:center;background:var(--gold);color:#434343;padding:8px 20px;border:1px solid #434343;border-radius:var(--radius);font-weight:600;font-size:.95rem;text-decoration:none;transition:background .18s;margin-top:12px;"
        onmouseover="this.style.background='var(--gold-dk)'"
        onmouseout="this.style.background='var(--gold)'">
-      Not sure which device to get? Take the recommendation quiz →
+      Not sure which device to get? Take the device recommendation quiz →
     </a>
   </section>
 
@@ -536,8 +536,8 @@ table.cmp{border-collapse:collapse;font-size:var(--fs);table-layout:fixed;width:
       Not sure which device to get?
     </div>
     <a href="https://compare.scienceoverfluff.com/light-based-hair-removal-devices/quiz"
-       target="_blank" rel="noopener" class="quiz-bar-btn"
-       onclick="event.stopPropagation()">Take the quiz →</a>
+     target="_blank" rel="noopener" class="quiz-bar-btn"
+     onclick="event.stopPropagation(); gtag('event', 'quiz_cta_click', { source: 'sticky_bar' });">Take the quiz →</a>
     <span id="quizChevron" class="quiz-chevron">&#8963;</span>
   </div>
 
@@ -560,6 +560,7 @@ var quizExpanded = false;
 
 function expandQuiz() {
   quizExpanded = true;
+  gtag('event', 'quiz_bar_expand');
   document.getElementById("quizCardBody").classList.add("open");
   document.getElementById("quizChevron").classList.add("up");
   updateQuizBarRadius();
@@ -645,6 +646,7 @@ function buildSkinFilter() {
     b.innerHTML = '<div class="st-ctl-circle" style="background:'+s.color+';border:1.5px solid rgba(0,0,0,.1);"></div><span>'+s.roman+'</span>';
     b.addEventListener("click", function(){
       activeSkin = (activeSkin === i) ? null : i;
+      gtag('event', 'filter_skin', { filter_value: activeSkin === null ? 'all' : SKIN_META[activeSkin].label });
       buildSkinFilter(); syncSelectedToVisible(); selectAll(); renderChips(); buildTable();
     });
     el.appendChild(b);
@@ -670,6 +672,7 @@ function buildHairFilter() {
     b.innerHTML = '<img src="'+h.img+'" style="width:32px;height:32px;object-fit:cover;border-radius:4px;" alt="'+h.label+'"><span style="font-size:9px;margin-top:2px;line-height:1.2;text-align:center;">'+h.label+'</span>';
     b.addEventListener("click", function(){
       activeHair = (activeHair === i) ? null : i;
+      gtag('event', 'filter_hair', { filter_value: activeHair === null ? 'all' : HAIR_META[activeHair].label });
       buildHairFilter(); syncSelectedToVisible(); selectAll(); renderChips(); buildTable();
     });
     el.appendChild(b);
@@ -682,6 +685,7 @@ function setPriceFilter(val, btn) {
   btn.closest('.controls-row').querySelectorAll('.ctl-btn[onclick*="setPriceFilter"]').forEach(function(b){ b.classList.remove("active"); });
   btn.classList.add("active");
   syncSelectedToVisible(); selectAll(); renderChips(); buildTable();
+  gtag('event', 'filter_price', { filter_value: val ?? 'all' });
 }
 
 /* ── Chips ── */
@@ -708,8 +712,12 @@ function renderChips() {
 
 function toggleDevice(id) {
   var idx = selectedOrder.indexOf(id);
-  if (idx !== -1) { selectedOrder.splice(idx, 1); }
+  if (idx !== -1) {
+    gtag('event', 'device_toggle', { device_id: id, action: 'deselect' });
+    selectedOrder.splice(idx, 1);
+  }
   else {
+    gtag('event', 'device_toggle', { device_id: id, action: 'select' });
     /* insert at position matching visible order */
     var visible = getVisible();
     var visibleIds = visible.map(function(d){ return d.id; });
@@ -733,6 +741,7 @@ function setTypeFilter(val, btn) {
   btn.closest('.controls-row').querySelectorAll('.ctl-btn[onclick*="setTypeFilter"]').forEach(function(b){ b.classList.remove("active"); });
   btn.classList.add("active");
   syncSelectedToVisible(); selectAll(); renderChips(); buildTable();
+  gtag('event', 'filter_type', { filter_value: val });
 }
 
 function setSort(s, btn) {
@@ -743,6 +752,7 @@ function setSort(s, btn) {
   if (s==="fluence") document.getElementById("arr-fluence").textContent = sortDir.fluence===-1?"↓":"↑";
   if (s==="price")   document.getElementById("arr-price").textContent   = sortDir.price===-1?"↓":"↑";
   syncSelectedToVisible(); renderChips(); buildTable();
+  gtag('event', 'sort_change', { sort_field: s, sort_direction: sortDir[s] === 1 ? 'asc' : 'desc' });
 }
 
 /* ── Show table scroll ── */
@@ -804,6 +814,14 @@ function showScrollHint() { updateFade(); }
 /* ── Drag to pan ── */
 function initDragScroll() {
   var scroll = document.getElementById("tableScroll");
+  scroll.addEventListener('click', function(e) {
+    var link = e.target.closest('a[rel*="sponsored"]');
+    if (!link) return;
+    gtag('event', 'outbound_click', {
+      link_url: link.href,
+      link_text: link.textContent.trim()
+    });
+  });
   var isDragging = false;
   var startX, startScrollLeft;
   var hasDragged = false;
