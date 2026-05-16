@@ -905,9 +905,6 @@ function buildTable() {
     var hasSaving = d.discountCode && d.discountSaving;
     var links = '<div class="dev-links">'
       +'<a href="'+d.links.buy+'" target="_blank" rel="noopener sponsored" class="hdr-buy hdr-buy-primary">'+d.links.buyLabel+' ↗</a>';
-    if (d.links.buy2 && d.links.buy2Label) {
-      links += '<a href="'+d.links.buy2+'" target="_blank" rel="noopener sponsored" class="hdr-buy hdr-buy-secondary-buy">'+d.links.buy2Label+' ↗</a>';
-    }
     if (d.links.review) links += '<a href="'+d.links.review+'" target="_blank" rel="noopener" class="hdr-buy hdr-buy-link">Read the Review ↗</a>';
     if (d.links.compare) links += '<a href="'+d.links.compare+'" target="_blank" rel="noopener" class="hdr-buy hdr-buy-link">Comparison Article ↗</a>';
     links += '</div>';
