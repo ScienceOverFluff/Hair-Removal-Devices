@@ -19,7 +19,7 @@ const DEVICES = [
     skinSensor: true,
     lifespan: "400,000",
     skinTones: ["ok","ok","ok","caution","caution",null],
-    hairColors: ["ok","ok","ok","x","x"],
+    hairColors: ["ok","ok","ok","ok","x"],
     wins: [
       "Low frequency of use — once per week",
       "Specialized treatment heads for different treatment areas"
