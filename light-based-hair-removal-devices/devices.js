@@ -32,7 +32,7 @@ const DEVICES = [
     discountSaving: null,
     bestFor: null,
     links: {
-      buy: "https://get.scienceoverfluff.com/braun-silk-expert-pro-5",
+      buy: "https://get.scienceoverfluff.com/braun-silk-expert-pro-5?ref=comparison-Braun-SilkExpertPro5",
       buyLabel: "Get it here",
       review: null,
       compare: null,
@@ -69,7 +69,7 @@ const DEVICES = [
     discountSaving: "$140 off",
     bestFor: null,
     links: {
-      buy: "https://get.scienceoverfluff.com/dermrays-v6s",
+      buy: "https://get.scienceoverfluff.com/dermrays-v6s?ref=comparison-DermRays-V6S",
       buyLabel: "Get it here",
       review: null,
       compare: null,
@@ -106,7 +106,7 @@ const DEVICES = [
     discountSaving: "$140 off",
     bestFor: null,
     links: {
-      buy: "https://get.scienceoverfluff.com/dermrays-v8s",
+      buy: "https://get.scienceoverfluff.com/dermrays-v8s?ref=comparison-DermRays-V8S",
       buyLabel: "Get it here",
       review: null,
       compare: null,
@@ -142,7 +142,7 @@ const DEVICES = [
     discountSaving: null,
     bestFor: null,
     links: {
-      buy: "https://get.scienceoverfluff.com/philips-lumea-8000",
+      buy: "https://get.scienceoverfluff.com/philips-lumea-8000?ref=comparison-Lumea8000",
       buyLabel: "Get it here",
       review: null,
       compare: null,
@@ -180,7 +180,7 @@ const DEVICES = [
     discountSaving: null,
     bestFor: null,
     links: {
-      buy: "https://get.scienceoverfluff.com/philips-lumea-9000",
+      buy: "https://get.scienceoverfluff.com/philips-lumea-9000?ref=comparison-Lumea9000",
       buyLabel: "Get it here",
       review: null,
       compare: null,
@@ -218,7 +218,7 @@ const DEVICES = [
     discountSaving: null,
     bestFor: null,
     links: {
-      buy: "https://get.scienceoverfluff.com/tria-4x",
+      buy: "https://get.scienceoverfluff.com/tria-4x?ref=comparison-Tria-4X",
       buyLabel: "Get it here",
       review: null,
       compare: "https://www.scienceoverfluff.com/p/tria-4x-vs-viqure-s-ld",
@@ -252,7 +252,7 @@ const DEVICES = [
     discountSaving: null,
     bestFor: null,
     links: {
-      buy: "https://get.scienceoverfluff.com/ulike-air-3",
+      buy: "https://get.scienceoverfluff.com/ulike-air-3?ref=comparison-Ulike-Air3",
       buyLabel: "Get it here",
       review: null,
       compare: null,
@@ -287,7 +287,7 @@ const DEVICES = [
     discountSaving: "$52 off",
     bestFor: null,
     links: {
-      buy: "https://get.scienceoverfluff.com/ulike-air-4",
+      buy: "https://get.scienceoverfluff.com/ulike-air-4?ref=comparison-Ulike-Air4",
       buyLabel: "Get it here",
       review: null,
       compare: "https://www.scienceoverfluff.com/p/ulike-technical-review-and-results",
@@ -324,7 +324,7 @@ const DEVICES = [
     discountSaving: "$90 off",
     bestFor: null,
     links: {
-      buy: "https://get.scienceoverfluff.com/ulike-air-10",
+      buy: "https://get.scienceoverfluff.com/ulike-air-10?ref=comparison-Ulike-Air10",
       buyLabel: "Get it here",
       review: "https://www.scienceoverfluff.com/p/ulike-technical-review-and-results",
       compare: null,
@@ -359,7 +359,7 @@ const DEVICES = [
     discountSaving: "$170 off",
     bestFor: null,
     links: {
-      buy: "https://get.scienceoverfluff.com/ulike-x",
+      buy: "https://get.scienceoverfluff.com/ulike-x?ref=comparison-Ulike-X",
       buyLabel: "Get it here",
       review: null,
       compare: "https://www.scienceoverfluff.com/p/ulike-technical-review-and-results",
@@ -396,7 +396,7 @@ const DEVICES = [
     discountSaving: "10% off",
     bestFor: null,
     links: {
-      buy: "https://get.scienceoverfluff.com/viqure-epipro",
+      buy: "https://get.scienceoverfluff.com/viqure-epipro?ref=comparison-EpiPro",
       buyLabel: "Get it here",
       review: null,
       compare: "https://www.scienceoverfluff.com/p/viqure-s-ld-vs-epipro-which-one-should-you-buy",
@@ -434,7 +434,7 @@ const DEVICES = [
     discountSaving: "$105 off",
     bestFor: null,
     links: {
-      buy: "https://get.scienceoverfluff.com/viqure-s-ld",
+      buy: "https://get.scienceoverfluff.com/viqure-s-ld?ref=comparison-S-LD",
       buyLabel: "Get it here",
       review: "https://www.scienceoverfluff.com/p/viqure-s-ld-at-home-hair-removal-timelines-hacks-results",
       compare: null,
