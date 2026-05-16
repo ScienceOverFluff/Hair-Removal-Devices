@@ -276,8 +276,8 @@ const DEVICES = [
     skinTones: ["ok","ok","ok","caution",null,null],
     hairColors: ["ok","ok","ok","x","x"],
     wins: [
-      "One of the most affordable IPL devices",
-      "High fluence"
+      "One of the most affordable devices",
+      "Higher fluence than many other IPLs"
     ],
     cons: [
       "High frequency of use required",
