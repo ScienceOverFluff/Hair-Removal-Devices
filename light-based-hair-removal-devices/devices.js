@@ -34,8 +34,6 @@ const DEVICES = [
     links: {
       buy: "https://get.scienceoverfluff.com/braun-silk-expert-pro-5",
       buyLabel: "Get it here",
-      buy2: null,
-      buy2Label: null,
       review: null,
       compare: null,
     },
@@ -73,8 +71,6 @@ const DEVICES = [
     links: {
       buy: "https://get.scienceoverfluff.com/dermrays-v6s",
       buyLabel: "Get it here",
-      buy2: null,
-      buy2Label: null,
       review: null,
       compare: null,
     },
@@ -112,8 +108,6 @@ const DEVICES = [
     links: {
       buy: "https://get.scienceoverfluff.com/dermrays-v8s",
       buyLabel: "Get it here",
-      buy2: null,
-      buy2Label: null,
       review: null,
       compare: null,
     },
@@ -150,8 +144,6 @@ const DEVICES = [
     links: {
       buy: "https://get.scienceoverfluff.com/philips-lumea-8000",
       buyLabel: "Get it here",
-      buy2: null,
-      buy2Label: null,
       review: null,
       compare: null,
     },
@@ -190,8 +182,6 @@ const DEVICES = [
     links: {
       buy: "https://get.scienceoverfluff.com/philips-lumea-9000",
       buyLabel: "Get it here",
-      buy2: null,
-      buy2Label: null,
       review: null,
       compare: null,
     },
@@ -230,8 +220,6 @@ const DEVICES = [
     links: {
       buy: "https://get.scienceoverfluff.com/tria-4x",
       buyLabel: "Get it here",
-      buy2: null,
-      buy2Label: null,
       review: null,
       compare: "https://www.scienceoverfluff.com/p/tria-4x-vs-viqure-s-ld",
     },
@@ -266,8 +254,6 @@ const DEVICES = [
     links: {
       buy: "https://get.scienceoverfluff.com/ulike-air-3",
       buyLabel: "Get it here",
-      buy2: null,
-      buy2Label: null,
       review: null,
       compare: null,
     },
@@ -303,8 +289,6 @@ const DEVICES = [
     links: {
       buy: "https://get.scienceoverfluff.com/ulike-air-4",
       buyLabel: "Get it here",
-      buy2: null,
-      buy2Label: null,
       review: null,
       compare: "https://www.scienceoverfluff.com/p/ulike-technical-review-and-results",
     },
@@ -342,8 +326,6 @@ const DEVICES = [
     links: {
       buy: "https://get.scienceoverfluff.com/ulike-air-10",
       buyLabel: "Get it here",
-      buy2: null,
-      buy2Label: null,
       review: "https://www.scienceoverfluff.com/p/ulike-technical-review-and-results",
       compare: null,
     },
@@ -379,8 +361,6 @@ const DEVICES = [
     links: {
       buy: "https://get.scienceoverfluff.com/ulike-x",
       buyLabel: "Get it here",
-      buy2: null,
-      buy2Label: null,
       review: null,
       compare: "https://www.scienceoverfluff.com/p/ulike-technical-review-and-results",
     },
@@ -418,8 +398,6 @@ const DEVICES = [
     links: {
       buy: "https://get.scienceoverfluff.com/viqure-epipro",
       buyLabel: "Get it here",
-      buy2: null,
-      buy2Label: null,
       review: null,
       compare: "https://www.scienceoverfluff.com/p/viqure-s-ld-vs-epipro-which-one-should-you-buy",
     },
@@ -458,8 +436,6 @@ const DEVICES = [
     links: {
       buy: "https://get.scienceoverfluff.com/viqure-s-ld",
       buyLabel: "Get it here",
-      buy2: null,
-      buy2Label: null,
       review: "https://www.scienceoverfluff.com/p/viqure-s-ld-at-home-hair-removal-timelines-hacks-results",
       compare: null,
     },
